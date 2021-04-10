@@ -2,7 +2,7 @@
 --- 
 title: "Un viaggio nell'ambiente R"
 author: 
-- name: Tommaso Russo
+- name: Tommaso Russo Io
   affiliation: Laboratorio di Ecologia Sperimentale ed Acquacoltura - Dipartimento di Biologia - Università degli Studi di Roma Tor Vergata & CONiSMa
 - name: Giuliano Colosimo
   affiliation: Institute for Conservation Research - San Diego - California & Laboratorio di Ecologia Sperimentale ed Acquacoltura - Dipartimento di Biologia - Università degli Studi di Roma Tor Vergata 
@@ -14,7 +14,7 @@ author:
 - name: Antonio Parisi
   affiliation: Dipartimento di Economia e Finanza - Università degli Studi di Roma Tor Vergata 
 
-date: "2021-03-20"
+date: "2021-04-10"
 output:
 #  prettydoc::html_pretty:
 #    theme: cayman
