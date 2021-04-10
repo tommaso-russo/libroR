@@ -38,13 +38,9 @@ biblio-style: apalike
 
 ---
 
-
-
 ![](Images/coverR.jpg)
 
 # Prefazione {#Prefazione}
-
-![](Images/1R.png)
 
 Sicuramente questo volume non rappresenta la prima risorsa realizzata in lingua italiana che punta a facilitare l'apprendimento e l'utilizzo dell'ambiente R. Una veloce ricerca online consente di trovare decine di predecessori, e certamente altre iniziative analoghe seguiranno. Da un certo punto di vista, una delle tante cose belle di *R* è che la sua **comunità**, in continua espansione, è inclusiva e coinvolgente... e questo perchè molti utenti sono catturati dal fascino di R e ne diventano degli appassionati sostenitori. E, infatti, le ragioni principali che hanno spinto gli autori a cimentarsi in questa opera sono il fascino che questo strumento esercita su di loro e la grande importanza che riveste nel loro lavoro.   
 D'altronde, non è esagerato dire che *R* è diventato una delle applicazioni di riferimento nell'ambito delle scienze teoriche ed applicate, e che la maggior parte dei corsi di studio relativi a discipline scientifiche ne richiede, ad un certo punto, l'apprendimento. Consapevoli di questo, gli autori si cimentati in questa avventura sulla spinta del loro entusiasmo... ma anche con il preciso obiettivo di realizzare qualcosa di originale e di possibilmente utile per gli studenti di tanti corsi di laurea e scuole di dottorato. Un obiettivo molto ambizioso, forse, ma sicuramente stimolante.
@@ -60,6 +56,7 @@ Quest'opera non vuole essere nessuna delle due... ed entrambe. Ci piacerebbe int
 Il filo conduttore usato negli esempi e nell'approccio concettuale appartiene sempre al campo delle scienze naturali. D'altronde la squadra degli autori comprende 3 ecologi, uno statistico e uno zoologo... poi la competizione ha fatto il suo corso e l'opera ha preso una piega che privilegia temi come il cambiamento climatico e gli impatti dell'uomo sull'ambiente. Ma la vera storia dietro questo team e questa iniziativa è quella di un gruppo di colleghi a cui piace lavorare insieme e che hanno scoperto che le loro competenze si integrano con un arricchimento reciproco.
 
 # Gli autori {#Autori}
+
 ![**Tommaso Russo**](Images/russo.jpg)
 
 E' professore associato di Ecologia presso il Dipartimento di Biologia dell'Università degli Studi di Roma Tor Vergata ed è affiliato al CONiSMa. Si occupa di modellistica ecologia applicata alle scienze della pesca e all'impatto dell'uomo sugli ambienti marini. Ha scritto il capitolo **Le Basi** di questo libro, e quello che sa di R lo ha imparato dagli altri... _in primis_ da Antonio Parisi.

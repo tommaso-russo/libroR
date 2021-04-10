@@ -1,5 +1,7 @@
 # Le basi {#base}
 
+![](Images/01-01.png)
+
 ## Che cosa è l’ambiente R {#R}
 R è un ambiente di programmazione. Parafrasando Morpheus che sfida Neo nella palestra virtuale di "Struttura", diremo che l'ambiente R ha le sue (poche) regole, e che conoscerle rappresenta il primo passo per impadronirsi di questo strumento (e aggirare o infrangere le sue regole).
 In questa sezione saranno introdotte alcune nozioni generali che, spesso, sono date per scontate e quindi non chiaramente delineate. Nella nostra esperienza, dare per scontati questi concetti rende ostica il primo impatto con R e la prima fase dell'apprendimento, durante la quale la comprensione della sintassi e delle strutture è ancora faticoso per il nuovo utente.
@@ -119,7 +121,7 @@ Beh...
 Per affrontare la prima parte, dedicata a una carrellata degli aspetti base (concettuali e di sintassi) dell'ambiente R, è necessario assimilare alcuni termini (e strumenti):
 Il **terminale** (detto *console* in inglese, così come è denominata la sua finestra nell'interfaccia di R studio), è l' **interfaccia** attraverso il quale l'utente interagisce con R. 
 
-![](Images/Sudo.png)
+![Fonte: https://xkcd.com/149/](Images/01-02.png)
 
 Citando testualmente Wikipedia: "*In informatica una interfaccia a riga di comando[1] (dall'inglese command line interface, in acronimo CLI) o anche console, a volte detta semplicemente riga di comando e, impropriamente[senza fonte], prompt dei comandi, è un tipo di interfaccia utente caratterizzata da un'interazione testuale tra utente ed elaboratore (vedi shell): l'utente impartisce comandi testuali in input mediante tastiera alfanumerica e riceve risposte testuali in output dall'elaboratore mediante display o stampante alfanumerici. Nei sistemi operativi moderni usati nei personal computer, al posto della CLI, in buona parte, c'è l'interfaccia grafica con caratteristiche tipicamente user friendly*".
 Il primo (e forse principale) trauma al quale il neofita di R si trova di fronte è la necessità di rinunciare (possibilmente da subito e definitavamente) all'interazione tramite il mouse e quindi le interfacce a finestre e menù a tendina che tanto ci sono familiari e rispetto alle quali abbiamo sviluppato una certa dipendenza! Quando si comincia a usare R, bisogna accettare di inserire i comandi digitandoli direttamente nel terminale o predisponendoli in uno script (una sequenza di comandi annotata da qualche parte, generalmente in un editor di testo o in una apposita finestra di R studio). 
@@ -131,14 +133,15 @@ Questo modo di operare viene denominaro What You See Is What You Get ("quello ch
 L'utilizzo di R si svolge tipicamente attraverso un continuo passaggio dall'editor di testo, dove si modica lo script, al terminale dove lo si esegue. Se poi si usano interfacce avanzate come **R studio**[TIOBE](https://rstudio.com/), si può disporre di utili finestre accessorie (come quella dei grafici).
 La figura seguente ci mostra una tipica schermata di **R studio**
 
-![](Images/Rstudio.png)
+![Un'anteprima dell'interfaccia di R studio](Images/01-03.png)
+
 L'interfaccia di Rstudio contiene 4 finestre che sono spesso organizzate in questo modo (ma l'utente ha ampie possibilità di personalizzarle). Analizziamo questo esempio:
 
-* In alto a sinistra c'è lo **Script** o gli **Script** se si vule gestire più procedure separate. Questa finestra è semplicemente un blocco note multipagina che consente di inviare i comandi direttamente al **terminale**
+* In alto a sinistra c'è lo **Script** o gli **Script** se si vuole gestire più procedure separate. Questa finestra è semplicemente un blocco note multipagina che consente di inviare i comandi direttamente al **terminale**
 
 * In basso a sinistra ecco proprio lui, il **terminale**, ovvero il canale di collegamento in ingresso da noi verso R. In Rstudio, questa finestra si chiama **Console**. avete presente Ellen Ripley che comunica con Mother mediante un terminale? Ecco, il concetto è quello e...  a volte penserete che R è antipatico quasi quanto Mother :-)
 
-![](Images/mother.jpg)
+![Fonte: https://preview.redd.it/ai8a6o42tar31.jpg?width=960&crop=smart&auto=webp&s=5ad06fc01552f5227130af2659b47803004f7faf](Images/01-04.png)
 
 * In alto a destra c'è una finestra "composita" che racchiude **Environment**, all'interno del quale troveremo un elenco (con alcune caratteristiche essenziali) degli oggetti nella memoria della sessione, **History**, una cronologia dei comandi passati alla **Console**, e infine le tre sottofinestre **Connections**, **Build** e **Tutorial** sulle quali, per ora, possiamo sorvolare.
 
@@ -345,7 +348,7 @@ sum(a)
 In questo caso, abbiamo generato un vettore denominato _a_ e poi abbiamo applicato la funzione _sum_ (somma) su di esso, ottenendo il risultato corrispondente alla somma degli elementi di _a_.
 Gli argomenti di una funzione, dunque, sono i dati in ingresso, la materia prima per permettere alla funzione di lavorare e restituirci un risultato.
 
-![Il concetto di annidamento mediante le tonde visto da **Ciro Fanelli**](Images/1parentesitonde.png)
+![](Images/01-05.png)
 
 ### Le parentesi **quadre** 
 Servono per **indicizzare** gli oggetti, cioè per identificare al loro interno delle sottoparti precise. Come all'interno di una griglia spaziale (immaginate di giocare una partita di battaglia navale), le parentesi quadre ci permettono di fare riferimento a pezzi specifici di oggetti complessi, permettendoci di manipolarli (estrarne delle parti, sostituirle, modificarle, ecc.).
@@ -468,7 +471,7 @@ n
 Analizzando il codice dell'esempio, dovremmo poter capire che, all'interno delle quadre, abbiamo indicato due vettori generati con la funzione _c_. Ciascuno di essi corrisponde al vettore composto da due elementi, i numeri 1 e 3, e quindi il risultato complessivo sarà la creazione di un oggetto _n_, anch'esso una matrice, composto dagli elementi nella prima riga e terza colonna di _m_.
 Torneremo sul concetto di indicizzazione, e sul suo utilizzo, man mano che prenderemo familiarietà con oggetti aventi struttura più complessa (come ad esempio le _liste_ o gli _array_)
 
-![Il concetto di indicizzazione mediante le quadre visto da **Ciro Fanelli**](Images/1parentesiquadra.png)
+![](Images/01-06.png)
 
 ### Le parentesi **graffe** 
 Servono principalmente a delimitare strutture precise come i _loop_ (cicli). Dunque le vedremo comparire all'interno di un codice per generare e gestire delle strutture di controllo complesse come le scelte (il ciclo _if_, _else_) o iterazioni di blocchi di istruzioni (il ciclo _for_).
@@ -494,7 +497,7 @@ E' interessante notare che, manipolando i valori di _a_, _b_ e _c_, si possono o
 Vedremo che le parentesi graffe servono anche a definire le funzioni, ma su questo torneremo più avanti.
 
 
-![Il concetto di gestione dei cicli mediante le graffe visto da **Ciro Fanelli**](Images/1parentesigraffe.png)
+![](Images/01-07.png)
 
 
 ------
@@ -947,7 +950,7 @@ Non ci dilunghiamo oltre sulle matrici, ma torneremo estesamente su di esse quan
 Le *liste* sono delle vere e proprie "collezioni" di oggetti in R. Ogni lista è di per se un oggetto, ma in pratica ogni lista contiene dei sotto-oggetti (matrici, vettori, scalari, array, data frame, altre liste).
 L'utilità delle lista sta proprio nella loro versatilità strutturale: mentre vettori, matrici ed array sono oggetti che contengono elementi di un solo tipo, le liste possono contenere una molteplicità di sotto-oggetti di tipo diverso. Inoltre, tutti gli altri oggetti di R sono "regolari": la loro struttura è organizzata in dimensioni (le righe o le colonne) rigide: ci si aspetta che ogni riga di una matrice contenga un elemento per ciascuna colonna, e viceversa.
 Per comprendere la differenza tra le *liste* e gli altri oggetti, può essere utile fare un giro all'Ikea
-![](Images/Ikea.png)
+![](Images/01-08.png)
 La figura parla da se: non potreste mai mettere la TV in una matrice o in un vettore!
 
 E' possibile generare una lista mediante il comando _list_ di cui vediamo una prima semplicissima applicazione:
@@ -1318,7 +1321,7 @@ SM
 Questa volta abbiamo ottenuto un valore "buono" della somma di M. Se facciamo due calcoli a mente possiamo facilmente dedurre che esso corrisponde alla somma di tutti i valori di M tranne quello strano e brutto NaN, con il quale faremo conoscenza tra poco. Adesso però ci interessa un'altra cosa: l'opzione _na.rm_ sta per "remove NA or NaN", e quindi significa autorizzare la funzione a far finta che non ci siano valori strani. Quindi, attivandola, abbiamo detto a R di calcolare la somma solo sugli altri valori. A questo punto qualcuno di voi lettori si starà chiedendo: e perchè mai questa fantastica opzione è disattiva di default e dobbiamo attivarla noi? Non sarebbe meglio se fosse sempre accesa e ci proteggesse da risultati brutti? La risposta è NO, non sarebbe affatto meglio, perchè il fatto che i nostri calcoli si inceppino ogni volta che da qualche parte compare un valore strano è un ottimo modo per costringerci a ricontrollare le nostre procedure e fare in modo che siano il più generali e versatili possibili. Per esempio, vogliamo risolvere un problema ma non prendiamo in considerazione che i valori di alcune variabili possono assumere valori negativi. Se così è, e da qualche parte nel nostro codice usiamo funzioni non definite su R- (come la radice quadrata o il logaritmo) ci imbatteremo in un valore anomalo e saremmo naturalmente portati a rimediare.
 
 
-![](Images/1funzione.png)
+![](Images/01-09.png)
 Ci soffermiamo ora su un altro aspetto essenziale delle funzioni. Mi riferisco al fatto che ciascuna di esse vive e opera in un sottoambiente di quello principale, cioè la sessione di lavoro all'interno della quale stiamo operando. Vediamo cosa significa con un esempio:
 
 
@@ -1436,7 +1439,11 @@ Come abbiamo visto, R non nasconde la polvere sotto il tappeto (a meno che non l
 
 
 ## Operatori relazionali e algebra di Boole {#Boole}
+
 Sull'opera immortale di **George Boole** è stato scritto tanto, ma mai a sufficienza. Nessuno più di lui ha contribuito a gettare le basi della computazione elettonica. Tanto è vero che la sua **Algebra** è fondamentale anche (e ancora) per noi. Alla base di tutto c'è che le quantità che maneggiamo sono sempre tradotte, nel profondo dei nostri pc, in quantità binarie. Come nelle sinapsi del nostro cervello, i microchip dei nostri processori riduco la realtà a sequenze di stati **acceso-spento**. 
+
+![](Images/01-10.png)
+
 La prova sta nel fatto che le quantità booleane le abbiamo già incontrate: sono le quantità di tipo **logical**. Adesso dobbiamo generalizzare a problemi più complessi, per esempio la **verifica di condizioni** all'interno di funzioni o algoritmi. Per farlo, prima dobbiamo prendere in rassegna la sintassi degli operatori booleani in R:
 
 
@@ -1671,7 +1678,7 @@ L'utilizzo dell'opzione **arr.ind** non cambia il risultato dell'indicizzazione 
 
 Fino a questo punto, abbiamo _subdolamente_ introdotto alcune funzioni di base di R (matrix, which, sum,...) illustrandone le principali caratteristiche. Queste e altre funzioni fanno parte del vocabolario di base che un neofita di R deve assimilare, ma ce ne sono tante altre che si aggiungono via via ed è evidente che dobbiamo capire come si fa ad apprendere il loro utilizzo (in maniera possibilmente rapida). La risposta è: **usando l'help di R**! L'Help di R è un interfaccia brutto e apparentemente antipatico. Però, a dispetto delle apparenze, è uno strumento estramemente versatile e completo, e quindi imparare a usarlo ci permette di procedere rapidamente con il nostro _self training_.
 
-![](Images/1help.png)
+![](Images/01-11.png)
 
 Per fare la sua conoscenza, proviamo a digitare da terminale il nome di una funzione preceduto dal punto interrogativo:
 

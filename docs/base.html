@@ -183,6 +183,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="base" class="section level1">
 <h1><span class="header-section-number">Capitolo 3</span> Le basi</h1>
+<p><img src="Images/01-01.png" /></p>
 <div id="R" class="section level2">
 <h2><span class="header-section-number">3.1</span> Che cosa è l’ambiente R</h2>
 <p>R è un ambiente di programmazione. Parafrasando Morpheus che sfida Neo nella palestra virtuale di “Struttura”, diremo che l’ambiente R ha le sue (poche) regole, e che conoscerle rappresenta il primo passo per impadronirsi di questo strumento (e aggirare o infrangere le sue regole).
@@ -375,7 +376,10 @@ Per essere proprio completi, è importante ricordare che.</p>
 <h2><span class="header-section-number">3.3</span> “What You See Is What You Mean”: dallo Script al terminale (e viceversa)</h2>
 <p>Per affrontare la prima parte, dedicata a una carrellata degli aspetti base (concettuali e di sintassi) dell’ambiente R, è necessario assimilare alcuni termini (e strumenti):
 Il <strong>terminale</strong> (detto <em>console</em> in inglese, così come è denominata la sua finestra nell’interfaccia di R studio), è l’ <strong>interfaccia</strong> attraverso il quale l’utente interagisce con R.</p>
-<p><img src="Images/Sudo.png" /></p>
+<div class="figure">
+<img src="Images/01-02.png" alt="" />
+<p class="caption">Fonte: <a href="https://xkcd.com/149/" class="uri">https://xkcd.com/149/</a></p>
+</div>
 <p>Citando testualmente Wikipedia: “<em>In informatica una interfaccia a riga di comando[1] (dall’inglese command line interface, in acronimo CLI) o anche console, a volte detta semplicemente riga di comando e, impropriamente[senza fonte], prompt dei comandi, è un tipo di interfaccia utente caratterizzata da un’interazione testuale tra utente ed elaboratore (vedi shell): l’utente impartisce comandi testuali in input mediante tastiera alfanumerica e riceve risposte testuali in output dall’elaboratore mediante display o stampante alfanumerici. Nei sistemi operativi moderni usati nei personal computer, al posto della CLI, in buona parte, c’è l’interfaccia grafica con caratteristiche tipicamente user friendly</em>”.
 Il primo (e forse principale) trauma al quale il neofita di R si trova di fronte è la necessità di rinunciare (possibilmente da subito e definitavamente) all’interazione tramite il mouse e quindi le interfacce a finestre e menù a tendina che tanto ci sono familiari e rispetto alle quali abbiamo sviluppato una certa dipendenza! Quando si comincia a usare R, bisogna accettare di inserire i comandi digitandoli direttamente nel terminale o predisponendoli in uno script (una sequenza di comandi annotata da qualche parte, generalmente in un editor di testo o in una apposita finestra di R studio).
 Ci sono due motivi principali per questo:
@@ -385,13 +389,19 @@ Per utilizzare il terminale, però, non basta conoscere la sintassi dei comandi:
 Questo modo di operare viene denominaro What You See Is What You Get (“quello che vedi è quello che è” o “ottieni quanto vedi” - acronimo WYSIWYG). Utilizzare il terminale di un ambiente come R significa invece applicare la filosofia What You See Is What You Mean (letteralmente: quel che vedi è ciò che intendi; sinteticamente, vedi quanto intendi - acronimo WYSIWYM). In sostanza, le istruzioni che digitiamo non sono semplici parole sullo schermo ma implicano l’applicazione di funzioni anche complesse che, nelle intenzioni dell’utente, devono restituire un risultato di qualche tipo.
 L’utilizzo di R si svolge tipicamente attraverso un continuo passaggio dall’editor di testo, dove si modica lo script, al terminale dove lo si esegue. Se poi si usano interfacce avanzate come <strong>R studio</strong><a href="https://rstudio.com/">TIOBE</a>, si può disporre di utili finestre accessorie (come quella dei grafici).
 La figura seguente ci mostra una tipica schermata di <strong>R studio</strong></p>
-<p><img src="Images/Rstudio.png" />
-L’interfaccia di Rstudio contiene 4 finestre che sono spesso organizzate in questo modo (ma l’utente ha ampie possibilità di personalizzarle). Analizziamo questo esempio:</p>
+<div class="figure">
+<img src="Images/01-03.png" alt="" />
+<p class="caption">Un’anteprima dell’interfaccia di R studio</p>
+</div>
+<p>L’interfaccia di Rstudio contiene 4 finestre che sono spesso organizzate in questo modo (ma l’utente ha ampie possibilità di personalizzarle). Analizziamo questo esempio:</p>
 <ul>
-<li><p>In alto a sinistra c’è lo <strong>Script</strong> o gli <strong>Script</strong> se si vule gestire più procedure separate. Questa finestra è semplicemente un blocco note multipagina che consente di inviare i comandi direttamente al <strong>terminale</strong></p></li>
+<li><p>In alto a sinistra c’è lo <strong>Script</strong> o gli <strong>Script</strong> se si vuole gestire più procedure separate. Questa finestra è semplicemente un blocco note multipagina che consente di inviare i comandi direttamente al <strong>terminale</strong></p></li>
 <li><p>In basso a sinistra ecco proprio lui, il <strong>terminale</strong>, ovvero il canale di collegamento in ingresso da noi verso R. In Rstudio, questa finestra si chiama <strong>Console</strong>. avete presente Ellen Ripley che comunica con Mother mediante un terminale? Ecco, il concetto è quello e… a volte penserete che R è antipatico quasi quanto Mother :-)</p></li>
 </ul>
-<p><img src="Images/mother.jpg" /></p>
+<div class="figure">
+<img src="Images/01-04.png" alt="" />
+<p class="caption">Fonte: <a href="https://preview.redd.it/ai8a6o42tar31.jpg?width=960&amp;crop=smart&amp;auto=webp&amp;s=5ad06fc01552f5227130af2659b47803004f7faf" class="uri">https://preview.redd.it/ai8a6o42tar31.jpg?width=960&amp;crop=smart&amp;auto=webp&amp;s=5ad06fc01552f5227130af2659b47803004f7faf</a></p>
+</div>
 <ul>
 <li><p>In alto a destra c’è una finestra “composita” che racchiude <strong>Environment</strong>, all’interno del quale troveremo un elenco (con alcune caratteristiche essenziali) degli oggetti nella memoria della sessione, <strong>History</strong>, una cronologia dei comandi passati alla <strong>Console</strong>, e infine le tre sottofinestre <strong>Connections</strong>, <strong>Build</strong> e <strong>Tutorial</strong> sulle quali, per ora, possiamo sorvolare.</p></li>
 <li><p>In basso a destra c’è un’altra finestra “composita” che racchiude <strong>Files</strong>, cioè l’elenco dei file nella cartella di lavoro (la directory del pc) scelta per la sessione, <strong>Plots</strong>, che conterrà le anteprime dei grafici realizzati, <strong>Packages</strong>, che è un prontuario di tutti gli help dei pacchetti installlati, <strong>Help</strong>, l’interfaccia minimale di aiuto che presto impareremo ad apprezzare, e <strong>Viewer</strong>, destinata a mostrare contenuto HTML come le applicazioni Shiny.</p></li>
@@ -501,10 +511,7 @@ Un altro semplice esempio è:</p>
 <pre><code>## [1] 11</code></pre>
 <p>In questo caso, abbiamo generato un vettore denominato <em>a</em> e poi abbiamo applicato la funzione <em>sum</em> (somma) su di esso, ottenendo il risultato corrispondente alla somma degli elementi di <em>a</em>.
 Gli argomenti di una funzione, dunque, sono i dati in ingresso, la materia prima per permettere alla funzione di lavorare e restituirci un risultato.</p>
-<div class="figure">
-<img src="Images/1parentesitonde.png" alt="" />
-<p class="caption">Il concetto di annidamento mediante le tonde visto da <strong>Ciro Fanelli</strong></p>
-</div>
+<p><img src="Images/01-05.png" /></p>
 </div>
 <div id="le-parentesi-quadre" class="section level3">
 <h3><span class="header-section-number">3.6.2</span> Le parentesi <strong>quadre</strong></h3>
@@ -566,10 +573,7 @@ Un ultimo esempio, la selezione di elementi non contingui:</p>
 ## [2,]  103  109</code></pre>
 <p>Analizzando il codice dell’esempio, dovremmo poter capire che, all’interno delle quadre, abbiamo indicato due vettori generati con la funzione <em>c</em>. Ciascuno di essi corrisponde al vettore composto da due elementi, i numeri 1 e 3, e quindi il risultato complessivo sarà la creazione di un oggetto <em>n</em>, anch’esso una matrice, composto dagli elementi nella prima riga e terza colonna di <em>m</em>.
 Torneremo sul concetto di indicizzazione, e sul suo utilizzo, man mano che prenderemo familiarietà con oggetti aventi struttura più complessa (come ad esempio le <em>liste</em> o gli <em>array</em>)</p>
-<div class="figure">
-<img src="Images/1parentesiquadra.png" alt="" />
-<p class="caption">Il concetto di indicizzazione mediante le quadre visto da <strong>Ciro Fanelli</strong></p>
-</div>
+<p><img src="Images/01-06.png" /></p>
 </div>
 <div id="le-parentesi-graffe" class="section level3">
 <h3><span class="header-section-number">3.6.3</span> Le parentesi <strong>graffe</strong></h3>
@@ -588,10 +592,7 @@ Il risultato, intuitivo, è 10.
 Le graffe servono per racchiudere il ciclo <em>for</em>.
 E’ interessante notare che, manipolando i valori di <em>a</em>, <em>b</em> e <em>c</em>, si possono ottenere risultati diversi… il che è esattamente lo spirito di una struttura iterativa del genere.
 Vedremo che le parentesi graffe servono anche a definire le funzioni, ma su questo torneremo più avanti.</p>
-<div class="figure">
-<img src="Images/1parentesigraffe.png" alt="" />
-<p class="caption">Il concetto di gestione dei cicli mediante le graffe visto da <strong>Ciro Fanelli</strong></p>
-</div>
+<p><img src="Images/01-07.png" /></p>
 <hr />
 </div>
 </div>
@@ -814,7 +815,7 @@ Non ci dilunghiamo oltre sulle matrici, ma torneremo estesamente su di esse quan
 <p>Le <em>liste</em> sono delle vere e proprie “collezioni” di oggetti in R. Ogni lista è di per se un oggetto, ma in pratica ogni lista contiene dei sotto-oggetti (matrici, vettori, scalari, array, data frame, altre liste).
 L’utilità delle lista sta proprio nella loro versatilità strutturale: mentre vettori, matrici ed array sono oggetti che contengono elementi di un solo tipo, le liste possono contenere una molteplicità di sotto-oggetti di tipo diverso. Inoltre, tutti gli altri oggetti di R sono “regolari”: la loro struttura è organizzata in dimensioni (le righe o le colonne) rigide: ci si aspetta che ogni riga di una matrice contenga un elemento per ciascuna colonna, e viceversa.
 Per comprendere la differenza tra le <em>liste</em> e gli altri oggetti, può essere utile fare un giro all’Ikea
-<img src="Images/ikea.png" />
+<img src="Images/01-08.png" />
 La figura parla da se: non potreste mai mettere la TV in una matrice o in un vettore!</p>
 <p>E’ possibile generare una lista mediante il comando <em>list</em> di cui vediamo una prima semplicissima applicazione:</p>
 <div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="base.html#cb127-1"></a><span class="co">#Genero il vettore V avente 5 elementi  numerici</span></span>
@@ -1018,7 +1019,7 @@ Quindi:</p>
 <span id="cb171-3"><a href="base.html#cb171-3"></a>SM</span></code></pre></div>
 <pre><code>## [1] 9.345921</code></pre>
 <p>Questa volta abbiamo ottenuto un valore “buono” della somma di M. Se facciamo due calcoli a mente possiamo facilmente dedurre che esso corrisponde alla somma di tutti i valori di M tranne quello strano e brutto NaN, con il quale faremo conoscenza tra poco. Adesso però ci interessa un’altra cosa: l’opzione <em>na.rm</em> sta per “remove NA or NaN”, e quindi significa autorizzare la funzione a far finta che non ci siano valori strani. Quindi, attivandola, abbiamo detto a R di calcolare la somma solo sugli altri valori. A questo punto qualcuno di voi lettori si starà chiedendo: e perchè mai questa fantastica opzione è disattiva di default e dobbiamo attivarla noi? Non sarebbe meglio se fosse sempre accesa e ci proteggesse da risultati brutti? La risposta è NO, non sarebbe affatto meglio, perchè il fatto che i nostri calcoli si inceppino ogni volta che da qualche parte compare un valore strano è un ottimo modo per costringerci a ricontrollare le nostre procedure e fare in modo che siano il più generali e versatili possibili. Per esempio, vogliamo risolvere un problema ma non prendiamo in considerazione che i valori di alcune variabili possono assumere valori negativi. Se così è, e da qualche parte nel nostro codice usiamo funzioni non definite su R- (come la radice quadrata o il logaritmo) ci imbatteremo in un valore anomalo e saremmo naturalmente portati a rimediare.</p>
-<p><img src="Images/1funzione.png" />
+<p><img src="Images/01-09.png" />
 Ci soffermiamo ora su un altro aspetto essenziale delle funzioni. Mi riferisco al fatto che ciascuna di esse vive e opera in un sottoambiente di quello principale, cioè la sessione di lavoro all’interno della quale stiamo operando. Vediamo cosa significa con un esempio:</p>
 <div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="base.html#cb173-1"></a>x &lt;-<span class="st"> </span><span class="dv">5</span></span>
 <span id="cb173-2"><a href="base.html#cb173-2"></a>y &lt;-<span class="st"> </span><span class="dv">3</span></span>
@@ -1062,8 +1063,9 @@ Come abbiamo visto, R non nasconde la polvere sotto il tappeto (a meno che non l
 </div>
 <div id="Boole" class="section level2">
 <h2><span class="header-section-number">3.11</span> Operatori relazionali e algebra di Boole</h2>
-<p>Sull’opera immortale di <strong>George Boole</strong> è stato scritto tanto, ma mai a sufficienza. Nessuno più di lui ha contribuito a gettare le basi della computazione elettonica. Tanto è vero che la sua <strong>Algebra</strong> è fondamentale anche (e ancora) per noi. Alla base di tutto c’è che le quantità che maneggiamo sono sempre tradotte, nel profondo dei nostri pc, in quantità binarie. Come nelle sinapsi del nostro cervello, i microchip dei nostri processori riduco la realtà a sequenze di stati <strong>acceso-spento</strong>.
-La prova sta nel fatto che le quantità booleane le abbiamo già incontrate: sono le quantità di tipo <strong>logical</strong>. Adesso dobbiamo generalizzare a problemi più complessi, per esempio la <strong>verifica di condizioni</strong> all’interno di funzioni o algoritmi. Per farlo, prima dobbiamo prendere in rassegna la sintassi degli operatori booleani in R:</p>
+<p>Sull’opera immortale di <strong>George Boole</strong> è stato scritto tanto, ma mai a sufficienza. Nessuno più di lui ha contribuito a gettare le basi della computazione elettonica. Tanto è vero che la sua <strong>Algebra</strong> è fondamentale anche (e ancora) per noi. Alla base di tutto c’è che le quantità che maneggiamo sono sempre tradotte, nel profondo dei nostri pc, in quantità binarie. Come nelle sinapsi del nostro cervello, i microchip dei nostri processori riduco la realtà a sequenze di stati <strong>acceso-spento</strong>.</p>
+<p><img src="Images/01-10.png" /></p>
+<p>La prova sta nel fatto che le quantità booleane le abbiamo già incontrate: sono le quantità di tipo <strong>logical</strong>. Adesso dobbiamo generalizzare a problemi più complessi, per esempio la <strong>verifica di condizioni</strong> all’interno di funzioni o algoritmi. Per farlo, prima dobbiamo prendere in rassegna la sintassi degli operatori booleani in R:</p>
 <div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="base.html#cb193-1"></a>dB =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Operatore =</span> <span class="kw">c</span>(<span class="st">&quot;==&quot;</span>, <span class="st">&quot;&gt;&quot;</span>, <span class="st">&quot;&lt;&quot;</span>, <span class="st">&quot;&gt;=&quot;</span>, <span class="st">&quot;&lt;=&quot;</span>, <span class="st">&quot;!&quot;</span>, <span class="st">&quot;&amp;&quot;</span>, <span class="st">&quot;|&quot;</span>),</span>
 <span id="cb193-2"><a href="base.html#cb193-2"></a>                <span class="dt">Significato =</span> <span class="kw">c</span>(<span class="st">&quot;uguale&quot;</span>, <span class="st">&quot;maggiore&quot;</span>, <span class="st">&quot;minore&quot;</span>, <span class="st">&quot;maggiore o uguale&quot;</span>,</span>
 <span id="cb193-3"><a href="base.html#cb193-3"></a>                                <span class="st">&quot;minore o uguale&quot;</span>, <span class="st">&quot;negazione&quot;</span>,<span class="st">&quot;and&quot;</span>,<span class="st">&quot;or&quot;</span>))</span>
@@ -1253,7 +1255,7 @@ La funzione <strong>which</strong> ha anche una opzione molto importante, che si
 <div id="luso-dellhelp" class="section level2">
 <h2><span class="header-section-number">3.12</span> L’uso dell’Help</h2>
 <p>Fino a questo punto, abbiamo <em>subdolamente</em> introdotto alcune funzioni di base di R (matrix, which, sum,…) illustrandone le principali caratteristiche. Queste e altre funzioni fanno parte del vocabolario di base che un neofita di R deve assimilare, ma ce ne sono tante altre che si aggiungono via via ed è evidente che dobbiamo capire come si fa ad apprendere il loro utilizzo (in maniera possibilmente rapida). La risposta è: <strong>usando l’help di R</strong>! L’Help di R è un interfaccia brutto e apparentemente antipatico. Però, a dispetto delle apparenze, è uno strumento estramemente versatile e completo, e quindi imparare a usarlo ci permette di procedere rapidamente con il nostro <em>self training</em>.</p>
-<p><img src="Images/1help.png" /></p>
+<p><img src="Images/01-11.png" /></p>
 <p>Per fare la sua conoscenza, proviamo a digitare da terminale il nome di una funzione preceduto dal punto interrogativo:</p>
 <div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="base.html#cb224-1"></a>?sum</span>
 <span id="cb224-2"><a href="base.html#cb224-2"></a>?which    </span></code></pre></div>
