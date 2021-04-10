@@ -2,7 +2,7 @@
 --- 
 title: "Un viaggio nell'ambiente R"
 author: 
-- name: Tommaso Russo Io
+- name: Tommaso Russo
   affiliation: Laboratorio di Ecologia Sperimentale ed Acquacoltura - Dipartimento di Biologia - Università degli Studi di Roma Tor Vergata & CONiSMa
 - name: Giuliano Colosimo
   affiliation: Institute for Conservation Research - San Diego - California & Laboratorio di Ecologia Sperimentale ed Acquacoltura - Dipartimento di Biologia - Università degli Studi di Roma Tor Vergata 
@@ -65,7 +65,7 @@ Il filo conduttore usato negli esempi e nell'approccio concettuale appartiene se
 
 # Gli autori {#Autori}
 ![**Tommaso Russo**](Images/russo.jpg)
-
+**Tommaso Russo**
  
 E' professore associato di Ecologia presso il Dipartimento di Biologia dell'Università degli Studi di Roma Tor Vergata ed è affiliato al CONiSMa. Si occupa di modellistica ecologia applicata alle scienze della pesca e all'impatto dell'uomo sugli ambienti marini. Ha scritto il capitolo **Le Basi** di questo libro, e quello che sa di R lo ha imparato dagli altri... _in primis_ da Antonio Parisi.
 
