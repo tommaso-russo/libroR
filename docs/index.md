@@ -29,9 +29,7 @@ output:
   pdf_document:
     toc: true
     highlight: zenburn
-    
-description: This is a minimal example of using the bookdown package to write a book.
-  The output format for this example is bookdown::gitbook.
+
 
 documentclass: book
 link-citations: yes
