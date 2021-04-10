@@ -34,7 +34,7 @@ knitr::kable(
 
 
 
-Table: (\#tab:unnamed-chunk-1)TIOBE Index for August 2020
+Table: TIOBE Index for August 2020
 
 |Name                 | Ratings| Change|
 |:--------------------|-------:|------:|
@@ -67,7 +67,7 @@ barplot(TIOBE$Ratings[order(TIOBE$Ratings, decreasing = F)],
         col = c(rep("grey",12),"blue",rep("grey",7)), horiz = T)
 ```
 
-<img src="01-base_files/figure-html/unnamed-chunk-1-1.png" width="672" />
+![](01-base_files/figure-latex/unnamed-chunk-1-1.pdf)<!-- --> 
 
 Questo dato è ancora più significativo se si considera che R non è esattamente un ambiente per produrre software compilato e quindi eseguibili (come avviene invece con i membri della famiglia **C**). 
 Perchè questo aspetto è così importante? Semplicemente perchè, essendo R un ambiente "libero", ogni utente può attingere a una sterminata banca dati di dati, algoritmi, pacchetti e funzioni già sviluppati da altri utenti... e spesso può contare sull'aiuto diretto di altri utenti. In ambito scientifico, R ha avuto (e continua ad avere) una diffusione inarrestabile perchè incarna perfettamente alcuni ideali della ricerca: la possibilità di sviluppare metodologie completamente replicabili, chiare e ulteriormente implementabili. 
@@ -1459,7 +1459,7 @@ knitr::kable(
 
 
 
-Table: (\#tab:nice-tab5)Gli operatori booleani in R
+Table: Gli operatori booleani in R
 
 |Operatore |Significato       |
 |:---------|:-----------------|
@@ -1539,7 +1539,7 @@ knitr::kable(data.frame(Espressione1 = c("TRUE","FALSE", "TRUE","FALSE"),
 
 
 
-Table: (\#tab:nice-tab6)Tabella di verità dell'operatore AND
+Table: Tabella di verità dell'operatore AND
 
 |Espressione1 |Espressione2 |Valore |
 |:------------|:------------|:------|
@@ -1563,7 +1563,7 @@ knitr::kable(data.frame(Espressione1 = c("TRUE","FALSE", "TRUE","FALSE"),
 
 
 
-Table: (\#tab:nice-tab7)Tabella di verità dell'operatore OR
+Table: Tabella di verità dell'operatore OR
 
 |Espressione1 |Espressione2 |Valore |
 |:------------|:------------|:------|

@@ -38,9 +38,9 @@ biblio-style: apalike
 
 ---
 
-![](Images/coverR.jpg)
-
 # Prefazione {#Prefazione}
+
+![](Images/coverR.png)
 
 Sicuramente questo volume non rappresenta la prima risorsa realizzata in lingua italiana che punta a facilitare l'apprendimento e l'utilizzo dell'ambiente R. Una veloce ricerca online consente di trovare decine di predecessori, e certamente altre iniziative analoghe seguiranno. Da un certo punto di vista, una delle tante cose belle di *R* è che la sua **comunità**, in continua espansione, è inclusiva e coinvolgente... e questo perchè molti utenti sono catturati dal fascino di R e ne diventano degli appassionati sostenitori. E, infatti, le ragioni principali che hanno spinto gli autori a cimentarsi in questa opera sono il fascino che questo strumento esercita su di loro e la grande importanza che riveste nel loro lavoro.   
 D'altronde, non è esagerato dire che *R* è diventato una delle applicazioni di riferimento nell'ambito delle scienze teoriche ed applicate, e che la maggior parte dei corsi di studio relativi a discipline scientifiche ne richiede, ad un certo punto, l'apprendimento. Consapevoli di questo, gli autori si cimentati in questa avventura sulla spinta del loro entusiasmo... ma anche con il preciso obiettivo di realizzare qualcosa di originale e di possibilmente utile per gli studenti di tanti corsi di laurea e scuole di dottorato. Un obiettivo molto ambizioso, forse, ma sicuramente stimolante.
