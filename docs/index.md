@@ -66,27 +66,27 @@ Il filo conduttore usato negli esempi e nell'approccio concettuale appartiene se
 # Gli autori {#Autori}
 ![**Tommaso Russo**](Images/russo.jpg)
 
-##Tommaso Russo
+## Tommaso Russo
 
 E' professore associato di Ecologia presso il Dipartimento di Biologia dell'Università degli Studi di Roma Tor Vergata ed è affiliato al CONiSMa. Si occupa di modellistica ecologia applicata alle scienze della pesca e all'impatto dell'uomo sugli ambienti marini. Ha scritto il capitolo **Le Basi** di questo libro, e quello che sa di R lo ha imparato dagli altri... _in primis_ da Antonio Parisi.
 
 ![**Giuliano Colosimo**](Images/GIguana.jpg)
 
-##Giuliano Colosimo
+## Giuliano Colosimo
 
 E' un ricercatore postdoc con l'*Institute for Conservation Research* di San Diego (California) ma lavora in collaborazione con il Dipartimento di Biologia dell'Università degli Studi di Roma Tor Vergata. Il suo background è in genetica evoluzionistica e della conservazione e si occupa di diverse specie di rettili a rischio d'estinzione. Ha scritto il capitolo sulla **Genetica** ed è un importante esempio di _self-learning_, avendo imparato ad usare R tramite lunghe ore davanti al computer.
 
 
 ![**Antonio Parisi**](Images/parisi.jpg)
 
-##Antonio Parisi
+## Antonio Parisi
 
 E' un ricercatore presso il Dipartimento di Economia e Finanza, ma è prima di tutto un esperto di statistica che si diverta da tanti anni a collaborare con gli ecologi (usando R, ovviamente!).
 
 
 ![**Ciro Fanelli**](Images/fotofanelli.jpg)
 
-##Ciro Fanelli
+## Ciro Fanelli
 
 E' pittore, illustratore, tatuatore e scrittore. 
 I suoi lavori sono apparsi su “La Lettura – Corriere della Sera”, “Vice”, “Esquire” e altre prestigiose riviste europee e giapponesi. 
@@ -96,7 +96,7 @@ Ha pubblicato "Pinocchio e Les corbeaux pleurent la merde" per Le Dernier Cri (M
 
 ![**Simone Franceschini**](Images/franceschini.jpg) 
 
-##Simone Franceschini
+## Simone Franceschini
 
 E' un ricercatore postdoc che, come ecologo, si è focalizzato sull'applicazione di metodi statistici e computazionali negli ambienti di acqua dolce e marini, specializzandosi sull'analisi spaziale e lo sviluppo di algoritmi di Machine Learning. Negli ultimi anni si è occupato di ecologia della pesca, ecologia degli ambienti lotici, dello studio della distribuzione della plastica negli ambienti marini e dei suoi potenziali impatti sugli ecosistemi.
 
