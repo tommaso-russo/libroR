@@ -32,7 +32,7 @@ knitr::kable(
 
 
 
-Table: TIOBE Index for August 2020
+Table: (\#tab:unnamed-chunk-1)TIOBE Index for August 2020
 
 |Name                 | Ratings| Change|
 |:--------------------|-------:|------:|
@@ -1452,7 +1452,7 @@ knitr::kable(
 
 
 
-Table: Gli operatori booleani in R
+Table: (\#tab:nice-tab5)Gli operatori booleani in R
 
 |Operatore |Significato       |
 |:---------|:-----------------|
@@ -1532,7 +1532,7 @@ knitr::kable(data.frame(Espressione1 = c("TRUE","FALSE", "TRUE","FALSE"),
 
 
 
-Table: Tabella di verità dell'operatore AND
+Table: (\#tab:nice-tab6)Tabella di verità dell'operatore AND
 
 |Espressione1 |Espressione2 |Valore |
 |:------------|:------------|:------|
@@ -1556,7 +1556,7 @@ knitr::kable(data.frame(Espressione1 = c("TRUE","FALSE", "TRUE","FALSE"),
 
 
 
-Table: Tabella di verità dell'operatore OR
+Table: (\#tab:nice-tab7)Tabella di verità dell'operatore OR
 
 |Espressione1 |Espressione2 |Valore |
 |:------------|:------------|:------|

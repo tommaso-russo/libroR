@@ -47,7 +47,7 @@ biblio-style: apalike
 
 
 
-![](Images/1R.png)
+![](Images/coverR.png)
 
 # Prefazione {#Prefazione}
 
