@@ -47,12 +47,10 @@ Quest'opera non vuole essere nessuna delle due... ed entrambe. Ci piacerebbe int
 
 Il filo conduttore usato negli esempi e nell'approccio concettuale appartiene sempre al campo delle scienze naturali. D'altronde la squadra degli autori comprende 3 ecologi, uno statistico e uno zoologo... poi la competizione ha fatto il suo corso e l'opera ha preso una piega che privilegia temi come il cambiamento climatico e gli impatti dell'uomo sull'ambiente. Ma la vera storia dietro questo team e questa iniziativa è quella di un gruppo di colleghi a cui piace lavorare insieme e che hanno scoperto che le loro competenze si integrano con un arricchimento reciproco.
 
+
 # Gli autori {#Autori}
 
-
 ![**Tommaso Russo**](Images/russo.jpg)
-
-***
 
 E' professore associato di Ecologia presso il Dipartimento di Biologia dell'Università degli Studi di Roma Tor Vergata ed è affiliato al CONiSMa. Si occupa di modellistica ecologia applicata alle scienze della pesca e all'impatto dell'uomo sugli ambienti marini. Ha scritto il capitolo **Le Basi** di questo libro, e quello che sa di R lo ha imparato dagli altri... _in primis_ da Antonio Parisi.
 
