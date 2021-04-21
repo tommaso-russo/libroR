@@ -3,18 +3,18 @@
 ![](Images/01-01.png)
 
 ## Che cosa è l’ambiente R {#R}
-R è un ambiente di programmazione. Parafrasando Morpheus che sfida Neo nella palestra virtuale di "Struttura", diremo che l'ambiente R ha le sue (poche) regole, e che conoscerle rappresenta il primo passo per impadronirsi di questo strumento (e aggirare o infrangere le sue regole).
-In questa sezione saranno introdotte alcune nozioni generali che, spesso, sono date per scontate e quindi non chiaramente delineate. Nella nostra esperienza, dare per scontati questi concetti rende ostica il primo impatto con R e la prima fase dell'apprendimento, durante la quale la comprensione della sintassi e delle strutture è ancora faticoso per il nuovo utente.
-Al contrario, se resi comprensibili e chiari, i capisaldi della sintassi possono essere dei punti di riferimento quando guardiamo un codice scritto da altri o da noi stessi un pò di tempo fa... E dunque questa parte del testo è concepita per illustrare le poche, chiare e strutture (simboli e oggetti) e regole generali che sono alla base delle procedure nell'ambiente R.   
+R è un ambiente di programmazione. Parafrasando Morpheus che sfida Neo nella palestra virtuale di "Struttura", diremo che l'ambiente R ha le sue regole, e che conoscerle rappresenta il primo passo per impadronirsi di questo strumento (e aggirare o infrangere le sue regole).
+In questa sezione saranno introdotte alcune nozioni generali che, spesso, sono date per scontate e quindi non chiaramente delineate. Nella nostra esperienza, dare per scontati questi concetti rende ostica il primo impatto con R e le prime fasi del suo utilizzo, cioè quelle durante le quali i nuovi utenti devono assimilare la sintassi, le diverse  tipologie di dati e le strutture all'interno delle quali possono essere organizzati e gestiti. Come tutti gli ambienti e i linguaggi di programmazione, R ha una sua sintassi e, sebbene essa non sia particolarmente complessa e articolata, sicuramente rappresenta il primo grande ostacolo a un utilizzo rapido ed efficace.
+Al contrario, se resi comprensibili e chiari, i capisaldi della sintassi possono essere dei punti di riferimento quando guardiamo un codice scritto da altri o da noi stessi un pò di tempo fa... E dunque la prima parte di questo manuale è concepita per illustrare le regole generali che sono alla base delle procedure nell'ambiente R.   
 Dunque impareremo la differenza sostanziale tra una **espressione** ed una **assegnazione**, l'utilizzo delle **parentesi** e le diverse tipologie di **oggetti** di base.   
-Successivamente, imparemo a comporre dei semplici codici per apprendere come espressioni, assegnazioni, e oggetti possono interagire. Nel farlo, cercheremo subito di introdurre delle **norme di stile** e delle **buone pratiche** che ci aiuteranno a essere più ordinati, efficienti ed efficaci.
+Successivamente, imparemo a comporre dei semplici codici combinandoi espressioni, assegnazioni, e oggetti. Nel farlo, cercheremo subito di introdurre delle **norme di stile** e delle **buone pratiche** che ci aiuteranno a essere più ordinati, efficienti ed efficaci.
 
-R è un ambiente per _Object-oriented programming_, cioè uno stile di programmazione diventato molto popolare negli ultimi anni. Questo stile si basa sull'utilizzo (la manipolazione mediante comandi) di **oggetti**, un approccio che rende molto semplice accedere (leggere e scrivere) ai dati in memoria e combinarli in strutture molto complesse. 
+R è un ambiente per _Object-oriented programming_, cioè uno stile di programmazione diventato molto popolare negli ultimi anni. Questo stile si basa sull'utilizzo (la manipolazione mediante comandi) di **oggetti**, un approccio che rende molto semplice accedere (leggere e scrivere) ai dati in memoria e combinarli in strutture che possono essere anche molto complesse. 
 Aspetti fondamentali dei lunguaggi _object-oriented_ sono il concetto di **classe** e quello di **metodo**, sui quali torneremo in seguito in maniera approfondita. 
 
 **Classi** e **Metodi** sono legati dal fatto che, in R, la computazione si basa sull'applicazione di specifici metodi a oggetti di specifiche classi. Non esiste una corrispondenza biunivoca tra classi e metodi, piuttosto molti metodi possono essere applicati a oggetti di classi diverse e viceversa. Tuttavia, metodi diversi sono generalmente specializzati per essere applicati su specifiche classi di oggetti. Questa associazione metodi-classi è spesso molto intuitiva, ma esistono funzioni generiche per determinare di che classe sia un dato oggetto e quali siano i metodi su di esso applicabili.
 
-Un altro aspetto importante dei lunguaggi _object-oriented_ è quello di _inheritance_ (eredità). Questo aspetto può essere sintetizzato come la capacità degli oggetti generati durante l'esecuzione di un codice o di una procedura di calcolo di "portarsi appresso" le caratteristiche degli oggetti "genitori", cioè quelli a partire dai quali sono stati generati. Un banalissimo esempio intuitivo è il seguente: se definisco due quantità numeriche _a_ e _b_ e le sommo, quello che ottengo (_c_) erediterà le caratteristiche dei genitori (numerici entrambi) e potrà essere trattato come tale. Questo aspetto semplifica enormemente il lavoro poichè, a differenza di quanto avviene in linguaggi di base, non è necessario pre-definire l'oggetto _c_ indicandone esplicitamente le caratteristiche e poi riempirlo.
+Un altro aspetto importante dei lunguaggi _object-oriented_ è quello di _inheritance_ (eredità). Questo aspetto può essere sintetizzato come la capacità degli oggetti generati durante l'esecuzione di un codice o di una procedura di calcolo di "portarsi appresso" le caratteristiche degli oggetti "genitori" o delle funzioni "genitrici", cioè quelli a partire dai quali sono stati generati. Un esempio intuitivo è il seguente: se definisco due quantità numeriche _a_ e _b_ e le sommo, quello che ottengo (_c_) erediterà le caratteristiche dei genitori (numerici entrambi) e potrà essere trattato come tale. Questo aspetto semplifica enormemente il lavoro poichè, a differenza di quanto avviene in linguaggi di base, non è necessario pre-definire l'oggetto _c_ indicandone esplicitamente le caratteristiche e poi riempirlo.
 
 Continuando l'elenco dei grandi vantaggi di R, dobbiamo sicuramente menzionare la sua enorme _Community_. Secondo la compagnia di analisi del software [TIOBE](https://www.tiobe.com/tiobe-index/), l'ambiente R è attualemnte al 9° posto tra i linguaggi più popolari ma, soprattutto, è quello che continua a crescere al ritmo più sostenuto. 
 
@@ -69,9 +69,9 @@ barplot(TIOBE$Ratings[order(TIOBE$Ratings, decreasing = F)],
 
 ![](01-base_files/figure-latex/unnamed-chunk-1-1.pdf)<!-- --> 
 
-Questo dato è ancora più significativo se si considera che R non è esattamente un ambiente per produrre software compilato e quindi eseguibili (come avviene invece con i membri della famiglia **C**). 
-Perchè questo aspetto è così importante? Semplicemente perchè, essendo R un ambiente "libero", ogni utente può attingere a una sterminata banca dati di dati, algoritmi, pacchetti e funzioni già sviluppati da altri utenti... e spesso può contare sull'aiuto diretto di altri utenti. In ambito scientifico, R ha avuto (e continua ad avere) una diffusione inarrestabile perchè incarna perfettamente alcuni ideali della ricerca: la possibilità di sviluppare metodologie completamente replicabili, chiare e ulteriormente implementabili. 
-Come ha giustamente argomentato [qui](https://ropensci.org/blog/2017/06/23/community/) Shannon Ellis, una _community_ ampia offre sviluppatori, esperti, collaboratori potenziali, estensori di documentazione, persone che mettono alla prova le nostre routine, "agitatori" (che sono sempre utili per tenere viva la _community_!) o semplicemente persone gentili che sono disposte ad aiutare i neofiti. Ma, soprattutto, qualsiasi sia la sfida con la quale siete alle prese, molto probabilmente qualcuno ci si è già cimentato e potrete ripartire dal suo lavoro. Non è forse, questo, un enorme vantaggio?
+Questo dato è ancora più significativo se si considera che R non è esattamente un ambiente per produrre software compilato e quindi eseguibile (come avviene invece con i membri della famiglia **C**). 
+Perchè questo aspetto è così importante? Semplicemente perchè, essendo R un ambiente "libero", ogni utente può attingere a una sterminata banca dati di informazioni, algoritmi, pacchetti aggiuntivi e funzioni già sviluppate da altri utenti... e spesso può contare sull'aiuto diretto di una vasta community. In ambito scientifico, R ha avuto (e continua ad avere) una diffusione inarrestabile perchè incarna perfettamente alcuni ideali della ricerca: la possibilità di sviluppare metodologie completamente replicabili, chiare e ulteriormente implementabili. 
+Come ha giustamente argomentato [qui](https://ropensci.org/blog/2017/06/23/community/) Shannon Ellis, una _community_ ampia offre sviluppatori, esperti, potenziali collaboratori, estensori di documentazione, persone che mettono alla prova le nostre routine, "agitatori" (che sono sempre utili per tenere viva la _community_!) o semplicemente persone gentili che sono disposte ad aiutare i neofiti. Ma, soprattutto, qualsiasi sia la sfida con la quale siete alle prese, molto probabilmente qualcuno ci si è già cimentato e potrete ripartire dal suo lavoro. Non è forse, questo, un enorme vantaggio?
 Shannon Ellis ha compilato una [lista di siti/blog](https://ropensci.org/blog/2017/06/23/community/) che rappresentano i principali canali web della 
 _community_ di R. I principali sono:
 
@@ -94,25 +94,24 @@ Una bella e completa descrizione di cosa sia R la trovate [qui](https://www.perf
 ## A cosa serve/non serve R {#Russo}
 R non è una panacea, e anche gli appassionati di questo strumento devono essere a conoscenza dei suoi difetti quanto dei suoi pregi. Da una parte, R si comporta come gli smartphone (un nuovo tipo di _device_ che, dalla sua comparsa sul mercato, ha completamente "assorbito" e messo fuori dal mercato altri _device_ come i lettori mp3, le fotocamere, i navigatori satellitari). Infatti chi usa R può facilmente rinunciare a fogli di calcolo, software proprietari per la statistica, gestori di database, piattaforme per la geostatistica, software per l'analisi e la manipolazione di immagini, e la lista potrebbe continuare.
 R può servire praticamente a tutto!
-Un altro grande vantaggio di R è che, essendo un software opensource, si può accedere al codice sorgente e modificarlo ([Linux Torvalds](https://it.wikipedia.org/wiki/Linus_Torvalds) docet).
-R è praticamente gratuito e quindi di grande valore per particolari categorie di utenti che non possono permettersi costosi software per analisi statistiche come gli studenti oppure gli utilizzatori e i ricercatori dei Paesi in via di sviluppo.
-R possiede un'ampia biblioteca di manuali e dispense (come questa!) accessibili gratuitamente in rete, oltre a pubblicazioni a pagamento. 
+Un altro grande vantaggio di R è che, essendo un software opensource, si può accedere al codice sorgente e modificarlo. R è del tutto gratuito. 
+R possiede un'ampia biblioteca di manuali e dispense accessibili gratuitamente in rete, oltre a pubblicazioni a pagamento. 
 L'installazione base di R può essere integrata con librerie di funzioni addizionali (il vero valore aggiunto per il mondo della ricerca) che ne ampliano a dismisura le capacità.
 R offre un supporto tramite l'[R Development Core Team](https://www.r-project.org/help.html).
 Infine, R sa "parlare" con altri linguaggi, da C a SQL a fortran e Python, per cui si possono integrare metodi e funzioni sviluppate in altri contesti.
 Per essere proprio completi, è importante ricordare che.
 
 * R ha una quantità veramente incredibile di funzioni grafiche  che consentono di ottenere grafici estremamente efficaci dal punto di vista scientifico ma anche "belli"
-* R permette di essere creartivi ed efficienti, poichè consente di scrivere nuove funzioni o intere librerie in maniera molto semplice
+* R permette di essere creativi ed efficienti, poichè consente di scrivere nuove funzioni o intere librerie in maniera molto semplice
 * La sua versione base è molto snella, ed essendo sviluppato secondo una logica vettoriale lavora molto bene su vettori e matrici
 
 E le brutte notizie?
 
 Beh...
 
-* R è brutto: la sua interfaccia non è pensata per essere bella e accattivante come gli OS ai quali siamo abituati. L' interfaccia utente a carattere (CUI) di R è anche "ostico", poichè ci costringe a cambiare modo di lavorare. E' vero che è presente anche un'interfaccia GUI (Graphical User Interface), ma gli utenti esperti non la usano quasi mai;
-* R è un elefante: la sua velocità di calcolo è di gran lunga inferiore a quelle di ambienti e linguacci di livello più basso (come la famiglia C o Visual Basic). Questo, a volte, costringe gli utenti più esperti a compilare delle funzioni in C tutte le volte che le loro analisi diventano _computational and time demanding_;
-* Non tutte le funzioni di R sono ottimizzate per avere elevate prestazioni (un buon esempio sono le funzioni di ottimizzazione numerica). Se lavorate in un settore di frontiera della ricerca, potreste essere costretti a metterci del vostro per sviluppare funzioni nuove o più performanti;
+* R è "brutto": la sua interfaccia non è pensata per essere bella e accattivante come gli OS ai quali siamo abituati. L'interfaccia utente a carattere (CUI) di R è anche "ostico", poichè ci costringe a cambiare modo di lavorare. E' vero che è presente anche un'interfaccia GUI (Graphical User Interface), ma gli utenti esperti non la usano quasi mai;
+* R è "un elefante": può arrivare a occupare una grande quantità di memoria e la sua velocità di calcolo è di gran lunga inferiore a quelle di ambienti e linguacci di livello più basso (come la famiglia C o Visual Basic). Questo, a volte, costringe gli utenti più esperti a compilare delle funzioni in C tutte le volte che le loro analisi diventano _computational and time demanding_;
+* Non tutte le funzioni di R sono ottimizzate per avere elevate prestazioni (un buon esempio sono le funzioni di ottimizzazione numerica). A volte sarete costretti a metterci del vostro per sviluppare funzioni nuove o più performanti;
 * Se sviluppate un'applicazione basata su R, è vostro onere tutto quello che rigarda il _debug_ e il mantenimento: se salta fuori un problema, non potete prendervela con nessun altro!
 
 ------
@@ -139,7 +138,7 @@ L'interfaccia di Rstudio contiene 4 finestre che sono spesso organizzate in ques
 
 * In alto a sinistra c'è lo **Script** o gli **Script** se si vuole gestire più procedure separate. Questa finestra è semplicemente un blocco note multipagina che consente di inviare i comandi direttamente al **terminale**
 
-* In basso a sinistra ecco proprio lui, il **terminale**, ovvero il canale di collegamento in ingresso da noi verso R. In Rstudio, questa finestra si chiama **Console**. avete presente Ellen Ripley che comunica con Mother mediante un terminale? Ecco, il concetto è quello e...  a volte penserete che R è antipatico quasi quanto Mother :-)
+* In basso a sinistra ecco proprio lui, il **terminale**, ovvero il canale di collegamento in ingresso da noi verso R. In Rstudio, questa finestra si chiama **Console**. Avete presente Ellen Ripley che comunica con Mother, il super computer cattivo dell'astronale Nostromo, mediante un terminale? Ecco, il concetto è quello e...  a volte penserete che R è antipatico quasi quanto Mother :-)
 
 ![Fonte: https://preview.redd.it/ai8a6o42tar31.jpg?width=960&crop=smart&auto=webp&s=5ad06fc01552f5227130af2659b47803004f7faf](Images/01-04.png)
 
@@ -150,7 +149,8 @@ L'interfaccia di Rstudio contiene 4 finestre che sono spesso organizzate in ques
 Una tipica sessione di lavoro in R con Rstudio prevedere un utizzo semi-simultaneo di questi pannelli, e principalmente dello **Script** e del **Terminale** o **Console**.
 
 ------
-
+Dopo queste premesse siamo pronti per rompere gli indugi e fare conoscenza con R.
+Qualsiasi sia la vostra installazione, aprite il terminale e cominciamo.
 
 ## Le Espressioni {#Espressioni}
 R è, prima di tutto, un ambiente per calcolo. In questo senso, possiamo vedere il terminale come una calcolatrice. 
@@ -254,7 +254,7 @@ E' ovvio che l'utilzzo delle parentesi deve essere sempre "simmetrico" (una pare
 Comunque i più comuni editor per gli script, e quindi anche software più complessi e integrati come R studio, ci vengono in soccorso evidenziando le coppie di parentesi quando ci spostiamo lungo una espressione con le frecce destra e sinistra della tastiera (provare per credere!).
 Le frecce in alto e in basso, invece, possono essere usate per scorrere nella cronologia dei comandi che abbiamo inserito tramite il terminale. Questo ci aiuta a non dover ri-digitare daccapo un'istruzione usata poco prima. 
 Possiamo digitare le espressioni, dunque, attraverso il terminale che, abbiamo già imparato, ci appare come il simbolo **>**. Tuttavia, quando digitiamo un'espressione matematicamente incompleta (nella quale, ad esempio, manca una parentesi o un argomento legato ad un operatore), R non eseguirà il calcolo ma ci risponderà con l'operatore **+** che serve a farci capire che "manca qualcosa".
-E' possibile (ma vedremo che è preferibile non farlo per non pasticciare il codice) inserire più espressioni, separate da **;** o **.** nella stessa linea di comando (prima di premere INVIO). 
+E' possibile (ma è preferibile non farlo per non pasticciare il codice) inserire più espressioni, separate da **;** o **.** nella stessa linea di comando (prima di premere INVIO). 
 In ogni caso, le espressioni digitate direttamente nel terminale non vengono salvate in memoria e non possono essere usate per produrre risultati molto complessi. Tutte le volte che sono necessari più passaggi per arrivare dai dati di partenza ai risultati finali è necessario "prendere appunti", cioè generare delle quantità intermedie e associare ad esse dei nomi. Questo è esattamente quello in cui consiste l' **assegnazione**.
 
 ------
@@ -394,7 +394,7 @@ m[1,1]
 ```
 ## [1] 101
 ```
-Sorvoliamo sull'analisi degli argomenti della funzione _matrix_ (i lettori più scaltri avranno intuito chela funzione la genera mettendo i valori da 101 a 109 in 3 righe e 3 colonne, come si vede dalla struttura che R stampa sullo schermo quando invochiamo _m_), e vediamo come, in questo caso, all'interno delle parentesi quadre abbiamo messo 2 numeri, 1 e 1, separati da una virgola.
+Sorvoliamo sull'analisi degli argomenti della funzione _matrix_ (i lettori più scaltri avranno intuito che la funzione la genera mettendo i valori da 101 a 109 in 3 righe e 3 colonne, come si vede dalla struttura che R stampa sullo schermo quando invochiamo _m_), e vediamo come, in questo caso, all'interno delle parentesi quadre abbiamo messo 2 numeri, 1 e 1, separati da una virgola.
 R ci dice che _m[1,1]_ corrisponde al numero 101, quello collocato nella prima riga e prima colonna della matrice.
 Allo stesso modo potremmo identificare il numero 104 come quello nella prima riga e seconda colonna.
 
@@ -507,11 +507,11 @@ Tutti i linguaggi di programmazione a oggetti (ed R è uno di questi) sono basat
 Il modo in cui R immagazzina in memoria una dato oggetto è detta **tipo** dell'oggetto stesso.
 Non è importante approfondire i diversi tipi di oggetti in R, per cui non ci dilungheremo sull'argomento. 
 
-Quello che, invece, è veramente importante sapere è che ogni tipo oggetto possiede una serie di **attributi**. Tra questi, quello che spicca per importante è la **Classe**.
+Quello che, invece, è veramente importante sapere è che ogni tipo di oggetto possiede una serie di **attributi**. Tra questi, quello che spicca per importante è la **Classe**.
 Come abbiamo già detto in precedenza, le classi sono importanti poichè a seconda di essere variano i metodi che si possono applicare agli oggetti. A questo punto è utile chiarire che i metodi non sono altro che funzioni, e che quindi a ogni classe di oggetti possono essere applicate funzioni diverse, ovvero che una stessa funzione può avere comportamenti diversi a seconda della classe dei suoi
 argomenti (cioè degli oggetti sui quali viene applicata).
 
-All'interno di R è possibile operare con diverse tipologie di dati, per ognuna della quali esiste una **classe** predefinita.  Sebbene ci siano molte classi già implementate ed altre possano essere definite dagli utenti esperti, esistono 5 classi principali di dati:
+All'interno di R è possibile operare con diverse tipologie di dati, per ognuna della quali esiste una **classe** predefinita. Sebbene ci siano molte classi già implementate ed altre possano essere definite dagli utenti esperti, esistono 5 classi principali di dati:
 
 * La classe **numeric**, destinata a tutti i **numeri reali** (elementi dell'insieme R)
 * La classe **integer**, destinata a tutti i **numeri interi** (elementi dell'insieme N)
@@ -519,7 +519,7 @@ All'interno di R è possibile operare con diverse tipologie di dati, per ognuna 
 * La classe **logical**, destinata alle espressioni nell'accezione dell'**Algebra di Boole**
 * La classe **factor**, destinata a variabili o quantità qualitative o semi-quantitative
 
-E' facile immaginare il senso delle prime due classi, poichè si riferiscono a insiemi ben noti della matematica. Anche la terza classe è intuitivamente familiare: chiunque abbia esperienza di programmazione sa cosa sono i caratteri. Per gli altri è sufficiente dire che il testo (formato da caratteri) è un tipo di informazione particolare per gli ambienti di calcolo (come R), poichè se ne possono valutare le caratteristiche (quanti caratteri ci sono in una stringa? Quante parole ci sono in un testo?) ma non ha senso applicare funzioni matematiche ai testi.
+E' facile immaginare il senso delle prime due classi, poichè si riferiscono a insiemi ben noti della matematica. Anche la terza classe è intuitivamente familiare: tutti sappiamo cosa sono i caratteri di un testo. Per gli altri è sufficiente dire che il testo (formato da caratteri) è un tipo di informazione particolare per gli ambienti di calcolo (come R), poichè se ne possono valutare le caratteristiche (quanti caratteri ci sono in una stringa? Quante parole ci sono in un testo?) ma non ha senso applicare funzioni matematiche ai testi.
 La quarta classe si riferisce agli oggetti (le espressioni, ma in un senso diverso da quello di cui abbiamo parlato in una sezione precedente a proposito di R) propri dell'Algebra di Boole, il grande matematico inglese che ha gettato le basi per la computazione elettorica.
 L'ultima classe è pensata per permetterci di gestire valori semi-quantitativi o qualitativi. Si possono fare moltissimi esempi di "fattori" (**variabili che possono assumere un numero finito di stati o valori**): il sesso di ciascun individuo di una popolazione, il colore degli occhi di diversi individui, la classe di età (coorte) a cui appartengono, l'intensità di un trattamento farmacologico. La cosa importante da dire, in proposito, è che possono esserci fattori ordinabili e fattori non ordinabili. Un esempio del primo tipo sono il sesso o il colore degli occhi: non ha senso dire che maschio viene prima di femmina o che ci sia una scala ordinata di colori (o forse si?). Esempi di fattori ordinabili sono invece la classe di età (coorte) o l'intensità di un trattamento farmacologico: è possibile stabilire una sequenza continua di valori (es. classe di età 0, classe 1, classe 2 e così via). 
 
@@ -620,7 +620,7 @@ R ha automaticamente calcolato il risultato e lo ha assegnato all'oggetto _a_. I
 A questo punto, dopo aver visto quali sono le principali tipologie di dati che si possono gestire in R, dobbiamo comprendere in quali modi è possibile organizzarli. L'oggetto più semplice all'interno di R è il *vettore*, ma strutture di base sono anche le **matrici**, gli **array**, le **liste** e, infine, i **data frame** (che possono essere considerati degli oggetti "speciali").
 
 ### Vettori
-Un vettore può essere pensato come una serie di celle concatenate, ognuna delle quali contiene un valore. A ciascuna cella o elemento del vettore corrisponde un _indice di posizione_ che, come nel caso dei numeri civici su una via che consentono al corriere amazon di trovare un destinatario specifico, possono essere usati per manipolare il vettore, ad esempio estraendone i valori presenti in celle precise identificate tra quadre in una indicizzazione. La cosa importante da assimilare è che **un vettore può contenere elementi che appartengono tutti a una stessa classe**. Questo vuol dire che R gestisce vettori di tanti tipi, i principali dei quali sono proprio i  **character**, **integer**, **logical**, **numeric**.... insomma proprio le classi che abbiamo visto poco fa.
+Un vettore può essere pensato come una serie di celle concatenate, ognuna delle quali contiene un valore. A ciascuna cella o elemento del vettore corrisponde un _indice di posizione_ che, come nel caso dei numeri civici su una via che consentono a un corriere postale di trovare un destinatario specifico, possono essere usati per manipolare il vettore, ad esempio estraendone i valori presenti in celle precise identificate tra quadre in una indicizzazione. La cosa importante da assimilare è che **un vettore può contenere elementi che appartengono tutti a una stessa classe**. Questo vuol dire che R gestisce vettori di tanti tipi, i principali dei quali sono proprio i  **character**, **integer**, **logical**, **numeric**.... insomma proprio le classi che abbiamo visto poco fa.
 Esistono anche altri tipi di vettori, che menzioniamo senza approfondire: **complex** (numeri complessi), **double**, **expression**, **list**,  **single**, e **raw**.
 Generare un vettore è molto semplice, e non indicheremo due modalità alternative:
 
@@ -702,7 +702,7 @@ class(a)
 ```
 ## [1] "character"
 ```
-Noterete che nel primo caso abbiamo messo insieme (concatenato) 3 numeri per generale il vettore a, immediatamanet classificato da R come numeric. Nel secondo caso abbiamo messo insieme le prime tre lettere dell'alfabeto, ottenendo un vettore che R classifica come character.
+Noterete che nel primo caso abbiamo messo insieme (concatenato) 3 numeri per generale il vettore a, immediatamante classificato da R come numeric. Nel secondo caso abbiamo messo insieme le prime tre lettere dell'alfabeto, ottenendo un vettore che R classifica come character.
 
 
 Per ciascuna delle funzioni generatrici esiste una sorella "coercitrice". Per esempio a **numeric** corrisponde **is.numeric**, così come a **character** corrisponde **is.character**.
@@ -742,7 +742,7 @@ class(a)
 ```
 ## [1] "character"
 ```
-In questo caso abbiamo prima generato un vettore numeric e poi lo abbiamo "costretto" a diventare character. La nostra esperienza è che i neofiti di R sono spesso confusi da alcuni aspetti di queste trasformazioni, per cui vediamo cosa succede caso per caso.
+In questo caso abbiamo prima generato un vettore numeric e poi lo abbiamo "costretto" a diventare character. A volte i neofiti di R sono confusi da alcuni aspetti di queste trasformazioni, per cui vediamo cosa succede caso per caso.
 
 
 ```r
@@ -783,8 +783,8 @@ a
 ```
 ## [1] NA NA NA
 ```
-Nei primi due casi è andato tutto bene. INfatti, quando R ha **coercito** il vettore "1", "2", "3" a diventare numeric ha ottenuto dei numeri... cioè delle quantità che per lui hanno senso e possono essere gestite come tali. Ma, quando abbiamo coercito il vettore "A", "B", "C" a diventare numeric,
-R non ha ottenuto dei valori gestibili come numeric e ha quindi generato dei valori detti **NA (not assigned)**. Questa è la prima volta che ci imbattiamo in loro, e dobbiamo subito sapere che la loro comparsa è indice che qualcosa nei nostri conti è andato storto. Insomma che probabilmente c'è un "errore" da qualche parte nel nostro codice. Invece:
+Nei primi due casi è andato tutto bene. Infatti, quando R ha **coercito** il vettore "1", "2", "3" a diventare numeric ha ottenuto dei numeri... cioè delle quantità che per lui hanno senso e possono essere gestite come tali. Ma, quando abbiamo coercito il vettore "A", "B", "C" a diventare numeric,
+R non ha ottenuto dei valori gestibili come numeric e ha quindi generato dei valori detti **NA (not assigned)**. Questa è la prima volta che ci imbattiamo in loro, e dobbiamo subito sapere che la loro comparsa può essere un indice cdel fatto he qualcosa nei nostri calcoli è andato storto. Magari c'è un "errore" da qualche parte nel nostro codice. Invece:
 
 
 ```r
@@ -854,8 +854,8 @@ Invece è importante richiamare l'attenzione su un aspetto già menzionato di R:
 ------
 
 ### Matrici (e Array)
-Ed eccoci qui a parlar di matrici.
-La prima cosa da dire a proposito di esse è che sono uno degli oggetti elettivi per il calcolo all'interno di R. Moltissime funzione di basi, infatti, sono già predisposte per essere applicate sulle matrici in diretta e "performante" in termini di tempo di esecuzione. Ma cosa è una matrice?
+Ed eccoci qui a parlare di matrici.
+La prima cosa da dire a proposito di esse è che sono uno degli oggetti elettivi per il calcolo all'interno di R. Moltissime funzione di base, infatti, sono già predisposte per essere applicate sulle matrici in diretta e "performante" in termini di tempo di esecuzione. Ma cosa è una matrice?
 Una matrice può essere definita come un reticolo (in inglese _lattice_) di valori omologhi (nel senso che appartengono tutti alla stessa tipologia, per esempio sono tutti _numeric_ o tutti _character_) disposti in maniera regolare in righe e colonne. Ogni valore sarà pertanto individuato in maniera univoca da una coppia di numeri interi che corrisponde ai suoi indici di posizione all'interno della matrice (riga e colonna). Questa logica topografica è la stessa che utilizzavamo quando giocavamo alla battaglia navale sui banchi di scuola.
 La sintassi del comando che si deve usare per generare una matrice è molto semplice. Quello che occorre è specificare il contenuto della matrice e la sua geometria (quante righe, quante colonne).
 
@@ -949,7 +949,7 @@ Non ci dilunghiamo oltre sulle matrici, ma torneremo estesamente su di esse quan
 ### Liste
 Le *liste* sono delle vere e proprie "collezioni" di oggetti in R. Ogni lista è di per se un oggetto, ma in pratica ogni lista contiene dei sotto-oggetti (matrici, vettori, scalari, array, data frame, altre liste).
 L'utilità delle lista sta proprio nella loro versatilità strutturale: mentre vettori, matrici ed array sono oggetti che contengono elementi di un solo tipo, le liste possono contenere una molteplicità di sotto-oggetti di tipo diverso. Inoltre, tutti gli altri oggetti di R sono "regolari": la loro struttura è organizzata in dimensioni (le righe o le colonne) rigide: ci si aspetta che ogni riga di una matrice contenga un elemento per ciascuna colonna, e viceversa.
-Per comprendere la differenza tra le *liste* e gli altri oggetti, può essere utile fare un giro all'Ikea
+Per comprendere la differenza tra le *liste* e gli altri oggetti, può essere utile fare un giro all'Ikea.
 ![](Images/01-08.png)
 La figura parla da se: non potreste mai mettere la TV in una matrice o in un vettore!
 
@@ -1031,15 +1031,8 @@ Comodo no? Immaginate di essere un ecologo intento nel monitoraggio di una popol
 Per ogni indivduo analizzato (la riga del data frame) raccoglierete una serie di misure. Alcune continue (il peso, la lunghezza), altre character (il nome o il codice dell'esemplare), altre factor (il sesso), e così via.
 Vi sarà possibile organizzare queste molteplici informazioni nelle colonne di un data frame in modo da avere il corrispondente informatico di una tabella. E' chiaro che tutto questo è molto intuitivo e versatile, e questo è esattamente il motivo per cui, nella maggior parte dei corsi su R, i data frame sono un argomento centrale e questi oggetti sono considerati i più importanti all'interno di R.
 
-Gli autori di questo manuale non la pensano così.
-
-Noi pensiamo che i data frame, che sono trattati nell'ambiente R, da un punto di vista computazionale, come delle liste, sono oggetti da prendere con pinze. Questo per varie ragioni:
-
-* se siete dei principianti, i data frame sono oggetti troppo complessi e fuorvianti
-* è complicato imparare i fondamenti di computazione di R usando i data frame, anche perchè molte funzioni di R sono ottimizzate per lavorare su matrici numeriche
-* per maneggiare appieno i data frame è necessario avere una certa famigliarità con tutte le tipologie di dati (numeric, character, factor, ecc.)
-
-Torneremo in maniera apporondita sui data frame quando affronteremo la "filosofia ggplot", ma per ora li mettiamo da parte.
+Tuttavia, da un punto di vista computazionale, i data.frame sono oggetti da prendere con pinze. Questo anche perchè per usare i data frame è necessario avere una certa famigliarità con tutte le tipologie di dati (numeric, character, factor, ecc.)
+Torneremo in maniera apporondita sui data frame quando affronteremo le diverse "filosofie " per produrrre grafici, ma per ora li mettiamo da parte.
 
 
 ## Sintassi di base (II): le funzioni {#Funzioni}
@@ -1082,7 +1075,7 @@ Ad esempio:
 
 ```r
 #Genero la matrice M "vuota" avente 3 righe, 2 colonne 
-M <- matrix(, 3, 2)
+M <- matrix(NA, 3, 2)
 M
 ```
 
@@ -1318,7 +1311,7 @@ SM
 ```
 ## [1] 9.345921
 ```
-Questa volta abbiamo ottenuto un valore "buono" della somma di M. Se facciamo due calcoli a mente possiamo facilmente dedurre che esso corrisponde alla somma di tutti i valori di M tranne quello strano e brutto NaN, con il quale faremo conoscenza tra poco. Adesso però ci interessa un'altra cosa: l'opzione _na.rm_ sta per "remove NA or NaN", e quindi significa autorizzare la funzione a far finta che non ci siano valori strani. Quindi, attivandola, abbiamo detto a R di calcolare la somma solo sugli altri valori. A questo punto qualcuno di voi lettori si starà chiedendo: e perchè mai questa fantastica opzione è disattiva di default e dobbiamo attivarla noi? Non sarebbe meglio se fosse sempre accesa e ci proteggesse da risultati brutti? La risposta è NO, non sarebbe affatto meglio, perchè il fatto che i nostri calcoli si inceppino ogni volta che da qualche parte compare un valore strano è un ottimo modo per costringerci a ricontrollare le nostre procedure e fare in modo che siano il più generali e versatili possibili. Per esempio, vogliamo risolvere un problema ma non prendiamo in considerazione che i valori di alcune variabili possono assumere valori negativi. Se così è, e da qualche parte nel nostro codice usiamo funzioni non definite su R- (come la radice quadrata o il logaritmo) ci imbatteremo in un valore anomalo e saremmo naturalmente portati a rimediare.
+Questa volta abbiamo ottenuto un valore "buono" della somma di M. Se facciamo due calcoli a mente possiamo facilmente dedurre che esso corrisponde alla somma di tutti i valori di M tranne quello strano e brutto NaN, con il quale faremo conoscenza tra poco. Adesso però ci interessa un'altra cosa: l'opzione _na.rm_ sta per "remove NA or NaN", e quindi significa autorizzare la funzione a far finta che non ci siano valori strani. Quindi, attivandola, abbiamo detto a R di calcolare la somma solo sugli altri valori. A questo punto qualcuno di voi lettori si starà chiedendo: e perchè mai questa fantastica opzione è disattiva di default e dobbiamo attivarla noi? Non sarebbe meglio se fosse sempre accesa e ci proteggesse da risultati brutti? La risposta è NO, non sarebbe affatto meglio, perchè il fatto che i nostri calcoli si inceppino ogni volta che da qualche parte compare un valore strano è un ottimo modo per costringerci a ricontrollare le nostre procedure e fare in modo che siano il più generali e versatili possibili. Per esempio, vogliamo risolvere un problema ma non prendiamo in considerazione che i valori di alcune variabili possono assumere valori negativi. Se così è, e da qualche parte nel nostro codice usiamo funzioni non definite sull'insieme R dei numeri reali (come la radice quadrata o il logaritmo) ci imbatteremo in un valore anomalo e saremmo naturalmente portati a rimediare.
 
 
 ![](Images/01-09.png)
@@ -1382,11 +1375,36 @@ y
 ```
 scopriamo che ora il valore di y è cambiato anche nell'ambiente principale. **Questo è il motivo per cui, nell'ambito delle "buona pratiche" che affronteremo più avanti, è sempre proibito fare assegnazioni nello sviluppo di codici e pacchetti: si rischia di fare un pasticcio tremendo quando le si utilizza perchè si rischia di sovrascrivere quantità e oggetti dell'ambiente principale**.
 
-funzioni come argomento di altre funzioni
+## Il mondo "a matrioske"  {#Matrioske}
+
+Il mondo delle funzioni di R è fatto come le famose bambole russe, nel senso che ogni funzione generalmente può accettare, al posto dei sui argomenti, delle altre funzioni, a patto che restituiscano oggetti coerenti con gli input attesi dalla funzione di Rango superiore.
+
+![Fonte:https://cdn.pixabay.com/photo/2019/03/27/09/01/matryoshka-4084557_1280.jpg](Images/01-10.png)
+
+Se, ad esempio, volessi generare una matrice che contiene come elementi i valori restituiti dalla funzione somma, scriverò:
 
 
+```r
+x <- 1:9
+m <- matrix(sum(x), 3, 3)
+```
+
+In questo caso, la matrice m è rimpita con il solo valore 9, cioè l'output della funzione sum applicata al vettore x. Come avevamo già detto, quello che avviene dentro le funzioni di rango più basso non si riflette (se non tramite i risultati) sulle funzioni di rango più elevato. Ancora un esempio:
 
 
+```r
+x <- 1:9
+m <- matrix(sum(x), 3, 3)
+s <- sum(matrix(sum(x), 3, 3))
+s
+```
+
+```
+## [1] 405
+```
+
+In questo semplice esercizio abbiamo "annidato" tre funzioni una dentro l'altra, ottenento il valore finale di s.
+Il grande vantaggio di questa potenzialità di R è che ci consente di risparmiare sugli oggetti (e i relativi nomi) che è necessario generare. Il prezzo è che, con strutture molto complesse a annidate, può essere difficile modificare il codice o correggerlo.
 
 
 ## La frontiera del calcolo: NA e NaN {#Calcolo}
@@ -1442,7 +1460,7 @@ Come abbiamo visto, R non nasconde la polvere sotto il tappeto (a meno che non l
 
 Sull'opera immortale di **George Boole** è stato scritto tanto, ma mai a sufficienza. Nessuno più di lui ha contribuito a gettare le basi della computazione elettonica. Tanto è vero che la sua **Algebra** è fondamentale anche (e ancora) per noi. Alla base di tutto c'è che le quantità che maneggiamo sono sempre tradotte, nel profondo dei nostri pc, in quantità binarie. Come nelle sinapsi del nostro cervello, i microchip dei nostri processori riduco la realtà a sequenze di stati **acceso-spento**. 
 
-![](Images/01-10.png)
+![](Images/01-11.png)
 
 La prova sta nel fatto che le quantità booleane le abbiamo già incontrate: sono le quantità di tipo **logical**. Adesso dobbiamo generalizzare a problemi più complessi, per esempio la **verifica di condizioni** all'interno di funzioni o algoritmi. Per farlo, prima dobbiamo prendere in rassegna la sintassi degli operatori booleani in R:
 
@@ -1614,7 +1632,7 @@ x[which((x > 3)|(x < -3))]
 ```
 ## [1]   9   4   6  -7   7 -14
 ```
-Naturalmente dobbiamo prestare grande attenzione alla struttura annidata delle parentesti e alla sintassi.
+Naturalmente dobbiamo prestare grande attenzione alla struttura annidata delle parentesi e alla sintassi.
 Infatti, nel comando precedente, ci sono due condizioni che devono essere valutate, cioè **(x > 3)** e  **(x < -3)**. Poichè esse sono collegate dall'operatore booleano OR (|), è sufficiente che una sola di esse sia soddisfatta.
 **which** è, in effetti, una funzione estremamente utile e frequente, che ci permette di assemblare condizioni anche molto complesse.
 
@@ -1671,14 +1689,11 @@ which(((x <= 3)&(x >= -3))&(x != 0), arr.ind = T)
 
 L'utilizzo dell'opzione **arr.ind** non cambia il risultato dell'indicizzazione di _x_, ma cambia **la forma** in cui la funzione **which** ci restituisce gli **indici di posizione** degli elementi di _x_ che soddisfano la condizione specificata. Se **arr.ind** disattiva, **which** tratta tutti gli oggetti (anche le matrici) come dei vettori, e dunque il risultato che ci fornisce è vettoriale. Se ***arr.ind** è attiva e stiamo lavorando su una matrice, **which** ci restituisce delle coordinate in due dimensioni: riga e colonna degli elementi di _x_ che soddisfano la condizione desiderata. 
 
-
-
-
 ## L’uso dell’Help
 
 Fino a questo punto, abbiamo _subdolamente_ introdotto alcune funzioni di base di R (matrix, which, sum,...) illustrandone le principali caratteristiche. Queste e altre funzioni fanno parte del vocabolario di base che un neofita di R deve assimilare, ma ce ne sono tante altre che si aggiungono via via ed è evidente che dobbiamo capire come si fa ad apprendere il loro utilizzo (in maniera possibilmente rapida). La risposta è: **usando l'help di R**! L'Help di R è un interfaccia brutto e apparentemente antipatico. Però, a dispetto delle apparenze, è uno strumento estramemente versatile e completo, e quindi imparare a usarlo ci permette di procedere rapidamente con il nostro _self training_.
 
-![](Images/01-11.png)
+![](Images/01-12.png)
 
 Per fare la sua conoscenza, proviamo a digitare da terminale il nome di una funzione preceduto dal punto interrogativo:
 
@@ -1688,6 +1703,19 @@ Per fare la sua conoscenza, proviamo a digitare da terminale il nome di una funz
 ?which    
 ```
 
+L'help di qualsiasi funzione di R è organizzato secondo le seguenti voci (per comodità ci riferiremo all'help della funzione _matrix_):
+* Il nome della funzione: **matrix {base}**
+* Il titolo dell'help: **Matrices**
+* Una breve e concisa (occhio ai termini usati) descrizione della funzione: **Description**
+* Un esempio generico ma completo del suo utilizzo: **Usage**
+* Una dettagliata descrizione degli argomenti necessari e delle opzioni: **Arguments**
+* Una articolata descrizione di cosa fa la funzione: **Details**
+* Alcune annotazioni: **Note**
+* I riferimenti alla letteratura (soprattutto se si tratta di una metodo scientifico): **References**
+* Un elenco delle funzioni che sono "apparentate" con la nostra funzione: **See Also**
+* Una serie di esempi pratici: **Examples**
+
+prova
 
 
 
