@@ -1701,21 +1701,288 @@ Per fare la sua conoscenza, proviamo a digitare da terminale il nome di una funz
 ```r
 ?sum
 ?which    
+?matrix
 ```
 
 L'help di qualsiasi funzione di R è organizzato secondo le seguenti voci (per comodità ci riferiremo all'help della funzione _matrix_):
-* Il nome della funzione: **matrix {base}**
-* Il titolo dell'help: **Matrices**
-* Una breve e concisa (occhio ai termini usati) descrizione della funzione: **Description**
-* Un esempio generico ma completo del suo utilizzo: **Usage**
-* Una dettagliata descrizione degli argomenti necessari e delle opzioni: **Arguments**
-* Una articolata descrizione di cosa fa la funzione: **Details**
-* Alcune annotazioni: **Note**
-* I riferimenti alla letteratura (soprattutto se si tratta di una metodo scientifico): **References**
-* Un elenco delle funzioni che sono "apparentate" con la nostra funzione: **See Also**
-* Una serie di esempi pratici: **Examples**
 
-prova
+1. Il nome della funzione: **matrix {base}**
+2. Il titolo dell'help: **Matrices**
+3. Una breve e concisa (occhio ai termini usati) descrizione della funzione: **Description**
+4. Un esempio generico ma completo del suo utilizzo: **Usage**
+5. Una dettagliata descrizione degli argomenti necessari e delle opzioni: **Arguments**
+6. Una articolata descrizione di cosa fa la funzione: **Details**
+7. Alcune annotazioni: **Note**
+8. I riferimenti alla letteratura (soprattutto se si tratta di una metodo scientifico): **References**
+9. Un elenco delle funzioni che sono "apparentate" con la nostra funzione: **See Also**
+10. Una serie di esempi pratici: **Examples**
+
+Il nome della funzione (1) è sempre associato al nome del pacchetto, riportato tra parentesi graffe. Per adesso abbiamo incontrato solo funzione del pacchetto _base_, ma via via ne useremo molte altre disponibili mediante pacchetti aggiuntivi.
+Il titolo della funzione (2), da non confondere con il **nome** della funzione, è semplicemente una denominazione immediata ed esplicita di quello che la funzione serve a fare.
+La descrizione (3) è una breve frase, basata sull'utilizzo di termini precisi e con un chiaro significato nel contesto di R, di come lavora la funzione e di quello che ci consente di fare. 
+La voce **Usage** (4) è probabilmente la più diretta, utile e efficare voce dell'help. Mano mano che si diventa esperti di R si impara a usare nuove funzioni scorrendo rapidamente il loro help e intuendone l'utilizzo proprio dalla voce usage. Essa ci indica immediatamente quali sono gli argomenti (gli input) necessari per far funzionare la funzione, ma ci dice anche si comporterà la funzione nel caso in cui non indichiamo esplicitamente alcuni argomenti. Ad esempio, nel caso della funzione matrix, ci dice che essa si aspetta 3 argomenti: _data_, _nrow_ e _ncol_. Tuttavia, in assenza di indicazioni dell'utente, la funzione userà NA come valore di default dell'argomento _data_, e 1 come valore di _nrow_ ed _ncol_. Vediamo tre esempi:
+
+
+```r
+matrix(,3,3)
+```
+
+```
+##      [,1] [,2] [,3]
+## [1,]   NA   NA   NA
+## [2,]   NA   NA   NA
+## [3,]   NA   NA   NA
+```
+
+```r
+matrix(1:9)
+```
+
+```
+##       [,1]
+##  [1,]    1
+##  [2,]    2
+##  [3,]    3
+##  [4,]    4
+##  [5,]    5
+##  [6,]    6
+##  [7,]    7
+##  [8,]    8
+##  [9,]    9
+```
+
+Nel primo caso otteniamo una matrice di 3 righe e 3 colonne piena di NA. Nel secondo caso abbiamo assegnato a _data_ il vettore 1:9, quindi la funzione deve disporre 9 valori in qualche modo.... ma, essendo prioritario l'argomento _nrow_, la funzione genera un vettore colonna. 
+Un aspetto importante è che ogni funzione di R si accontenta di avere i valori degli argomenti anche senza l'assegnazione al loro nome predefinito. Quindi se scriviamo:
+
+
+```r
+matrix(1:12,4,3)
+```
+
+```
+##      [,1] [,2] [,3]
+## [1,]    1    5    9
+## [2,]    2    6   10
+## [3,]    3    7   11
+## [4,]    4    8   12
+```
+
+R capirà che 1:9 è riferito a _data_, mentre 4 e 3 sono riferiti rispettivamente a _nrow_ ed _ncol_. Quindi la voce usage ci dice anche in che ordine fornire gli argomenti alla funzione che ci interessa.
+Se vogliamo fornirli in ordine differente, però, (come può capitare con funzioni che hanno tanti argomenti) possiamo farlo usando nomi e assegnazioni. Ad esempio:
+
+
+```r
+matrix(nrow = 4, data = 1:12, ncol = 3)
+```
+
+```
+##      [,1] [,2] [,3]
+## [1,]    1    5    9
+## [2,]    2    6   10
+## [3,]    3    7   11
+## [4,]    4    8   12
+```
+
+Ci fornisce lo stesso identico risultato di prima.
+La voce **Arguments** (5), comunque, ci può tornare utile se non abbiamo subito chiara la natura degli argomenti necessari, ad esempio di quale classe (vettore? matrice? lista?) essi devono essere. Allo stesso tempo, questa voce dell'help ci spieg bene a cosa servono le opzioni.
+
+La voce **Details** (6) ci illustra il razionale della funzione, cioè quali procedure ci sono alla sua base, ma ci indica anche cosa attenderci in casi "particolari". Nel caso della funzione matrix, la voce Details ci spiega che, quando la dimensione dell'argomento _data_ non corrisponde al numero di celle della matrice, R prova ad "adattare i dati", ad esempio riciclando gli elementi di _data_ se sono meno di quelli attesi. Vediamo un esempio:
+
+
+```r
+matrix(data = 1:9, nrow = 4, ncol = 3)
+```
+
+```
+## Warning in matrix(data = 1:9, nrow = 4, ncol = 3): data length [9] is not a sub-
+## multiple or multiple of the number of rows [4]
+```
+
+```
+##      [,1] [,2] [,3]
+## [1,]    1    5    9
+## [2,]    2    6    1
+## [3,]    3    7    2
+## [4,]    4    8    3
+```
+
+In questo caso abbiamo generato una matrice di 4 righe e 3 colonne, e quindi di 12 elementi, ma abbiamo fornito un vettore di soli 9 elementi come argomento _data_. Come si può intuire, R ha ricominciato da capo e dopo il 9 ha usato i valori 1, 2 e 3.
+Sulle voci **Note**, **References** e **See Also** non ci dilunghiamo perchè sono davvero molto intuitive.
+
+
+
+
+## Una cassetta degli attrezzi essenziali
+
+In questa sezione faremo conoscenza, anche mediante alcuni esempi, con una seria di funzioni del pacchetto _base_ di R. Conoscerle è utile per due motivi: 
+
+* ci permette di avere gli strumenti di base per cominciare a usare sul serio R
+* ci allena ad apprendere in modo autonomo l'utilizzo di qualsiasi altra funzione.
+
+Nella figura seguente sono rappresentate alcune delle funzioni del pacchetto _base_, arbitrariamente raggruppate sulla base di 7 diverse tipologie (tratteremo a parte le principali funzioni per fare grafici):
+
+* Ramo <span style="color:red">Funzioni per esplorare gli oggetti</span>
+* Ramo <span style="color:DarkKhaki">Funzioni statistiche di base</span>
+* Ramo <span style="color:LawnGreen">Funzioni per la combinazione di oggetti</span>
+* Ramo <span style="color:blue">Funzioni per generare oggetti</span>
+* Ramo <span style="color:DarkGreen">Funzioni per salvare i grafici</span>
+* Ramo <span style="color:GoldenRod">Funzioni per leggere/salvare file di testo</span>
+* Ramo <span style="color:darkgrey">Funzioni per leggere/salvare dati nel formato R</span>
+
+![](Images/01-13.png)
+Prendiamole in considerazione, illustrandone brevemente le caratteristiche e l'utilizzo.
+
+### c
+
+E' la funzione più semplice e infatti è una delle prima che abbiamo incontato. Gli input di questa funzione sono gli oggetti da unire per creare il vettore, e sono messi insieme nella stessa sequenza con cui vengono menzionati come argomenti.
+Serve a generare dei vettori che avranno, però, tutti gli oggetti appartenenti alla stessa classe. Questo vuol dire che, se forniamo a **c** argomenti di classi diverse, alcuni di loro saranno _coerciti_ a diventare di classi diverse. Questo avviene secondo una logica intuitiva: se mescolo numeri e caratteri, avrò un vettore di solo caratteri (perchè non avrebbe senso trasformare i valori _character_ in _numeric_).
+
+
+```r
+vector_character = c("A","B")
+vector_numeric = c(1:3)
+
+c(vector_numeric, vector_character)
+```
+
+```
+## [1] "1" "2" "3" "A" "B"
+```
+
+Invece ha senso convertire i livelli di un _factor_ in una serie di valori ordinali
+
+
+```r
+vector_factor = factor(c("a","b"), levels = c("a","b"))
+vector_numeric = c(4:6)
+
+c(vector_numeric, vector_factor)
+```
+
+```
+## [1] 4 5 6 1 2
+```
+
+Infine, un _factor_ mescolato a un _character_ sarà prima convertito in _numeric_ e poi in un carattere. 
+
+
+
+```r
+vector_factor = factor(c("a","b"), levels = c("a","b"))
+vector_character = c("A","B")
+
+c(vector_factor, vector_character)
+```
+
+```
+## [1] "1" "2" "A" "B"
+```
+
+
+### numeric
+
+La funzione per creare vettore di numeri. L'argomento della funzione è la lunghezza del vettore che vogliamo generare. Indipendentemente dalla lunghezza, il vettore sarà costituito solo da zeri. Ha due cugini di cui **as.numeric** è spesso usato per coercire oggetti di classe diversa da _numeric_ in vettori numerici. Se questa operazione non ha senso, la funzione **as.numeric** restituirà una serie di NA.
+
+
+
+```r
+numeric(10)
+```
+
+```
+##  [1] 0 0 0 0 0 0 0 0 0 0
+```
+
+```r
+numeric(5)
+```
+
+```
+## [1] 0 0 0 0 0
+```
+
+```r
+vector_factor = factor(c("a","b"), levels = c("a","b"))
+as.numeric(vector_factor)
+```
+
+```
+## [1] 1 2
+```
+
+```r
+vector_character = c("A","B")
+as.numeric(vector_character)
+```
+
+```
+## Warning: si è prodotto un NA per coercizione
+```
+
+```
+## [1] NA NA
+```
+
+
+### character
+### list
+### matrix
+### array
+### data.frame
+### vector
+### rep
+### seq
+
+### sample
+### apply
+### which
+### match
+### intersect
+### setdiff
+### union
+### merge
+### cbind
+### rbind
+
+### min, max, range
+### summary
+### cumsum
+### median
+### quantile
+### mean
+### sd
+### runif
+### rnorm
+### weighted.mean
+
+### head
+### tail
+### dim
+### nrow
+### ncol
+### str
+### class
+### unique
+### table
+### rev
+### sort
+### length
+
+### read.table
+### write.table
+### read.csv
+### write.csv
+### readRDS
+### saveRDS
+### jpeg, bmp, png, tiff
+
+
+
+![](Images/01-14.png)
+
+
+
+
 
 
 

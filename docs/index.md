@@ -5,7 +5,7 @@ title: "Un viaggio nell'ambiente R"
 author: 
 - name: Tommaso Russo, Giuliano Colosimo, Ciro Fanelli, Simone Franceschini, Antonio Parisi
 
-date: "2021-04-21"
+date: "2021-04-22"
 
 output:
   html_document:
