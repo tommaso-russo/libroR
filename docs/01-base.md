@@ -147,8 +147,6 @@ L'interfaccia di Rstudio contiene 4 finestre che sono spesso organizzate in ques
 * In basso a destra c'è un'altra finestra "composita" che racchiude **Files**, cioè l'elenco dei file nella cartella di lavoro (la directory del pc) scelta per la sessione, **Plots**, che conterrà le anteprime dei grafici realizzati, **Packages**, che è un prontuario di tutti gli help dei pacchetti installlati, **Help**, l'interfaccia minimale di aiuto che presto impareremo ad apprezzare, e **Viewer**,  destinata a mostrare contenuto HTML come le applicazioni Shiny. 
 
 Una tipica sessione di lavoro in R con Rstudio prevedere un utizzo semi-simultaneo di questi pannelli, e principalmente dello **Script** e del **Terminale** o **Console**.
-
-------
 Dopo queste premesse siamo pronti per rompere gli indugi e fare conoscenza con R.
 Qualsiasi sia la vostra installazione, aprite il terminale e cominciamo.
 
@@ -1923,15 +1921,38 @@ as.numeric(vector_character)
 ## [1] NA NA
 ```
 
-
 ### character
+
+
 ### list
+
+
+
 ### matrix
+
+
+
 ### array
+
+
+
 ### data.frame
+
+
+
 ### vector
+
+
+
 ### rep
+
+
+
 ### seq
+
+
+
+
 
 ### sample
 ### apply
