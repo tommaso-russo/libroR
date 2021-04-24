@@ -5,7 +5,7 @@ title: "Un viaggio nell'ambiente R"
 author: 
 - name: Tommaso Russo, Giuliano Colosimo, Ciro Fanelli, Simone Franceschini, Antonio Parisi
 
-date: "2021-04-23"
+date: "2021-04-24"
 
 output:
   html_document:
@@ -69,6 +69,7 @@ E' un ricercatore postdoc con l'*Institute for Conservation Research* di San Die
 E' pittore, illustratore, tatuatore e scrittore. 
 I suoi lavori sono apparsi su “La Lettura – Corriere della Sera”, “Vice”, “Esquire” e altre prestigiose riviste europee e giapponesi. 
 Ha pubblicato "Pinocchio e Les corbeaux pleurent la merde" per Le Dernier Cri (Marsiglia,FR), per Rizzoli Lizard ha pubblicato "Nel bosco del nostro splendore".
+E' l'autore di tutte le figure di questo libro, se la fonte non è diversamente specificata.
 
 ***
 

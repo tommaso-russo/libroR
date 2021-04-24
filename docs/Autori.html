@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-04-23" />
+<meta name="date" content="2021-04-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -214,6 +214,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.14.49" data-path="base.html"><a href="base.html#jpeg-bmp-png-tiff"><i class="fa fa-check"></i><b>4.14.49</b> jpeg, bmp, png, tiff</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="5" data-path="gen.html"><a href="gen.html"><i class="fa fa-check"></i><b>5</b> Genetica</a><ul>
+<li class="chapter" data-level="5.1" data-path="gen.html"><a href="gen.html#gen_intro"><i class="fa fa-check"></i><b>5.1</b> Introduzione</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="gen.html"><a href="gen.html#perché-la-genetica-con-r"><i class="fa fa-check"></i><b>5.1.1</b> Perché la genetica con R?</a></li>
+<li class="chapter" data-level="5.1.2" data-path="gen.html"><a href="gen.html#risorse"><i class="fa fa-check"></i><b>5.1.2</b> Risorse</a></li>
+<li class="chapter" data-level="5.1.3" data-path="gen.html"><a href="gen.html#prima-di-cominciare"><i class="fa fa-check"></i><b>5.1.3</b> Prima di cominciare…</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="gen.html"><a href="gen.html#gen_drift"><i class="fa fa-check"></i><b>5.2</b> Deriva Genetica</a></li>
+<li class="chapter" data-level="5.3" data-path="gen.html"><a href="gen.html#gen_str"><i class="fa fa-check"></i><b>5.3</b> Struttura genetica delle popolazioni</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="gen.html"><a href="gen.html#le-statistiche-f"><i class="fa fa-check"></i><b>5.3.1</b> Le statistiche F</a></li>
+<li class="chapter" data-level="5.3.2" data-path="gen.html"><a href="gen.html#inferenza-bayesiana-con-structure"><i class="fa fa-check"></i><b>5.3.2</b> Inferenza Bayesiana con STRUCTURE</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="gen.html"><a href="gen.html#gen_phylo"><i class="fa fa-check"></i><b>5.4</b> Filogenesi</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -254,7 +267,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>E’ pittore, illustratore, tatuatore e scrittore.
 I suoi lavori sono apparsi su “La Lettura – Corriere della Sera”, “Vice”, “Esquire” e altre prestigiose riviste europee e giapponesi.
-Ha pubblicato “Pinocchio e Les corbeaux pleurent la merde” per Le Dernier Cri (Marsiglia,FR), per Rizzoli Lizard ha pubblicato “Nel bosco del nostro splendore”.</p>
+Ha pubblicato “Pinocchio e Les corbeaux pleurent la merde” per Le Dernier Cri (Marsiglia,FR), per Rizzoli Lizard ha pubblicato “Nel bosco del nostro splendore”.
+E’ l’autore di tutte le figure di questo libro, se la fonte non è diversamente specificata.</p>
 <hr />
 <div class="figure">
 <img src="Images/franceschini.jpg" alt="" />
@@ -327,6 +341,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

@@ -34,7 +34,7 @@ knitr::kable(
 
 
 
-Table: TIOBE Index for August 2020
+Table: (\#tab:unnamed-chunk-1)TIOBE Index for August 2020
 
 |Name                 | Ratings| Change|
 |:--------------------|-------:|------:|
@@ -67,7 +67,7 @@ barplot(TIOBE$Ratings[order(TIOBE$Ratings, decreasing = F)],
         col = c(rep("grey",12),"blue",rep("grey",7)), horiz = T)
 ```
 
-![](01-base_files/figure-latex/unnamed-chunk-1-1.pdf)<!-- --> 
+<img src="01-base_files/figure-html/unnamed-chunk-1-1.png" width="672" />
 
 Questo dato è ancora più significativo se si considera che R non è esattamente un ambiente per produrre software compilato e quindi eseguibile (come avviene invece con i membri della famiglia **C**). 
 Perchè questo aspetto è così importante? Semplicemente perchè, essendo R un ambiente "libero", ogni utente può attingere a una sterminata banca dati di informazioni, algoritmi, pacchetti aggiuntivi e funzioni già sviluppate da altri utenti... e spesso può contare sull'aiuto diretto di una vasta community. In ambito scientifico, R ha avuto (e continua ad avere) una diffusione inarrestabile perchè incarna perfettamente alcuni ideali della ricerca: la possibilità di sviluppare metodologie completamente replicabili, chiare e ulteriormente implementabili. 
@@ -1475,7 +1475,7 @@ knitr::kable(
 
 
 
-Table: Gli operatori booleani in R
+Table: (\#tab:nice-tab5)Gli operatori booleani in R
 
 |Operatore |Significato       |
 |:---------|:-----------------|
@@ -1555,7 +1555,7 @@ knitr::kable(data.frame(Espressione1 = c("TRUE","FALSE", "TRUE","FALSE"),
 
 
 
-Table: Tabella di verità dell'operatore AND
+Table: (\#tab:nice-tab6)Tabella di verità dell'operatore AND
 
 |Espressione1 |Espressione2 |Valore |
 |:------------|:------------|:------|
@@ -1579,7 +1579,7 @@ knitr::kable(data.frame(Espressione1 = c("TRUE","FALSE", "TRUE","FALSE"),
 
 
 
-Table: Tabella di verità dell'operatore OR
+Table: (\#tab:nice-tab7)Tabella di verità dell'operatore OR
 
 |Espressione1 |Espressione2 |Valore |
 |:------------|:------------|:------|
@@ -1923,13 +1923,131 @@ as.numeric(vector_character)
 
 ### character
 
+Questa funzione si comporta esattamente come la funzione _numeric_: il suo unico argomento è la lunghezza del vettore di caratteri da generare, che sarà formato da stringhe vuote. 
+
+
+```r
+character(3)
+```
+
+```
+## [1] "" "" ""
+```
+
+La funzione con essa imparentata, _as.character_, trasforma tutto quello che le si da come argomento in una seguenza di stringhe.
+
+
+```r
+vector_factor = factor(c("a","b"), levels = c("a","b"))
+vector_numeric = c(4:6)
+
+as.character(vector_numeric)
+```
+
+```
+## [1] "4" "5" "6"
+```
+
+```r
+as.character(vector_factor)
+```
+
+```
+## [1] "a" "b"
+```
+
 
 ### list
 
+Si tratta della funzione per assembrale delle liste, ed è molto semplice da usare: è sufficiente fornirle in input gli oggetti che formeranno gli elementi della lista. Si può decidere di nominarli oppure di non farlo, a seconda delle esigenze.
 
+
+```r
+vector_factor = factor(c("a","b"), levels = c("a","b"))
+vector_numeric = c(4:6)
+vector_character = c("A","B")
+
+list(vector_factor, vector_numeric, vector_character)
+```
+
+```
+## [[1]]
+## [1] a b
+## Levels: a b
+## 
+## [[2]]
+## [1] 4 5 6
+## 
+## [[3]]
+## [1] "A" "B"
+```
+
+```r
+list(fattori = vector_factor, 
+     numeri = vector_numeric, 
+     caratteri = vector_character)
+```
+
+```
+## $fattori
+## [1] a b
+## Levels: a b
+## 
+## $numeri
+## [1] 4 5 6
+## 
+## $caratteri
+## [1] "A" "B"
+```
 
 ### matrix
 
+Abbiamo già incontrato questa funzione. Essa vuole come argomenti obbligati la geometria della matrice da generare, in termini di numero di righe e numero di colonne, e il contenuto della matrice stessa (a meno che non ci accontentiamo che sia piena di NA).
+Come nel caso dei vettori, anche le matrice possono contenere solo oggetti che appartengono alla stessa classe.
+
+
+```r
+matrix(1:9, 3, 3)
+```
+
+```
+##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9
+```
+
+```r
+matrix(c("a","b","c","d","e","f","g"), 3, 3)
+```
+
+```
+## Warning in matrix(c("a", "b", "c", "d", "e", "f", "g"), 3, 3): data length [7]
+## is not a sub-multiple or multiple of the number of rows [3]
+```
+
+```
+##      [,1] [,2] [,3]
+## [1,] "a"  "d"  "g" 
+## [2,] "b"  "e"  "a" 
+## [3,] "c"  "f"  "b"
+```
+
+```r
+matrix(c("a","b","c","d",1, 2, 3), 3, 3)
+```
+
+```
+## Warning in matrix(c("a", "b", "c", "d", 1, 2, 3), 3, 3): data length [7] is not
+## a sub-multiple or multiple of the number of rows [3]
+```
+
+```
+##      [,1] [,2] [,3]
+## [1,] "a"  "d"  "3" 
+## [2,] "b"  "1"  "a" 
+## [3,] "c"  "2"  "b"
+```
 
 
 ### array
