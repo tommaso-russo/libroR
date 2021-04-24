@@ -1,4 +1,4 @@
-# Genetica {#gen}
+# Analisi di dati genetici {#gen}
 
 ![](Images/02-01.png)
 

@@ -1819,10 +1819,10 @@ In questa sezione faremo conoscenza, anche mediante alcuni esempi, con una seria
 
 Nella figura seguente sono rappresentate alcune delle funzioni del pacchetto _base_, arbitrariamente raggruppate sulla base di 7 diverse tipologie (tratteremo a parte le principali funzioni per fare grafici):
 
+* Ramo <span style="color:blue">Funzioni per generare oggetti</span>
 * Ramo <span style="color:red">Funzioni per esplorare gli oggetti</span>
 * Ramo <span style="color:DarkKhaki">Funzioni statistiche di base</span>
 * Ramo <span style="color:LawnGreen">Funzioni per la combinazione di oggetti</span>
-* Ramo <span style="color:blue">Funzioni per generare oggetti</span>
 * Ramo <span style="color:DarkGreen">Funzioni per salvare i grafici</span>
 * Ramo <span style="color:GoldenRod">Funzioni per leggere/salvare file di testo</span>
 * Ramo <span style="color:darkgrey">Funzioni per leggere/salvare dati nel formato R</span>
@@ -2049,24 +2049,1255 @@ matrix(c("a","b","c","d",1, 2, 3), 3, 3)
 ## [3,] "c"  "2"  "b"
 ```
 
+Naturalmente sappiamo che dobbiamo prestare attenzione al **modo** in cui R riempirà la nostra matrice. Per questo dobbiamo ricordare che esiste la funzione **byrow** che ci permette di indicare se la matrice deve essere riempita per riga invece che per colonna.
+Un altro aspetto da considerare è la **coerenza** tra le dimensioni dell'argomento _data_ e la geometria della matrice definita dai valori degli argomenti _nrow_ e _ncol_.
+Se "i conti non tornano", R cerca di farseli tornare ma ci avverte che qualcosa non va...
+
+
+```r
+matrix(1:9, 3, 4)
+```
+
+```
+## Warning in matrix(1:9, 3, 4): data length [9] is not a sub-multiple or multiple
+## of the number of columns [4]
+```
+
+```
+##      [,1] [,2] [,3] [,4]
+## [1,]    1    4    7    1
+## [2,]    2    5    8    2
+## [3,]    3    6    9    3
+```
+
+In questo esempio, abbiamo messo R in imbarazzo dando alla funzione _matrix_ argomenti discordanti: _data_ è definito come un vettore di 9 elementi, ma i valori di _nrow_ e _ncol_ definiscono una matrice avente 12 celle!
+Come si vede, R "ricicla" gli elementi di _data_, ripartendo dall'inizio del vettore, ma ci avvisa con un _warning_. Tuttavia...
+
+
+```r
+matrix(1:2, 3, 4)
+```
+
+```
+##      [,1] [,2] [,3] [,4]
+## [1,]    1    2    1    2
+## [2,]    2    1    2    1
+## [3,]    1    2    1    2
+```
+
+In questo caso R non ha protestato, perchè replicando gli elementi di _data_ è riuscito a ottenere un numero di elementi coerente con la geometria della matrice.
+Ovviamente questo è un caso particolare della regola generale:
+
+
+```r
+matrix(100, 3, 4)
+```
+
+```
+##      [,1] [,2] [,3] [,4]
+## [1,]  100  100  100  100
+## [2,]  100  100  100  100
+## [3,]  100  100  100  100
+```
+
+In questo caso, avendo assegnato all'argomento _data_ un singolo valore numerico, qualsiasi geometria della matrice andrà bene.
+
 
 ### array
 
+Questa funzione è la corrispondente di _matrix_ per matrici a _n_ dimensioni con _n_ che appartiene a N+. A parte l'argomento _data_, che è identico a quello di _matrix_, la funzione _array_ vuole un argomento _dim_, nella forma di un vettore numerico in cui ogni valore specifica il numero di elementi corrispondente alla n-esima dimensione. Dunque il numero di dimensioni dipende dalla lunghezza del vettore associato a _dim_. Ad esempio
+
+
+```r
+array(1:24, dim = c(3, 2, 4))
+```
+
+```
+## , , 1
+## 
+##      [,1] [,2]
+## [1,]    1    4
+## [2,]    2    5
+## [3,]    3    6
+## 
+## , , 2
+## 
+##      [,1] [,2]
+## [1,]    7   10
+## [2,]    8   11
+## [3,]    9   12
+## 
+## , , 3
+## 
+##      [,1] [,2]
+## [1,]   13   16
+## [2,]   14   17
+## [3,]   15   18
+## 
+## , , 4
+## 
+##      [,1] [,2]
+## [1,]   19   22
+## [2,]   20   23
+## [3,]   21   24
+```
+
+E' interessante fare la conoscenza con il modo, rozzo ma efficace, che R usa per mostrarci oggetti compessi come questo array a 3 dimensioni. Per orientarsi, si devono utilizzare gli indici, tra quadre, che ci indicano quale strato dell'array ci viene mostrato. Essendo alle prese con un array tridimensionale, ci servono 3 coordinate per identificare un suo elemento, e quindi tra le quadre (che servono per indicizzarlo) vediamo 2 virgole che separano 3 valori, siano essi presenti o meno.
+Quindi la scrittura [,2,3] vuol dire prendi TUTTI gli elementi dell'array rispetto alla sua prima dimensione, solo il secondo rispetto alla seconda dimensione e solo il terzo rispetto alla terza dimensione. Chiaro no?
+
+
+```r
+a = array(1:24, dim = c(3, 2, 4))
+a[,2,3]
+```
+
+```
+## [1] 16 17 18
+```
 
 
 ### data.frame
+
+I data frame sono sicuramente gli oggetti più flessibili di R, e sono di gran lunga il tipo più usato per organizzare, gestire e analizzare dati biologici.
+I data frame combinano la "rigidità" strutturale delle matrici (ogni riga di un data frame ha le stesse colonne di ogni altra, e viceversa per le colonne) con la flessibilità del poter incorporare dati _factor_, _numeric_, _character_, ecc.
+Questo vuol dire che, generalmente, le colonne di un data frame contengono record (righe) omogenei e, quindi, ogni variabile (colonna) è formata da valori che appartengono alla stessa classe di R.
+Questo, però, li rende oggetti non ideali per fare calcoli, come vedremo parlando delle funzioni matematico-statistiche.
+Per fare pratica coi data frame introduciamo uno dei dataset nativi del pacchetto base di R, il data frame **iris**
+
+
+```r
+data(iris)
+iris
+```
+
+```
+##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+## 1            5.1         3.5          1.4         0.2     setosa
+## 2            4.9         3.0          1.4         0.2     setosa
+## 3            4.7         3.2          1.3         0.2     setosa
+## 4            4.6         3.1          1.5         0.2     setosa
+## 5            5.0         3.6          1.4         0.2     setosa
+## 6            5.4         3.9          1.7         0.4     setosa
+## 7            4.6         3.4          1.4         0.3     setosa
+## 8            5.0         3.4          1.5         0.2     setosa
+## 9            4.4         2.9          1.4         0.2     setosa
+## 10           4.9         3.1          1.5         0.1     setosa
+## 11           5.4         3.7          1.5         0.2     setosa
+## 12           4.8         3.4          1.6         0.2     setosa
+## 13           4.8         3.0          1.4         0.1     setosa
+## 14           4.3         3.0          1.1         0.1     setosa
+## 15           5.8         4.0          1.2         0.2     setosa
+## 16           5.7         4.4          1.5         0.4     setosa
+## 17           5.4         3.9          1.3         0.4     setosa
+## 18           5.1         3.5          1.4         0.3     setosa
+## 19           5.7         3.8          1.7         0.3     setosa
+## 20           5.1         3.8          1.5         0.3     setosa
+## 21           5.4         3.4          1.7         0.2     setosa
+## 22           5.1         3.7          1.5         0.4     setosa
+## 23           4.6         3.6          1.0         0.2     setosa
+## 24           5.1         3.3          1.7         0.5     setosa
+## 25           4.8         3.4          1.9         0.2     setosa
+## 26           5.0         3.0          1.6         0.2     setosa
+## 27           5.0         3.4          1.6         0.4     setosa
+## 28           5.2         3.5          1.5         0.2     setosa
+## 29           5.2         3.4          1.4         0.2     setosa
+## 30           4.7         3.2          1.6         0.2     setosa
+## 31           4.8         3.1          1.6         0.2     setosa
+## 32           5.4         3.4          1.5         0.4     setosa
+## 33           5.2         4.1          1.5         0.1     setosa
+## 34           5.5         4.2          1.4         0.2     setosa
+## 35           4.9         3.1          1.5         0.2     setosa
+## 36           5.0         3.2          1.2         0.2     setosa
+## 37           5.5         3.5          1.3         0.2     setosa
+## 38           4.9         3.6          1.4         0.1     setosa
+## 39           4.4         3.0          1.3         0.2     setosa
+## 40           5.1         3.4          1.5         0.2     setosa
+## 41           5.0         3.5          1.3         0.3     setosa
+## 42           4.5         2.3          1.3         0.3     setosa
+## 43           4.4         3.2          1.3         0.2     setosa
+## 44           5.0         3.5          1.6         0.6     setosa
+## 45           5.1         3.8          1.9         0.4     setosa
+## 46           4.8         3.0          1.4         0.3     setosa
+## 47           5.1         3.8          1.6         0.2     setosa
+## 48           4.6         3.2          1.4         0.2     setosa
+## 49           5.3         3.7          1.5         0.2     setosa
+## 50           5.0         3.3          1.4         0.2     setosa
+## 51           7.0         3.2          4.7         1.4 versicolor
+## 52           6.4         3.2          4.5         1.5 versicolor
+## 53           6.9         3.1          4.9         1.5 versicolor
+## 54           5.5         2.3          4.0         1.3 versicolor
+## 55           6.5         2.8          4.6         1.5 versicolor
+## 56           5.7         2.8          4.5         1.3 versicolor
+## 57           6.3         3.3          4.7         1.6 versicolor
+## 58           4.9         2.4          3.3         1.0 versicolor
+## 59           6.6         2.9          4.6         1.3 versicolor
+## 60           5.2         2.7          3.9         1.4 versicolor
+## 61           5.0         2.0          3.5         1.0 versicolor
+## 62           5.9         3.0          4.2         1.5 versicolor
+## 63           6.0         2.2          4.0         1.0 versicolor
+## 64           6.1         2.9          4.7         1.4 versicolor
+## 65           5.6         2.9          3.6         1.3 versicolor
+## 66           6.7         3.1          4.4         1.4 versicolor
+## 67           5.6         3.0          4.5         1.5 versicolor
+## 68           5.8         2.7          4.1         1.0 versicolor
+## 69           6.2         2.2          4.5         1.5 versicolor
+## 70           5.6         2.5          3.9         1.1 versicolor
+## 71           5.9         3.2          4.8         1.8 versicolor
+## 72           6.1         2.8          4.0         1.3 versicolor
+## 73           6.3         2.5          4.9         1.5 versicolor
+## 74           6.1         2.8          4.7         1.2 versicolor
+## 75           6.4         2.9          4.3         1.3 versicolor
+## 76           6.6         3.0          4.4         1.4 versicolor
+## 77           6.8         2.8          4.8         1.4 versicolor
+## 78           6.7         3.0          5.0         1.7 versicolor
+## 79           6.0         2.9          4.5         1.5 versicolor
+## 80           5.7         2.6          3.5         1.0 versicolor
+## 81           5.5         2.4          3.8         1.1 versicolor
+## 82           5.5         2.4          3.7         1.0 versicolor
+## 83           5.8         2.7          3.9         1.2 versicolor
+## 84           6.0         2.7          5.1         1.6 versicolor
+## 85           5.4         3.0          4.5         1.5 versicolor
+## 86           6.0         3.4          4.5         1.6 versicolor
+## 87           6.7         3.1          4.7         1.5 versicolor
+## 88           6.3         2.3          4.4         1.3 versicolor
+## 89           5.6         3.0          4.1         1.3 versicolor
+## 90           5.5         2.5          4.0         1.3 versicolor
+## 91           5.5         2.6          4.4         1.2 versicolor
+## 92           6.1         3.0          4.6         1.4 versicolor
+## 93           5.8         2.6          4.0         1.2 versicolor
+## 94           5.0         2.3          3.3         1.0 versicolor
+## 95           5.6         2.7          4.2         1.3 versicolor
+## 96           5.7         3.0          4.2         1.2 versicolor
+## 97           5.7         2.9          4.2         1.3 versicolor
+## 98           6.2         2.9          4.3         1.3 versicolor
+## 99           5.1         2.5          3.0         1.1 versicolor
+## 100          5.7         2.8          4.1         1.3 versicolor
+## 101          6.3         3.3          6.0         2.5  virginica
+## 102          5.8         2.7          5.1         1.9  virginica
+## 103          7.1         3.0          5.9         2.1  virginica
+## 104          6.3         2.9          5.6         1.8  virginica
+## 105          6.5         3.0          5.8         2.2  virginica
+## 106          7.6         3.0          6.6         2.1  virginica
+## 107          4.9         2.5          4.5         1.7  virginica
+## 108          7.3         2.9          6.3         1.8  virginica
+## 109          6.7         2.5          5.8         1.8  virginica
+## 110          7.2         3.6          6.1         2.5  virginica
+## 111          6.5         3.2          5.1         2.0  virginica
+## 112          6.4         2.7          5.3         1.9  virginica
+## 113          6.8         3.0          5.5         2.1  virginica
+## 114          5.7         2.5          5.0         2.0  virginica
+## 115          5.8         2.8          5.1         2.4  virginica
+## 116          6.4         3.2          5.3         2.3  virginica
+## 117          6.5         3.0          5.5         1.8  virginica
+## 118          7.7         3.8          6.7         2.2  virginica
+## 119          7.7         2.6          6.9         2.3  virginica
+## 120          6.0         2.2          5.0         1.5  virginica
+## 121          6.9         3.2          5.7         2.3  virginica
+## 122          5.6         2.8          4.9         2.0  virginica
+## 123          7.7         2.8          6.7         2.0  virginica
+## 124          6.3         2.7          4.9         1.8  virginica
+## 125          6.7         3.3          5.7         2.1  virginica
+## 126          7.2         3.2          6.0         1.8  virginica
+## 127          6.2         2.8          4.8         1.8  virginica
+## 128          6.1         3.0          4.9         1.8  virginica
+## 129          6.4         2.8          5.6         2.1  virginica
+## 130          7.2         3.0          5.8         1.6  virginica
+## 131          7.4         2.8          6.1         1.9  virginica
+## 132          7.9         3.8          6.4         2.0  virginica
+## 133          6.4         2.8          5.6         2.2  virginica
+## 134          6.3         2.8          5.1         1.5  virginica
+## 135          6.1         2.6          5.6         1.4  virginica
+## 136          7.7         3.0          6.1         2.3  virginica
+## 137          6.3         3.4          5.6         2.4  virginica
+## 138          6.4         3.1          5.5         1.8  virginica
+## 139          6.0         3.0          4.8         1.8  virginica
+## 140          6.9         3.1          5.4         2.1  virginica
+## 141          6.7         3.1          5.6         2.4  virginica
+## 142          6.9         3.1          5.1         2.3  virginica
+## 143          5.8         2.7          5.1         1.9  virginica
+## 144          6.8         3.2          5.9         2.3  virginica
+## 145          6.7         3.3          5.7         2.5  virginica
+## 146          6.7         3.0          5.2         2.3  virginica
+## 147          6.3         2.5          5.0         1.9  virginica
+## 148          6.5         3.0          5.2         2.0  virginica
+## 149          6.2         3.4          5.4         2.3  virginica
+## 150          5.9         3.0          5.1         1.8  virginica
+```
+
+Iris è un famoso insieme di dati (Fisher's or Anderson's) che contiene biometrie di individui (fiori) di 3 specie del genere _Iris_. 
+Come si può notare, ogni colonna ha un nome che corrisponde alla biometria misurata, mentre l'ultima colonna è un factor con 3 livelli corrispondenti alle 3 specie.
+Nel caso dei data frame, oltre alla normale indicizizzazione basata sulle parentesi quadre, possiamo disporre di un riferimento diretto alle colonne (variabili) mediante il simbolo **$**.
+Ad esempio
+
+
+
+```r
+iris$Sepal.Length
+```
+
+```
+##   [1] 5.1 4.9 4.7 4.6 5.0 5.4 4.6 5.0 4.4 4.9 5.4 4.8 4.8 4.3 5.8 5.7 5.4 5.1
+##  [19] 5.7 5.1 5.4 5.1 4.6 5.1 4.8 5.0 5.0 5.2 5.2 4.7 4.8 5.4 5.2 5.5 4.9 5.0
+##  [37] 5.5 4.9 4.4 5.1 5.0 4.5 4.4 5.0 5.1 4.8 5.1 4.6 5.3 5.0 7.0 6.4 6.9 5.5
+##  [55] 6.5 5.7 6.3 4.9 6.6 5.2 5.0 5.9 6.0 6.1 5.6 6.7 5.6 5.8 6.2 5.6 5.9 6.1
+##  [73] 6.3 6.1 6.4 6.6 6.8 6.7 6.0 5.7 5.5 5.5 5.8 6.0 5.4 6.0 6.7 6.3 5.6 5.5
+##  [91] 5.5 6.1 5.8 5.0 5.6 5.7 5.7 6.2 5.1 5.7 6.3 5.8 7.1 6.3 6.5 7.6 4.9 7.3
+## [109] 6.7 7.2 6.5 6.4 6.8 5.7 5.8 6.4 6.5 7.7 7.7 6.0 6.9 5.6 7.7 6.3 6.7 7.2
+## [127] 6.2 6.1 6.4 7.2 7.4 7.9 6.4 6.3 6.1 7.7 6.3 6.4 6.0 6.9 6.7 6.9 5.8 6.8
+## [145] 6.7 6.7 6.3 6.5 6.2 5.9
+```
+
+```r
+iris$Species
+```
+
+```
+##   [1] setosa     setosa     setosa     setosa     setosa     setosa    
+##   [7] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [13] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [19] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [25] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [31] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [37] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [43] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [49] setosa     setosa     versicolor versicolor versicolor versicolor
+##  [55] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [61] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [67] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [73] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [79] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [85] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [91] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [97] versicolor versicolor versicolor versicolor virginica  virginica 
+## [103] virginica  virginica  virginica  virginica  virginica  virginica 
+## [109] virginica  virginica  virginica  virginica  virginica  virginica 
+## [115] virginica  virginica  virginica  virginica  virginica  virginica 
+## [121] virginica  virginica  virginica  virginica  virginica  virginica 
+## [127] virginica  virginica  virginica  virginica  virginica  virginica 
+## [133] virginica  virginica  virginica  virginica  virginica  virginica 
+## [139] virginica  virginica  virginica  virginica  virginica  virginica 
+## [145] virginica  virginica  virginica  virginica  virginica  virginica 
+## Levels: setosa versicolor virginica
+```
+
+Quindi, usando il comando _class_, possiamo esaminare ogni variabile.
+
+
+```r
+class(iris$Sepal.Length)
+```
+
+```
+## [1] "numeric"
+```
+
+```r
+class(iris$Sepal.Width)
+```
+
+```
+## [1] "numeric"
+```
+
+```r
+class(iris$Petal.Length)
+```
+
+```
+## [1] "numeric"
+```
+
+```r
+class(iris$Petal.Width)
+```
+
+```
+## [1] "numeric"
+```
+
+```r
+class(iris$Species)
+```
+
+```
+## [1] "factor"
+```
+
+Esistono due modi in cui si può organizzare un data frame. Il primo, detto **wide**, contiene osservazioni ripetute di un soggetto in una singola riga, e ogni risposta è in una colonna separata. Il data frame iris è un esempio di data frame wide. Nel secondo tipo, detto **long**, ogni riga è combinazione di soggetto e risposta (variabile) su di esso osservata. Il data frame iris nel formato long ci appare così:
+
+
+```r
+library(reshape2)
+iris$id = 1:150
+iris_long = melt(iris, id.vars = "id")
+```
+
+```
+## Warning: attributes are not identical across measure variables; they will be
+## dropped
+```
+
+```r
+iris_long
+```
+
+```
+##      id     variable      value
+## 1     1 Sepal.Length        5.1
+## 2     2 Sepal.Length        4.9
+## 3     3 Sepal.Length        4.7
+## 4     4 Sepal.Length        4.6
+## 5     5 Sepal.Length          5
+## 6     6 Sepal.Length        5.4
+## 7     7 Sepal.Length        4.6
+## 8     8 Sepal.Length          5
+## 9     9 Sepal.Length        4.4
+## 10   10 Sepal.Length        4.9
+## 11   11 Sepal.Length        5.4
+## 12   12 Sepal.Length        4.8
+## 13   13 Sepal.Length        4.8
+## 14   14 Sepal.Length        4.3
+## 15   15 Sepal.Length        5.8
+## 16   16 Sepal.Length        5.7
+## 17   17 Sepal.Length        5.4
+## 18   18 Sepal.Length        5.1
+## 19   19 Sepal.Length        5.7
+## 20   20 Sepal.Length        5.1
+## 21   21 Sepal.Length        5.4
+## 22   22 Sepal.Length        5.1
+## 23   23 Sepal.Length        4.6
+## 24   24 Sepal.Length        5.1
+## 25   25 Sepal.Length        4.8
+## 26   26 Sepal.Length          5
+## 27   27 Sepal.Length          5
+## 28   28 Sepal.Length        5.2
+## 29   29 Sepal.Length        5.2
+## 30   30 Sepal.Length        4.7
+## 31   31 Sepal.Length        4.8
+## 32   32 Sepal.Length        5.4
+## 33   33 Sepal.Length        5.2
+## 34   34 Sepal.Length        5.5
+## 35   35 Sepal.Length        4.9
+## 36   36 Sepal.Length          5
+## 37   37 Sepal.Length        5.5
+## 38   38 Sepal.Length        4.9
+## 39   39 Sepal.Length        4.4
+## 40   40 Sepal.Length        5.1
+## 41   41 Sepal.Length          5
+## 42   42 Sepal.Length        4.5
+## 43   43 Sepal.Length        4.4
+## 44   44 Sepal.Length          5
+## 45   45 Sepal.Length        5.1
+## 46   46 Sepal.Length        4.8
+## 47   47 Sepal.Length        5.1
+## 48   48 Sepal.Length        4.6
+## 49   49 Sepal.Length        5.3
+## 50   50 Sepal.Length          5
+## 51   51 Sepal.Length          7
+## 52   52 Sepal.Length        6.4
+## 53   53 Sepal.Length        6.9
+## 54   54 Sepal.Length        5.5
+## 55   55 Sepal.Length        6.5
+## 56   56 Sepal.Length        5.7
+## 57   57 Sepal.Length        6.3
+## 58   58 Sepal.Length        4.9
+## 59   59 Sepal.Length        6.6
+## 60   60 Sepal.Length        5.2
+## 61   61 Sepal.Length          5
+## 62   62 Sepal.Length        5.9
+## 63   63 Sepal.Length          6
+## 64   64 Sepal.Length        6.1
+## 65   65 Sepal.Length        5.6
+## 66   66 Sepal.Length        6.7
+## 67   67 Sepal.Length        5.6
+## 68   68 Sepal.Length        5.8
+## 69   69 Sepal.Length        6.2
+## 70   70 Sepal.Length        5.6
+## 71   71 Sepal.Length        5.9
+## 72   72 Sepal.Length        6.1
+## 73   73 Sepal.Length        6.3
+## 74   74 Sepal.Length        6.1
+## 75   75 Sepal.Length        6.4
+## 76   76 Sepal.Length        6.6
+## 77   77 Sepal.Length        6.8
+## 78   78 Sepal.Length        6.7
+## 79   79 Sepal.Length          6
+## 80   80 Sepal.Length        5.7
+## 81   81 Sepal.Length        5.5
+## 82   82 Sepal.Length        5.5
+## 83   83 Sepal.Length        5.8
+## 84   84 Sepal.Length          6
+## 85   85 Sepal.Length        5.4
+## 86   86 Sepal.Length          6
+## 87   87 Sepal.Length        6.7
+## 88   88 Sepal.Length        6.3
+## 89   89 Sepal.Length        5.6
+## 90   90 Sepal.Length        5.5
+## 91   91 Sepal.Length        5.5
+## 92   92 Sepal.Length        6.1
+## 93   93 Sepal.Length        5.8
+## 94   94 Sepal.Length          5
+## 95   95 Sepal.Length        5.6
+## 96   96 Sepal.Length        5.7
+## 97   97 Sepal.Length        5.7
+## 98   98 Sepal.Length        6.2
+## 99   99 Sepal.Length        5.1
+## 100 100 Sepal.Length        5.7
+## 101 101 Sepal.Length        6.3
+## 102 102 Sepal.Length        5.8
+## 103 103 Sepal.Length        7.1
+## 104 104 Sepal.Length        6.3
+## 105 105 Sepal.Length        6.5
+## 106 106 Sepal.Length        7.6
+## 107 107 Sepal.Length        4.9
+## 108 108 Sepal.Length        7.3
+## 109 109 Sepal.Length        6.7
+## 110 110 Sepal.Length        7.2
+## 111 111 Sepal.Length        6.5
+## 112 112 Sepal.Length        6.4
+## 113 113 Sepal.Length        6.8
+## 114 114 Sepal.Length        5.7
+## 115 115 Sepal.Length        5.8
+## 116 116 Sepal.Length        6.4
+## 117 117 Sepal.Length        6.5
+## 118 118 Sepal.Length        7.7
+## 119 119 Sepal.Length        7.7
+## 120 120 Sepal.Length          6
+## 121 121 Sepal.Length        6.9
+## 122 122 Sepal.Length        5.6
+## 123 123 Sepal.Length        7.7
+## 124 124 Sepal.Length        6.3
+## 125 125 Sepal.Length        6.7
+## 126 126 Sepal.Length        7.2
+## 127 127 Sepal.Length        6.2
+## 128 128 Sepal.Length        6.1
+## 129 129 Sepal.Length        6.4
+## 130 130 Sepal.Length        7.2
+## 131 131 Sepal.Length        7.4
+## 132 132 Sepal.Length        7.9
+## 133 133 Sepal.Length        6.4
+## 134 134 Sepal.Length        6.3
+## 135 135 Sepal.Length        6.1
+## 136 136 Sepal.Length        7.7
+## 137 137 Sepal.Length        6.3
+## 138 138 Sepal.Length        6.4
+## 139 139 Sepal.Length          6
+## 140 140 Sepal.Length        6.9
+## 141 141 Sepal.Length        6.7
+## 142 142 Sepal.Length        6.9
+## 143 143 Sepal.Length        5.8
+## 144 144 Sepal.Length        6.8
+## 145 145 Sepal.Length        6.7
+## 146 146 Sepal.Length        6.7
+## 147 147 Sepal.Length        6.3
+## 148 148 Sepal.Length        6.5
+## 149 149 Sepal.Length        6.2
+## 150 150 Sepal.Length        5.9
+## 151   1  Sepal.Width        3.5
+## 152   2  Sepal.Width          3
+## 153   3  Sepal.Width        3.2
+## 154   4  Sepal.Width        3.1
+## 155   5  Sepal.Width        3.6
+## 156   6  Sepal.Width        3.9
+## 157   7  Sepal.Width        3.4
+## 158   8  Sepal.Width        3.4
+## 159   9  Sepal.Width        2.9
+## 160  10  Sepal.Width        3.1
+## 161  11  Sepal.Width        3.7
+## 162  12  Sepal.Width        3.4
+## 163  13  Sepal.Width          3
+## 164  14  Sepal.Width          3
+## 165  15  Sepal.Width          4
+## 166  16  Sepal.Width        4.4
+## 167  17  Sepal.Width        3.9
+## 168  18  Sepal.Width        3.5
+## 169  19  Sepal.Width        3.8
+## 170  20  Sepal.Width        3.8
+## 171  21  Sepal.Width        3.4
+## 172  22  Sepal.Width        3.7
+## 173  23  Sepal.Width        3.6
+## 174  24  Sepal.Width        3.3
+## 175  25  Sepal.Width        3.4
+## 176  26  Sepal.Width          3
+## 177  27  Sepal.Width        3.4
+## 178  28  Sepal.Width        3.5
+## 179  29  Sepal.Width        3.4
+## 180  30  Sepal.Width        3.2
+## 181  31  Sepal.Width        3.1
+## 182  32  Sepal.Width        3.4
+## 183  33  Sepal.Width        4.1
+## 184  34  Sepal.Width        4.2
+## 185  35  Sepal.Width        3.1
+## 186  36  Sepal.Width        3.2
+## 187  37  Sepal.Width        3.5
+## 188  38  Sepal.Width        3.6
+## 189  39  Sepal.Width          3
+## 190  40  Sepal.Width        3.4
+## 191  41  Sepal.Width        3.5
+## 192  42  Sepal.Width        2.3
+## 193  43  Sepal.Width        3.2
+## 194  44  Sepal.Width        3.5
+## 195  45  Sepal.Width        3.8
+## 196  46  Sepal.Width          3
+## 197  47  Sepal.Width        3.8
+## 198  48  Sepal.Width        3.2
+## 199  49  Sepal.Width        3.7
+## 200  50  Sepal.Width        3.3
+## 201  51  Sepal.Width        3.2
+## 202  52  Sepal.Width        3.2
+## 203  53  Sepal.Width        3.1
+## 204  54  Sepal.Width        2.3
+## 205  55  Sepal.Width        2.8
+## 206  56  Sepal.Width        2.8
+## 207  57  Sepal.Width        3.3
+## 208  58  Sepal.Width        2.4
+## 209  59  Sepal.Width        2.9
+## 210  60  Sepal.Width        2.7
+## 211  61  Sepal.Width          2
+## 212  62  Sepal.Width          3
+## 213  63  Sepal.Width        2.2
+## 214  64  Sepal.Width        2.9
+## 215  65  Sepal.Width        2.9
+## 216  66  Sepal.Width        3.1
+## 217  67  Sepal.Width          3
+## 218  68  Sepal.Width        2.7
+## 219  69  Sepal.Width        2.2
+## 220  70  Sepal.Width        2.5
+## 221  71  Sepal.Width        3.2
+## 222  72  Sepal.Width        2.8
+## 223  73  Sepal.Width        2.5
+## 224  74  Sepal.Width        2.8
+## 225  75  Sepal.Width        2.9
+## 226  76  Sepal.Width          3
+## 227  77  Sepal.Width        2.8
+## 228  78  Sepal.Width          3
+## 229  79  Sepal.Width        2.9
+## 230  80  Sepal.Width        2.6
+## 231  81  Sepal.Width        2.4
+## 232  82  Sepal.Width        2.4
+## 233  83  Sepal.Width        2.7
+## 234  84  Sepal.Width        2.7
+## 235  85  Sepal.Width          3
+## 236  86  Sepal.Width        3.4
+## 237  87  Sepal.Width        3.1
+## 238  88  Sepal.Width        2.3
+## 239  89  Sepal.Width          3
+## 240  90  Sepal.Width        2.5
+## 241  91  Sepal.Width        2.6
+## 242  92  Sepal.Width          3
+## 243  93  Sepal.Width        2.6
+## 244  94  Sepal.Width        2.3
+## 245  95  Sepal.Width        2.7
+## 246  96  Sepal.Width          3
+## 247  97  Sepal.Width        2.9
+## 248  98  Sepal.Width        2.9
+## 249  99  Sepal.Width        2.5
+## 250 100  Sepal.Width        2.8
+## 251 101  Sepal.Width        3.3
+## 252 102  Sepal.Width        2.7
+## 253 103  Sepal.Width          3
+## 254 104  Sepal.Width        2.9
+## 255 105  Sepal.Width          3
+## 256 106  Sepal.Width          3
+## 257 107  Sepal.Width        2.5
+## 258 108  Sepal.Width        2.9
+## 259 109  Sepal.Width        2.5
+## 260 110  Sepal.Width        3.6
+## 261 111  Sepal.Width        3.2
+## 262 112  Sepal.Width        2.7
+## 263 113  Sepal.Width          3
+## 264 114  Sepal.Width        2.5
+## 265 115  Sepal.Width        2.8
+## 266 116  Sepal.Width        3.2
+## 267 117  Sepal.Width          3
+## 268 118  Sepal.Width        3.8
+## 269 119  Sepal.Width        2.6
+## 270 120  Sepal.Width        2.2
+## 271 121  Sepal.Width        3.2
+## 272 122  Sepal.Width        2.8
+## 273 123  Sepal.Width        2.8
+## 274 124  Sepal.Width        2.7
+## 275 125  Sepal.Width        3.3
+## 276 126  Sepal.Width        3.2
+## 277 127  Sepal.Width        2.8
+## 278 128  Sepal.Width          3
+## 279 129  Sepal.Width        2.8
+## 280 130  Sepal.Width          3
+## 281 131  Sepal.Width        2.8
+## 282 132  Sepal.Width        3.8
+## 283 133  Sepal.Width        2.8
+## 284 134  Sepal.Width        2.8
+## 285 135  Sepal.Width        2.6
+## 286 136  Sepal.Width          3
+## 287 137  Sepal.Width        3.4
+## 288 138  Sepal.Width        3.1
+## 289 139  Sepal.Width          3
+## 290 140  Sepal.Width        3.1
+## 291 141  Sepal.Width        3.1
+## 292 142  Sepal.Width        3.1
+## 293 143  Sepal.Width        2.7
+## 294 144  Sepal.Width        3.2
+## 295 145  Sepal.Width        3.3
+## 296 146  Sepal.Width          3
+## 297 147  Sepal.Width        2.5
+## 298 148  Sepal.Width          3
+## 299 149  Sepal.Width        3.4
+## 300 150  Sepal.Width          3
+## 301   1 Petal.Length        1.4
+## 302   2 Petal.Length        1.4
+## 303   3 Petal.Length        1.3
+## 304   4 Petal.Length        1.5
+## 305   5 Petal.Length        1.4
+## 306   6 Petal.Length        1.7
+## 307   7 Petal.Length        1.4
+## 308   8 Petal.Length        1.5
+## 309   9 Petal.Length        1.4
+## 310  10 Petal.Length        1.5
+## 311  11 Petal.Length        1.5
+## 312  12 Petal.Length        1.6
+## 313  13 Petal.Length        1.4
+## 314  14 Petal.Length        1.1
+## 315  15 Petal.Length        1.2
+## 316  16 Petal.Length        1.5
+## 317  17 Petal.Length        1.3
+## 318  18 Petal.Length        1.4
+## 319  19 Petal.Length        1.7
+## 320  20 Petal.Length        1.5
+## 321  21 Petal.Length        1.7
+## 322  22 Petal.Length        1.5
+## 323  23 Petal.Length          1
+## 324  24 Petal.Length        1.7
+## 325  25 Petal.Length        1.9
+## 326  26 Petal.Length        1.6
+## 327  27 Petal.Length        1.6
+## 328  28 Petal.Length        1.5
+## 329  29 Petal.Length        1.4
+## 330  30 Petal.Length        1.6
+## 331  31 Petal.Length        1.6
+## 332  32 Petal.Length        1.5
+## 333  33 Petal.Length        1.5
+## 334  34 Petal.Length        1.4
+## 335  35 Petal.Length        1.5
+## 336  36 Petal.Length        1.2
+## 337  37 Petal.Length        1.3
+## 338  38 Petal.Length        1.4
+## 339  39 Petal.Length        1.3
+## 340  40 Petal.Length        1.5
+## 341  41 Petal.Length        1.3
+## 342  42 Petal.Length        1.3
+## 343  43 Petal.Length        1.3
+## 344  44 Petal.Length        1.6
+## 345  45 Petal.Length        1.9
+## 346  46 Petal.Length        1.4
+## 347  47 Petal.Length        1.6
+## 348  48 Petal.Length        1.4
+## 349  49 Petal.Length        1.5
+## 350  50 Petal.Length        1.4
+## 351  51 Petal.Length        4.7
+## 352  52 Petal.Length        4.5
+## 353  53 Petal.Length        4.9
+## 354  54 Petal.Length          4
+## 355  55 Petal.Length        4.6
+## 356  56 Petal.Length        4.5
+## 357  57 Petal.Length        4.7
+## 358  58 Petal.Length        3.3
+## 359  59 Petal.Length        4.6
+## 360  60 Petal.Length        3.9
+## 361  61 Petal.Length        3.5
+## 362  62 Petal.Length        4.2
+## 363  63 Petal.Length          4
+## 364  64 Petal.Length        4.7
+## 365  65 Petal.Length        3.6
+## 366  66 Petal.Length        4.4
+## 367  67 Petal.Length        4.5
+## 368  68 Petal.Length        4.1
+## 369  69 Petal.Length        4.5
+## 370  70 Petal.Length        3.9
+## 371  71 Petal.Length        4.8
+## 372  72 Petal.Length          4
+## 373  73 Petal.Length        4.9
+## 374  74 Petal.Length        4.7
+## 375  75 Petal.Length        4.3
+## 376  76 Petal.Length        4.4
+## 377  77 Petal.Length        4.8
+## 378  78 Petal.Length          5
+## 379  79 Petal.Length        4.5
+## 380  80 Petal.Length        3.5
+## 381  81 Petal.Length        3.8
+## 382  82 Petal.Length        3.7
+## 383  83 Petal.Length        3.9
+## 384  84 Petal.Length        5.1
+## 385  85 Petal.Length        4.5
+## 386  86 Petal.Length        4.5
+## 387  87 Petal.Length        4.7
+## 388  88 Petal.Length        4.4
+## 389  89 Petal.Length        4.1
+## 390  90 Petal.Length          4
+## 391  91 Petal.Length        4.4
+## 392  92 Petal.Length        4.6
+## 393  93 Petal.Length          4
+## 394  94 Petal.Length        3.3
+## 395  95 Petal.Length        4.2
+## 396  96 Petal.Length        4.2
+## 397  97 Petal.Length        4.2
+## 398  98 Petal.Length        4.3
+## 399  99 Petal.Length          3
+## 400 100 Petal.Length        4.1
+## 401 101 Petal.Length          6
+## 402 102 Petal.Length        5.1
+## 403 103 Petal.Length        5.9
+## 404 104 Petal.Length        5.6
+## 405 105 Petal.Length        5.8
+## 406 106 Petal.Length        6.6
+## 407 107 Petal.Length        4.5
+## 408 108 Petal.Length        6.3
+## 409 109 Petal.Length        5.8
+## 410 110 Petal.Length        6.1
+## 411 111 Petal.Length        5.1
+## 412 112 Petal.Length        5.3
+## 413 113 Petal.Length        5.5
+## 414 114 Petal.Length          5
+## 415 115 Petal.Length        5.1
+## 416 116 Petal.Length        5.3
+## 417 117 Petal.Length        5.5
+## 418 118 Petal.Length        6.7
+## 419 119 Petal.Length        6.9
+## 420 120 Petal.Length          5
+## 421 121 Petal.Length        5.7
+## 422 122 Petal.Length        4.9
+## 423 123 Petal.Length        6.7
+## 424 124 Petal.Length        4.9
+## 425 125 Petal.Length        5.7
+## 426 126 Petal.Length          6
+## 427 127 Petal.Length        4.8
+## 428 128 Petal.Length        4.9
+## 429 129 Petal.Length        5.6
+## 430 130 Petal.Length        5.8
+## 431 131 Petal.Length        6.1
+## 432 132 Petal.Length        6.4
+## 433 133 Petal.Length        5.6
+## 434 134 Petal.Length        5.1
+## 435 135 Petal.Length        5.6
+## 436 136 Petal.Length        6.1
+## 437 137 Petal.Length        5.6
+## 438 138 Petal.Length        5.5
+## 439 139 Petal.Length        4.8
+## 440 140 Petal.Length        5.4
+## 441 141 Petal.Length        5.6
+## 442 142 Petal.Length        5.1
+## 443 143 Petal.Length        5.1
+## 444 144 Petal.Length        5.9
+## 445 145 Petal.Length        5.7
+## 446 146 Petal.Length        5.2
+## 447 147 Petal.Length          5
+## 448 148 Petal.Length        5.2
+## 449 149 Petal.Length        5.4
+## 450 150 Petal.Length        5.1
+## 451   1  Petal.Width        0.2
+## 452   2  Petal.Width        0.2
+## 453   3  Petal.Width        0.2
+## 454   4  Petal.Width        0.2
+## 455   5  Petal.Width        0.2
+## 456   6  Petal.Width        0.4
+## 457   7  Petal.Width        0.3
+## 458   8  Petal.Width        0.2
+## 459   9  Petal.Width        0.2
+## 460  10  Petal.Width        0.1
+## 461  11  Petal.Width        0.2
+## 462  12  Petal.Width        0.2
+## 463  13  Petal.Width        0.1
+## 464  14  Petal.Width        0.1
+## 465  15  Petal.Width        0.2
+## 466  16  Petal.Width        0.4
+## 467  17  Petal.Width        0.4
+## 468  18  Petal.Width        0.3
+## 469  19  Petal.Width        0.3
+## 470  20  Petal.Width        0.3
+## 471  21  Petal.Width        0.2
+## 472  22  Petal.Width        0.4
+## 473  23  Petal.Width        0.2
+## 474  24  Petal.Width        0.5
+## 475  25  Petal.Width        0.2
+## 476  26  Petal.Width        0.2
+## 477  27  Petal.Width        0.4
+## 478  28  Petal.Width        0.2
+## 479  29  Petal.Width        0.2
+## 480  30  Petal.Width        0.2
+## 481  31  Petal.Width        0.2
+## 482  32  Petal.Width        0.4
+## 483  33  Petal.Width        0.1
+## 484  34  Petal.Width        0.2
+## 485  35  Petal.Width        0.2
+## 486  36  Petal.Width        0.2
+## 487  37  Petal.Width        0.2
+## 488  38  Petal.Width        0.1
+## 489  39  Petal.Width        0.2
+## 490  40  Petal.Width        0.2
+## 491  41  Petal.Width        0.3
+## 492  42  Petal.Width        0.3
+## 493  43  Petal.Width        0.2
+## 494  44  Petal.Width        0.6
+## 495  45  Petal.Width        0.4
+## 496  46  Petal.Width        0.3
+## 497  47  Petal.Width        0.2
+## 498  48  Petal.Width        0.2
+## 499  49  Petal.Width        0.2
+## 500  50  Petal.Width        0.2
+## 501  51  Petal.Width        1.4
+## 502  52  Petal.Width        1.5
+## 503  53  Petal.Width        1.5
+## 504  54  Petal.Width        1.3
+## 505  55  Petal.Width        1.5
+## 506  56  Petal.Width        1.3
+## 507  57  Petal.Width        1.6
+## 508  58  Petal.Width          1
+## 509  59  Petal.Width        1.3
+## 510  60  Petal.Width        1.4
+## 511  61  Petal.Width          1
+## 512  62  Petal.Width        1.5
+## 513  63  Petal.Width          1
+## 514  64  Petal.Width        1.4
+## 515  65  Petal.Width        1.3
+## 516  66  Petal.Width        1.4
+## 517  67  Petal.Width        1.5
+## 518  68  Petal.Width          1
+## 519  69  Petal.Width        1.5
+## 520  70  Petal.Width        1.1
+## 521  71  Petal.Width        1.8
+## 522  72  Petal.Width        1.3
+## 523  73  Petal.Width        1.5
+## 524  74  Petal.Width        1.2
+## 525  75  Petal.Width        1.3
+## 526  76  Petal.Width        1.4
+## 527  77  Petal.Width        1.4
+## 528  78  Petal.Width        1.7
+## 529  79  Petal.Width        1.5
+## 530  80  Petal.Width          1
+## 531  81  Petal.Width        1.1
+## 532  82  Petal.Width          1
+## 533  83  Petal.Width        1.2
+## 534  84  Petal.Width        1.6
+## 535  85  Petal.Width        1.5
+## 536  86  Petal.Width        1.6
+## 537  87  Petal.Width        1.5
+## 538  88  Petal.Width        1.3
+## 539  89  Petal.Width        1.3
+## 540  90  Petal.Width        1.3
+## 541  91  Petal.Width        1.2
+## 542  92  Petal.Width        1.4
+## 543  93  Petal.Width        1.2
+## 544  94  Petal.Width          1
+## 545  95  Petal.Width        1.3
+## 546  96  Petal.Width        1.2
+## 547  97  Petal.Width        1.3
+## 548  98  Petal.Width        1.3
+## 549  99  Petal.Width        1.1
+## 550 100  Petal.Width        1.3
+## 551 101  Petal.Width        2.5
+## 552 102  Petal.Width        1.9
+## 553 103  Petal.Width        2.1
+## 554 104  Petal.Width        1.8
+## 555 105  Petal.Width        2.2
+## 556 106  Petal.Width        2.1
+## 557 107  Petal.Width        1.7
+## 558 108  Petal.Width        1.8
+## 559 109  Petal.Width        1.8
+## 560 110  Petal.Width        2.5
+## 561 111  Petal.Width          2
+## 562 112  Petal.Width        1.9
+## 563 113  Petal.Width        2.1
+## 564 114  Petal.Width          2
+## 565 115  Petal.Width        2.4
+## 566 116  Petal.Width        2.3
+## 567 117  Petal.Width        1.8
+## 568 118  Petal.Width        2.2
+## 569 119  Petal.Width        2.3
+## 570 120  Petal.Width        1.5
+## 571 121  Petal.Width        2.3
+## 572 122  Petal.Width          2
+## 573 123  Petal.Width          2
+## 574 124  Petal.Width        1.8
+## 575 125  Petal.Width        2.1
+## 576 126  Petal.Width        1.8
+## 577 127  Petal.Width        1.8
+## 578 128  Petal.Width        1.8
+## 579 129  Petal.Width        2.1
+## 580 130  Petal.Width        1.6
+## 581 131  Petal.Width        1.9
+## 582 132  Petal.Width          2
+## 583 133  Petal.Width        2.2
+## 584 134  Petal.Width        1.5
+## 585 135  Petal.Width        1.4
+## 586 136  Petal.Width        2.3
+## 587 137  Petal.Width        2.4
+## 588 138  Petal.Width        1.8
+## 589 139  Petal.Width        1.8
+## 590 140  Petal.Width        2.1
+## 591 141  Petal.Width        2.4
+## 592 142  Petal.Width        2.3
+## 593 143  Petal.Width        1.9
+## 594 144  Petal.Width        2.3
+## 595 145  Petal.Width        2.5
+## 596 146  Petal.Width        2.3
+## 597 147  Petal.Width        1.9
+## 598 148  Petal.Width          2
+## 599 149  Petal.Width        2.3
+## 600 150  Petal.Width        1.8
+## 601   1      Species     setosa
+## 602   2      Species     setosa
+## 603   3      Species     setosa
+## 604   4      Species     setosa
+## 605   5      Species     setosa
+## 606   6      Species     setosa
+## 607   7      Species     setosa
+## 608   8      Species     setosa
+## 609   9      Species     setosa
+## 610  10      Species     setosa
+## 611  11      Species     setosa
+## 612  12      Species     setosa
+## 613  13      Species     setosa
+## 614  14      Species     setosa
+## 615  15      Species     setosa
+## 616  16      Species     setosa
+## 617  17      Species     setosa
+## 618  18      Species     setosa
+## 619  19      Species     setosa
+## 620  20      Species     setosa
+## 621  21      Species     setosa
+## 622  22      Species     setosa
+## 623  23      Species     setosa
+## 624  24      Species     setosa
+## 625  25      Species     setosa
+## 626  26      Species     setosa
+## 627  27      Species     setosa
+## 628  28      Species     setosa
+## 629  29      Species     setosa
+## 630  30      Species     setosa
+## 631  31      Species     setosa
+## 632  32      Species     setosa
+## 633  33      Species     setosa
+## 634  34      Species     setosa
+## 635  35      Species     setosa
+## 636  36      Species     setosa
+## 637  37      Species     setosa
+## 638  38      Species     setosa
+## 639  39      Species     setosa
+## 640  40      Species     setosa
+## 641  41      Species     setosa
+## 642  42      Species     setosa
+## 643  43      Species     setosa
+## 644  44      Species     setosa
+## 645  45      Species     setosa
+## 646  46      Species     setosa
+## 647  47      Species     setosa
+## 648  48      Species     setosa
+## 649  49      Species     setosa
+## 650  50      Species     setosa
+## 651  51      Species versicolor
+## 652  52      Species versicolor
+## 653  53      Species versicolor
+## 654  54      Species versicolor
+## 655  55      Species versicolor
+## 656  56      Species versicolor
+## 657  57      Species versicolor
+## 658  58      Species versicolor
+## 659  59      Species versicolor
+## 660  60      Species versicolor
+## 661  61      Species versicolor
+## 662  62      Species versicolor
+## 663  63      Species versicolor
+## 664  64      Species versicolor
+## 665  65      Species versicolor
+## 666  66      Species versicolor
+## 667  67      Species versicolor
+## 668  68      Species versicolor
+## 669  69      Species versicolor
+## 670  70      Species versicolor
+## 671  71      Species versicolor
+## 672  72      Species versicolor
+## 673  73      Species versicolor
+## 674  74      Species versicolor
+## 675  75      Species versicolor
+## 676  76      Species versicolor
+## 677  77      Species versicolor
+## 678  78      Species versicolor
+## 679  79      Species versicolor
+## 680  80      Species versicolor
+## 681  81      Species versicolor
+## 682  82      Species versicolor
+## 683  83      Species versicolor
+## 684  84      Species versicolor
+## 685  85      Species versicolor
+## 686  86      Species versicolor
+## 687  87      Species versicolor
+## 688  88      Species versicolor
+## 689  89      Species versicolor
+## 690  90      Species versicolor
+## 691  91      Species versicolor
+## 692  92      Species versicolor
+## 693  93      Species versicolor
+## 694  94      Species versicolor
+## 695  95      Species versicolor
+## 696  96      Species versicolor
+## 697  97      Species versicolor
+## 698  98      Species versicolor
+## 699  99      Species versicolor
+## 700 100      Species versicolor
+## 701 101      Species  virginica
+## 702 102      Species  virginica
+## 703 103      Species  virginica
+## 704 104      Species  virginica
+## 705 105      Species  virginica
+## 706 106      Species  virginica
+## 707 107      Species  virginica
+## 708 108      Species  virginica
+## 709 109      Species  virginica
+## 710 110      Species  virginica
+## 711 111      Species  virginica
+## 712 112      Species  virginica
+## 713 113      Species  virginica
+## 714 114      Species  virginica
+## 715 115      Species  virginica
+## 716 116      Species  virginica
+## 717 117      Species  virginica
+## 718 118      Species  virginica
+## 719 119      Species  virginica
+## 720 120      Species  virginica
+## 721 121      Species  virginica
+## 722 122      Species  virginica
+## 723 123      Species  virginica
+## 724 124      Species  virginica
+## 725 125      Species  virginica
+## 726 126      Species  virginica
+## 727 127      Species  virginica
+## 728 128      Species  virginica
+## 729 129      Species  virginica
+## 730 130      Species  virginica
+## 731 131      Species  virginica
+## 732 132      Species  virginica
+## 733 133      Species  virginica
+## 734 134      Species  virginica
+## 735 135      Species  virginica
+## 736 136      Species  virginica
+## 737 137      Species  virginica
+## 738 138      Species  virginica
+## 739 139      Species  virginica
+## 740 140      Species  virginica
+## 741 141      Species  virginica
+## 742 142      Species  virginica
+## 743 143      Species  virginica
+## 744 144      Species  virginica
+## 745 145      Species  virginica
+## 746 146      Species  virginica
+## 747 147      Species  virginica
+## 748 148      Species  virginica
+## 749 149      Species  virginica
+## 750 150      Species  virginica
+```
+
+
+Quindi ogni soggetto (identificato dal campo id, inserito apposta) avrà dati in più righe, e precisamente nel campo _value_, mentre la colonna _variable_ specifica a quale variabile è riferito il valore di _value_.
+Il lettore attento noterà che siamo passati dal formato **wide** al formato **long** usando funzioni non sono nel pacchetto _base_ di R ma del pacchetto **reshape2**, ma per ora sorvoleremo (e il lettore ci perdonerà) e torneremo su questo punto più avanti.
+Intanto ragioniamo sul fatto che il formato **wide** è più familiare (praticamente è una tabella) e semplice da compilare, ma il formato **long** è molto più efficiente e sicuro. Per comprendere il perchè di questa affermazione prendiamo il caso di un grande dataset che debba essere continuamente aggiornato, magari con osservazioni (nuove righe) non omogee rispetto alle precedenti (ad esempio abbiamo misurato una nuova biometria rispetto a quelle precedenti). Si può capire facilmente che sarebbe molto più facile aggiungere questa nuova osservazione al data frame **long**, poichè dovremmo specificare i valori solo per il nuovo record. Se invece dovessimo aggiungere la nuova osservazione al data frame **wide**, e ci trovassimo ad aver misurato una nuova biometria, sarebbe necessario modificare **tutti** i record precedenti aggiungendo un NA nella nuova colonna per la nuova biometria.
+
+La funzione **data.frame** permette di generare questo genere di oggetti da qualsiasi tipo di dato. Leggendo il suo help, noteremo che alla voce usage compaiono tre puntini al posto degli argomenti, e per il resto ci sono solo opzioni.
 
 
 
 ### vector
 
+Dopo aver descritto le funzioni specifiche per generare vettori di varie classi, vediamo la funzione generica **vector** che serve a generare vettori di qualunque tipo.
+In effetti, vector ha come argomenti **mode**, cioè la classe del vettore da generare, e **length** che ha lo stesso significato visto per _numeric_ e _character_.
 
 
 ### rep
 
+Anche questa funzione serve per generare vettori, ma questa volta usando la replicazione di elementi forniti dall'utente. **rep** vuole due argomenti, il primo dei quali (**x**) corrisponde gli elementi da replicare, mentre il secondo può essere **times**, cioè il numero di volte che **x** (in blocco) deve essere replicato, oppure **length.out**, cioè la lunghezza del vettore che si vuole ottenere. Vediamo degli esempi:
 
+
+```r
+rep(1, times = 5)
+```
+
+```
+## [1] 1 1 1 1 1
+```
+
+```r
+rep("a", times = 5)
+```
+
+```
+## [1] "a" "a" "a" "a" "a"
+```
+
+```r
+rep(c(1,2), times = 3)
+```
+
+```
+## [1] 1 2 1 2 1 2
+```
+
+Nel primo caso abbiamo replicato un numero, nel secondo una lettera, nel terzo un vettore
+
+
+```r
+rep(1, length.out = 7)
+```
+
+```
+## [1] 1 1 1 1 1 1 1
+```
+In questo caso, invece, abbiamo fissato la lunghezza del vettore.
 
 ### seq
+
+Questa funzione serve a generare sequenze regolari di valori numerici. I suoi argomenti sono **from** (cioè il punto di partenza della serie regolare - il suo minimo insomma), **to** (il suo massimo, che però può non coincidere col il punto finale della serie generata) e, a scelta, **by** (il passo della sequenza) o **length.out** (la lunghezza del vettore). Vediamo alcuni esempi:
+
+
+```r
+seq(from = 1, to = 10, by = 1)
+```
+
+```
+##  [1]  1  2  3  4  5  6  7  8  9 10
+```
+
+```r
+seq(from = 1, to = 10, by = 2)
+```
+
+```
+## [1] 1 3 5 7 9
+```
+
+```r
+seq(from = 1, to = 10, length.out = 11)
+```
+
+```
+##  [1]  1.0  1.9  2.8  3.7  4.6  5.5  6.4  7.3  8.2  9.1 10.0
+```
+
+
+
+
+
+### head
+### tail
+### dim
+### nrow
+### ncol
+### str
+### class
+### unique
+### table
+### rev
+### sort
+### length
+
+
 
 
 
@@ -2094,18 +3325,7 @@ matrix(c("a","b","c","d",1, 2, 3), 3, 3)
 ### rnorm
 ### weighted.mean
 
-### head
-### tail
-### dim
-### nrow
-### ncol
-### str
-### class
-### unique
-### table
-### rev
-### sort
-### length
+
 
 ### read.table
 ### write.table
