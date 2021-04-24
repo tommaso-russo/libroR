@@ -3253,7 +3253,7 @@ In questo caso, invece, abbiamo fissato la lunghezza del vettore.
 
 ### seq
 
-Questa funzione serve a generare sequenze regolari di valori numerici. I suoi argomenti sono **from** (cioè il punto di partenza della serie regolare - il suo minimo insomma), **to** (il suo massimo, che però può non coincidere col il punto finale della serie generata) e, a scelta, **by** (il passo della sequenza) o **length.out** (la lunghezza del vettore). Vediamo alcuni esempi:
+Questa funzione serve a generare sequenze regolari di valori numerici. I suoi argomenti sono **from** (cioè il punto di partenza della serie regolare - il suo minimo insomma), **to** (il suo massimo, che però può non coincidere con il punto finale della serie generata) e, a scelta, **by** (il passo della sequenza) o **length.out** (la lunghezza del vettore). Vediamo alcuni esempi:
 
 
 ```r
@@ -3280,6 +3280,8 @@ seq(from = 1, to = 10, length.out = 11)
 ##  [1]  1.0  1.9  2.8  3.7  4.6  5.5  6.4  7.3  8.2  9.1 10.0
 ```
 
+Il primo esempio è molto semplice: generiamo una sequenza da 1 a 10 con passo 1.
+Il secondo, in cui partiamo da 1 e "puntiamo" a 10 ma con passo 2, R si ferma a 9 poichè aggiungere un altro passo significherebbe ottenere 11 e quindi superare il massimo fissato (10). Nel terzo esempio abbiamo ottenuto un vettore con estremi coincidenti con i valori di _from_ e _to_ ma con un intervallo decimale poichè abbiamo fissato il numero di elementi del vettore e, quindi, R ha calcolato il passo corrispondente per arrivare da 1 a 10 con 10 passi.
 
 
 
