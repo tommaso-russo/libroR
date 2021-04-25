@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capitolo 6 Machine learning in R {#machine learning} | Un viaggio nell’ambiente R</title>
+  <meta name="description" content="Capitolo 6 Machine learning in R {#machine learning} | Un viaggio nell’ambiente R" />
+  <meta name="generator" content="bookdown 0.21.10 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capitolo 6 Machine learning in R {#machine learning} | Un viaggio nell’ambiente R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capitolo 6 Machine learning in R {#machine learning} | Un viaggio nell’ambiente R" />
+  
+  
+  
+
+
+
+<meta name="date" content="2021-04-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="gen.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Copertina</a></li>
+<li class="chapter" data-level="2" data-path="Prefazione.html"><a href="Prefazione.html"><i class="fa fa-check"></i><b>2</b> Prefazione</a></li>
+<li class="chapter" data-level="3" data-path="Autori.html"><a href="Autori.html"><i class="fa fa-check"></i><b>3</b> Gli autori</a></li>
+<li class="chapter" data-level="4" data-path="base.html"><a href="base.html"><i class="fa fa-check"></i><b>4</b> Le basi</a><ul>
+<li class="chapter" data-level="4.1" data-path="base.html"><a href="base.html#R"><i class="fa fa-check"></i><b>4.1</b> Che cosa è l’ambiente R</a></li>
+<li class="chapter" data-level="4.2" data-path="base.html"><a href="base.html#Russo"><i class="fa fa-check"></i><b>4.2</b> A cosa serve/non serve R</a></li>
+<li class="chapter" data-level="4.3" data-path="base.html"><a href="base.html#WYSIWYM"><i class="fa fa-check"></i><b>4.3</b> “What You See Is What You Mean”: dallo Script al terminale (e viceversa)</a></li>
+<li class="chapter" data-level="4.4" data-path="base.html"><a href="base.html#Espressioni"><i class="fa fa-check"></i><b>4.4</b> Le Espressioni</a></li>
+<li class="chapter" data-level="4.5" data-path="base.html"><a href="base.html#Assegnazioni"><i class="fa fa-check"></i><b>4.5</b> Le Assegnazioni</a></li>
+<li class="chapter" data-level="4.6" data-path="base.html"><a href="base.html#SintassiI"><i class="fa fa-check"></i><b>4.6</b> Sintassi di base (I): l’uso delle parentesi</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="base.html"><a href="base.html#le-parentesi-tonde"><i class="fa fa-check"></i><b>4.6.1</b> Le parentesi <strong>tonde</strong></a></li>
+<li class="chapter" data-level="4.6.2" data-path="base.html"><a href="base.html#le-parentesi-quadre"><i class="fa fa-check"></i><b>4.6.2</b> Le parentesi <strong>quadre</strong></a></li>
+<li class="chapter" data-level="4.6.3" data-path="base.html"><a href="base.html#le-parentesi-graffe"><i class="fa fa-check"></i><b>4.6.3</b> Le parentesi <strong>graffe</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="base.html"><a href="base.html#TipiDati"><i class="fa fa-check"></i><b>4.7</b> Tipologie di dati: gli attributi e le classi</a></li>
+<li class="chapter" data-level="4.8" data-path="base.html"><a href="base.html#StruttureDati"><i class="fa fa-check"></i><b>4.8</b> Strutture di dati</a><ul>
+<li class="chapter" data-level="4.8.1" data-path="base.html"><a href="base.html#vettori"><i class="fa fa-check"></i><b>4.8.1</b> Vettori</a></li>
+<li class="chapter" data-level="4.8.2" data-path="base.html"><a href="base.html#matrici-e-array"><i class="fa fa-check"></i><b>4.8.2</b> Matrici (e Array)</a></li>
+<li class="chapter" data-level="4.8.3" data-path="base.html"><a href="base.html#liste"><i class="fa fa-check"></i><b>4.8.3</b> Liste</a></li>
+<li class="chapter" data-level="4.8.4" data-path="base.html"><a href="base.html#data-frame"><i class="fa fa-check"></i><b>4.8.4</b> Data Frame</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="base.html"><a href="base.html#Funzioni"><i class="fa fa-check"></i><b>4.9</b> Sintassi di base (II): le funzioni</a></li>
+<li class="chapter" data-level="4.10" data-path="base.html"><a href="base.html#Matrioske"><i class="fa fa-check"></i><b>4.10</b> Il mondo “a matrioske”</a></li>
+<li class="chapter" data-level="4.11" data-path="base.html"><a href="base.html#Calcolo"><i class="fa fa-check"></i><b>4.11</b> La frontiera del calcolo: NA e NaN</a></li>
+<li class="chapter" data-level="4.12" data-path="base.html"><a href="base.html#Boole"><i class="fa fa-check"></i><b>4.12</b> Operatori relazionali e algebra di Boole</a></li>
+<li class="chapter" data-level="4.13" data-path="base.html"><a href="base.html#luso-dellhelp"><i class="fa fa-check"></i><b>4.13</b> L’uso dell’Help</a></li>
+<li class="chapter" data-level="4.14" data-path="base.html"><a href="base.html#una-cassetta-degli-attrezzi-essenziali"><i class="fa fa-check"></i><b>4.14</b> Una cassetta degli attrezzi essenziali</a><ul>
+<li class="chapter" data-level="4.14.1" data-path="base.html"><a href="base.html#c"><i class="fa fa-check"></i><b>4.14.1</b> c</a></li>
+<li class="chapter" data-level="4.14.2" data-path="base.html"><a href="base.html#numeric"><i class="fa fa-check"></i><b>4.14.2</b> numeric</a></li>
+<li class="chapter" data-level="4.14.3" data-path="base.html"><a href="base.html#character"><i class="fa fa-check"></i><b>4.14.3</b> character</a></li>
+<li class="chapter" data-level="4.14.4" data-path="base.html"><a href="base.html#list"><i class="fa fa-check"></i><b>4.14.4</b> list</a></li>
+<li class="chapter" data-level="4.14.5" data-path="base.html"><a href="base.html#matrix"><i class="fa fa-check"></i><b>4.14.5</b> matrix</a></li>
+<li class="chapter" data-level="4.14.6" data-path="base.html"><a href="base.html#array"><i class="fa fa-check"></i><b>4.14.6</b> array</a></li>
+<li class="chapter" data-level="4.14.7" data-path="base.html"><a href="base.html#data.frame"><i class="fa fa-check"></i><b>4.14.7</b> data.frame</a></li>
+<li class="chapter" data-level="4.14.8" data-path="base.html"><a href="base.html#vector"><i class="fa fa-check"></i><b>4.14.8</b> vector</a></li>
+<li class="chapter" data-level="4.14.9" data-path="base.html"><a href="base.html#rep"><i class="fa fa-check"></i><b>4.14.9</b> rep</a></li>
+<li class="chapter" data-level="4.14.10" data-path="base.html"><a href="base.html#seq"><i class="fa fa-check"></i><b>4.14.10</b> seq</a></li>
+<li class="chapter" data-level="4.14.11" data-path="base.html"><a href="base.html#head-e-tail"><i class="fa fa-check"></i><b>4.14.11</b> head e tail</a></li>
+<li class="chapter" data-level="4.14.12" data-path="base.html"><a href="base.html#nrow-ncol-dim-e-length"><i class="fa fa-check"></i><b>4.14.12</b> nrow, ncol, dim e length</a></li>
+<li class="chapter" data-level="4.14.13" data-path="base.html"><a href="base.html#str"><i class="fa fa-check"></i><b>4.14.13</b> str</a></li>
+<li class="chapter" data-level="4.14.14" data-path="base.html"><a href="base.html#class"><i class="fa fa-check"></i><b>4.14.14</b> class</a></li>
+<li class="chapter" data-level="4.14.15" data-path="base.html"><a href="base.html#unique"><i class="fa fa-check"></i><b>4.14.15</b> unique</a></li>
+<li class="chapter" data-level="4.14.16" data-path="base.html"><a href="base.html#table"><i class="fa fa-check"></i><b>4.14.16</b> table</a></li>
+<li class="chapter" data-level="4.14.17" data-path="base.html"><a href="base.html#rev-sort-e-order"><i class="fa fa-check"></i><b>4.14.17</b> rev, sort e order</a></li>
+<li class="chapter" data-level="4.14.18" data-path="base.html"><a href="base.html#sample"><i class="fa fa-check"></i><b>4.14.18</b> sample</a></li>
+<li class="chapter" data-level="4.14.19" data-path="base.html"><a href="base.html#apply"><i class="fa fa-check"></i><b>4.14.19</b> apply</a></li>
+<li class="chapter" data-level="4.14.20" data-path="base.html"><a href="base.html#which"><i class="fa fa-check"></i><b>4.14.20</b> which</a></li>
+<li class="chapter" data-level="4.14.21" data-path="base.html"><a href="base.html#match"><i class="fa fa-check"></i><b>4.14.21</b> match</a></li>
+<li class="chapter" data-level="4.14.22" data-path="base.html"><a href="base.html#intersect"><i class="fa fa-check"></i><b>4.14.22</b> intersect</a></li>
+<li class="chapter" data-level="4.14.23" data-path="base.html"><a href="base.html#setdiff"><i class="fa fa-check"></i><b>4.14.23</b> setdiff</a></li>
+<li class="chapter" data-level="4.14.24" data-path="base.html"><a href="base.html#union"><i class="fa fa-check"></i><b>4.14.24</b> union</a></li>
+<li class="chapter" data-level="4.14.25" data-path="base.html"><a href="base.html#merge"><i class="fa fa-check"></i><b>4.14.25</b> merge</a></li>
+<li class="chapter" data-level="4.14.26" data-path="base.html"><a href="base.html#cbind"><i class="fa fa-check"></i><b>4.14.26</b> cbind</a></li>
+<li class="chapter" data-level="4.14.27" data-path="base.html"><a href="base.html#rbind"><i class="fa fa-check"></i><b>4.14.27</b> rbind</a></li>
+<li class="chapter" data-level="4.14.28" data-path="base.html"><a href="base.html#min-max-range"><i class="fa fa-check"></i><b>4.14.28</b> min, max, range</a></li>
+<li class="chapter" data-level="4.14.29" data-path="base.html"><a href="base.html#summary"><i class="fa fa-check"></i><b>4.14.29</b> summary</a></li>
+<li class="chapter" data-level="4.14.30" data-path="base.html"><a href="base.html#cumsum"><i class="fa fa-check"></i><b>4.14.30</b> cumsum</a></li>
+<li class="chapter" data-level="4.14.31" data-path="base.html"><a href="base.html#median"><i class="fa fa-check"></i><b>4.14.31</b> median</a></li>
+<li class="chapter" data-level="4.14.32" data-path="base.html"><a href="base.html#quantile"><i class="fa fa-check"></i><b>4.14.32</b> quantile</a></li>
+<li class="chapter" data-level="4.14.33" data-path="base.html"><a href="base.html#mean"><i class="fa fa-check"></i><b>4.14.33</b> mean</a></li>
+<li class="chapter" data-level="4.14.34" data-path="base.html"><a href="base.html#sd"><i class="fa fa-check"></i><b>4.14.34</b> sd</a></li>
+<li class="chapter" data-level="4.14.35" data-path="base.html"><a href="base.html#runif"><i class="fa fa-check"></i><b>4.14.35</b> runif</a></li>
+<li class="chapter" data-level="4.14.36" data-path="base.html"><a href="base.html#rnorm"><i class="fa fa-check"></i><b>4.14.36</b> rnorm</a></li>
+<li class="chapter" data-level="4.14.37" data-path="base.html"><a href="base.html#weighted.mean"><i class="fa fa-check"></i><b>4.14.37</b> weighted.mean</a></li>
+<li class="chapter" data-level="4.14.38" data-path="base.html"><a href="base.html#read.table"><i class="fa fa-check"></i><b>4.14.38</b> read.table</a></li>
+<li class="chapter" data-level="4.14.39" data-path="base.html"><a href="base.html#write.table"><i class="fa fa-check"></i><b>4.14.39</b> write.table</a></li>
+<li class="chapter" data-level="4.14.40" data-path="base.html"><a href="base.html#read.csv"><i class="fa fa-check"></i><b>4.14.40</b> read.csv</a></li>
+<li class="chapter" data-level="4.14.41" data-path="base.html"><a href="base.html#write.csv"><i class="fa fa-check"></i><b>4.14.41</b> write.csv</a></li>
+<li class="chapter" data-level="4.14.42" data-path="base.html"><a href="base.html#readrds"><i class="fa fa-check"></i><b>4.14.42</b> readRDS</a></li>
+<li class="chapter" data-level="4.14.43" data-path="base.html"><a href="base.html#saverds"><i class="fa fa-check"></i><b>4.14.43</b> saveRDS</a></li>
+<li class="chapter" data-level="4.14.44" data-path="base.html"><a href="base.html#jpeg-bmp-png-tiff"><i class="fa fa-check"></i><b>4.14.44</b> jpeg, bmp, png, tiff</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="gen.html"><a href="gen.html"><i class="fa fa-check"></i><b>5</b> Analisi di dati genetici</a><ul>
+<li class="chapter" data-level="5.1" data-path="gen.html"><a href="gen.html#gen_intro"><i class="fa fa-check"></i><b>5.1</b> Introduzione</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="gen.html"><a href="gen.html#perché-la-genetica-con-r"><i class="fa fa-check"></i><b>5.1.1</b> Perché la genetica con R?</a></li>
+<li class="chapter" data-level="5.1.2" data-path="gen.html"><a href="gen.html#risorse"><i class="fa fa-check"></i><b>5.1.2</b> Risorse</a></li>
+<li class="chapter" data-level="5.1.3" data-path="gen.html"><a href="gen.html#prima-di-cominciare"><i class="fa fa-check"></i><b>5.1.3</b> Prima di cominciare…</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="gen.html"><a href="gen.html#gen_drift"><i class="fa fa-check"></i><b>5.2</b> Deriva Genetica</a></li>
+<li class="chapter" data-level="5.3" data-path="gen.html"><a href="gen.html#gen_str"><i class="fa fa-check"></i><b>5.3</b> Struttura genetica delle popolazioni</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="gen.html"><a href="gen.html#le-statistiche-f"><i class="fa fa-check"></i><b>5.3.1</b> Le statistiche F</a></li>
+<li class="chapter" data-level="5.3.2" data-path="gen.html"><a href="gen.html#inferenza-bayesiana-con-structure"><i class="fa fa-check"></i><b>5.3.2</b> Inferenza Bayesiana con STRUCTURE</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="gen.html"><a href="gen.html#gen_phylo"><i class="fa fa-check"></i><b>5.4</b> Filogenesi</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="machine-learning-in-r-machine-learning.html"><a href="machine-learning-in-r-machine-learning.html"><i class="fa fa-check"></i><b>6</b> Machine learning in R {#machine learning}</a><ul>
+<li class="chapter" data-level="6.1" data-path="base.html"><a href="base.html#R"><i class="fa fa-check"></i><b>6.1</b> Introduzione</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="machine-learning-in-r-machine-learning.html"><a href="machine-learning-in-r-machine-learning.html#supervised-learning"><i class="fa fa-check"></i><b>6.1.1</b> Supervised Learning</a></li>
+<li class="chapter" data-level="6.1.2" data-path="machine-learning-in-r-machine-learning.html"><a href="machine-learning-in-r-machine-learning.html#unsupervised-learning"><i class="fa fa-check"></i><b>6.1.2</b> Unsupervised Learning</a></li>
+<li class="chapter" data-level="6.1.3" data-path="machine-learning-in-r-machine-learning.html"><a href="machine-learning-in-r-machine-learning.html#dati"><i class="fa fa-check"></i><b>6.1.3</b> Dati</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="machine-learning-in-r-machine-learning.html"><a href="machine-learning-in-r-machine-learning.html#divisione-dei-dati"><i class="fa fa-check"></i><b>6.2</b> Divisione dei dati</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="machine-learning-in-r-machine-learning.html"><a href="machine-learning-in-r-machine-learning.html#campionamento-casuale-semplice"><i class="fa fa-check"></i><b>6.2.1</b> Campionamento casuale semplice</a></li>
+<li class="chapter" data-level="6.2.2" data-path="machine-learning-in-r-machine-learning.html"><a href="machine-learning-in-r-machine-learning.html#campionamento-stratificato"><i class="fa fa-check"></i><b>6.2.2</b> Campionamento stratificato</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="machine-learning-in-r-machine-learning.html"><a href="machine-learning-in-r-machine-learning.html#metodi-di-ricampionamento"><i class="fa fa-check"></i><b>6.3</b> Metodi di ricampionamento</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="machine-learning-in-r-machine-learning.html"><a href="machine-learning-in-r-machine-learning.html#cross-validation"><i class="fa fa-check"></i><b>6.3.1</b> Cross-validation</a></li>
+<li class="chapter" data-level="6.3.2" data-path="machine-learning-in-r-machine-learning.html"><a href="machine-learning-in-r-machine-learning.html#bootstrapping"><i class="fa fa-check"></i><b>6.3.2</b> Bootstrapping</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="machine-learning-in-r-machine-learning.html"><a href="machine-learning-in-r-machine-learning.html#stima-della-performance-del-modello"><i class="fa fa-check"></i><b>6.4</b> Stima della performance del modello</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="machine-learning-in-r-machine-learning.html"><a href="machine-learning-in-r-machine-learning.html#modelli-di-regressione"><i class="fa fa-check"></i><b>6.4.1</b> Modelli di regressione</a></li>
+<li class="chapter" data-level="6.4.2" data-path="machine-learning-in-r-machine-learning.html"><a href="machine-learning-in-r-machine-learning.html#modelli-di-classificazione"><i class="fa fa-check"></i><b>6.4.2</b> Modelli di classificazione</a></li>
+<li class="chapter" data-level="6.4.3" data-path="machine-learning-in-r-machine-learning.html"><a href="machine-learning-in-r-machine-learning.html#concludendo"><i class="fa fa-check"></i><b>6.4.3</b> Concludendo…</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="machine-learning-in-r-machine-learning.html"><a href="machine-learning-in-r-machine-learning.html#algoritmi-di-machine-learning-in-r"><i class="fa fa-check"></i><b>6.5</b> Algoritmi di Machine Learning in R</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="machine-learning-in-r-machine-learning.html"><a href="machine-learning-in-r-machine-learning.html#decision-trees"><i class="fa fa-check"></i><b>6.5.1</b> Decision Trees</a></li>
+<li class="chapter" data-level="6.5.2" data-path="machine-learning-in-r-machine-learning.html"><a href="machine-learning-in-r-machine-learning.html#random-forests"><i class="fa fa-check"></i><b>6.5.2</b> Random Forests</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Un viaggio nell’ambiente R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="machine-learning-in-r-machine-learning" class="section level1">
+<h1><span class="header-section-number">Capitolo 6</span> Machine learning in R {#machine learning}</h1>
+<p><img src="Images/03-01.png" /></p>
+<div id="R" class="section level2">
+<h2><span class="header-section-number">6.1</span> Introduzione</h2>
+<p>Il <strong>Machine Learning</strong> è una branca dell’informatica che studia la progettazione di algoritmi in grado di imparare e apprendere nuove infomrazioni. Lo scopo è quello di “insegnare” alla macchina così da renderla capace di generare predizioni sulla base dell’informazione ricevuta. In poche parole è come se istruissimo il cervello elettronico a sviluppare un proprio modo di ragionare; tanto più saranno i dati disponibili, più questo sarà in grado di apprendere informazioni e restituire risultati accurati. Per quanto ciò possa assimigliare ad un un romanzo di Gibson (non sapete chi sia? Molto male!) o al film Blade Runner, la risposta è: no, il machine learning in R non vi permetterà di creare un’intelligenza artificiale cosciente con cui parlare e che risolva magicamente i vostri problemi. Infatti, il processo di apprendimento e le modalità con cui l’informazione viene trasmessa alla macchina, sono le parti più critiche dell’utilizzo di questi algoritmi. Tutto dipenderà ovviamente dalla quantità (e la qualità) dei dati che immettiamo nel cervello e, ovviamente, il tipo di risposta che desideriamo questo ci restituisca.</p>
+<p>Non trattandosi quindi di una scatola magica, spetta a noi supervisionare e indirizzare l’addestramento della macchina in modo da ottenere dei risultati il più possibile accurati. In questo capitolo, ci occuperemo di descrivere alcune nozioni base dei modelli di machine learning, la gestione dei dati e gli algoritmi più utilizzati. Quindi rimbocchiamoci le maniche e cominciamo a capire come insegnare ad una macchina a <em>pensare</em>! Magari, alla fine di questo capitolo, anche voi potrete affermare <em>Ho visto cose che voi umani…</em></p>
+<p>Innanzitutto, è opportuno spiegare nel dettaglio le due grosse famiglie in cui vengono comunemente divisi gli algoritmi di Machine Learning, ossia il <strong>Supervised Learning</strong> e l’<strong>Unspervised Learning</strong>.</p>
+<div id="supervised-learning" class="section level3">
+<h3><span class="header-section-number">6.1.1</span> Supervised Learning</h3>
+<p>Un Supervised Learner consiste in un modello predittivo utilizzato per la previsione di un <em>output</em> utilizzando altre variabili (o <em>input</em>) nel set di dati. In un modello di questo genere infatti vengono messe in relazione la variabile di <em>output</em> (quella che viene predetta) e i parametri di input (variabili predittive). Il termine supervised si riferisce al fatto che l’utente ha il compito di dare istruzioni su cosa la macchina deve imparare. In particolare, dato un insieme di dati, l’algoritmo di apprendimento tenta di ottimizzare una data funzione (a seconda del modello) per trovare la combinazione di valori che si traducono in un valore predetto che è il più vicino possibile al target effettivo.
+Esempi di modellizzazione predittiva possono essere:</p>
+<ul>
+<li>predire le scelte di acquisto di una persona sulla base della sua età, della zona geografica in cui vive, del suo reddito annuale etc.</li>
+<li>predire la probabilità di presenza di una specie animale ad una determinata latitude, sulla base delle temperature medie annuali, caratteristiche dell’habitat, inquinamento etc.</li>
+<li>predire la probabilità di contagio di un virus sulla base del numero di contatti tra persone, umidità, ricircolo dell’aria, tasso di igienizzazione etc.</li>
+</ul>
+<p>Ovviamente, appare subito chiaro che migliore è la conoscenza dell’argomento da parte dell’utente, più facile sarà capire quali informazioni possano essere realmente utili per la predizione del nostro output. Di sicuro, utilizzare il numero medio di mele che vengono consumate dalle persone nel mondo non sarà un dato molto utile per predire la probabilità di precipitazione in Costa Rica. Per quanto, si possa sempre provare!</p>
+<p>La maggior parte degli algoritmi di apprendimento supervisionati possono essere raggruppati in due categorie, <strong>regressione</strong> o <strong>classificazione</strong>.
+Quando l’obiettivo del nostro apprendimento supervisionato è predire un risultato numerico, ci riferiamo a questo come a un problema di <strong>regressione</strong> (da non confondere con la modellizzazione di regressione lineare). I problemi di regressione ruotano intorno alla previsione che cade su un continuum numerico.
+Quando l’obiettivo del nostro apprendimento supervisionato è quello di prevedere un risultato categorico, ci riferiamo a questo come un problema di <strong>classificazione</strong>. Problemi di classificazione ruotano invece intorno alla predizione di una risposta binaria o multinomiale.
+La figura seguente ci mostra una tipico problema di classificazione:</p>
+<div class="figure">
+<img src="Images/03-02.png" alt="" />
+<p class="caption">Esempio di un problema di classificazione</p>
+</div>
+</div>
+<div id="unsupervised-learning" class="section level3">
+<h3><span class="header-section-number">6.1.2</span> Unsupervised Learning</h3>
+<p>L’<strong>Unsupervised Learning</strong> include una serie di strumenti statistici per comprendere e descrivere meglio i dati, ma esegue l’analisi senza una variabile target. In sostanza, l’apprendimento senza supervisione riguarda l’identificazione dei gruppi in un set di dati. I gruppi possono essere definiti dalle righe (cioè <em>clustering</em>) o dalle colonne (riduzione delle dimensioni).
+L’apprendimento non supervisionato viene spesso eseguito come parte di un’analisi esplorativa dei dati . Tuttavia, l’esercizio tende ad essere più soggettivo, e non c’è un obiettivo semplice per l’analisi, come la previsione di una risposta. Inoltre, può essere difficile valutare la qualità dei risultati ottenuti con questi metodi di apprendimento.
+La ragione è piuttosto semplice se ci pensate: se ci adattiamo ad un modello predittivo usando una tecnica di apprendimento supervisionata, allora è possibile controllare il nostro lavoro vedendo quanto bene il nostro modello predice la risposta <em>Y</em> su osservazioni non utilizzate per adattare il modello. Tuttavia, nell’apprendimento senza supervisione, non c’è modo di controllare il nostro lavoro perché non conosciamo la vera risposta: il problema non è supervisionato!</p>
+<p>Nonostante la sua soggettività, l’importanza dell’apprendimento non supervisionato non deve essere trascurata e tali tecniche possono essere utilizzate per esempio in casi come:</p>
+<ul>
+<li>Dividere i consumatori in diversi gruppi omogenei in modo che strategie di marketing personalizzate possano essere sviluppate e implementate per ogni segmento.</li>
+<li>Identificare specie che hanno un pattern di distribuzione molto simile sulla base di gradienti ambientali.</li>
+<li>Identificare gruppi di acquirenti online con storie di navigazione e di acquisto simili, così come gli elementi che sono di particolare interesse per gli acquirenti all’interno di ogni gruppo.</li>
+</ul>
+</div>
+<div id="dati" class="section level3">
+<h3><span class="header-section-number">6.1.3</span> Dati</h3>
+<p>I set di dati scelti per questo libro ci permetteranno di illustrare le diverse caratteristiche degli algoritmi di machine learning presentati. Di conseguenza, i set di dati esemplari che vi consigliamo di utilizzare sono quelli più comunemente utilizzati nel mondo di R (es. <em>mtcars</em>, <em>iris</em>, <em>geyser</em>).
+L’<strong>iris dataset</strong> può essere facilmente scaricato ed esplorato utilizzando il pacchetto <em>datasets</em>:</p>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="machine-learning-in-r-machine-learning.html#cb404-1"></a><span class="kw">library</span>(datasets)</span>
+<span id="cb404-2"><a href="machine-learning-in-r-machine-learning.html#cb404-2"></a><span class="kw">data</span>(iris)</span>
+<span id="cb404-3"><a href="machine-learning-in-r-machine-learning.html#cb404-3"></a><span class="kw">summary</span>(iris)</span></code></pre></div>
+<pre><code>##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##        Species  
+##  setosa    :50  
+##  versicolor:50  
+##  virginica :50  
+##                 
+##                 
+## </code></pre>
+<p>Ugualmente per quanto riguarda l’<strong>mtcars dataset</strong>:</p>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="machine-learning-in-r-machine-learning.html#cb406-1"></a><span class="kw">data</span>(mtcars)</span>
+<span id="cb406-2"><a href="machine-learning-in-r-machine-learning.html#cb406-2"></a><span class="kw">head</span>(mtcars, <span class="dv">6</span>)</span></code></pre></div>
+<pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
+</div>
+</div>
+<div id="divisione-dei-dati" class="section level2">
+<h2><span class="header-section-number">6.2</span> Divisione dei dati</h2>
+<p>Come abbiamo già detto, un obiettivo principale del processo di apprendimento automatico è quello di trovare un algoritmo
+che predica con maggior precisione i valori di output sulla base di variabili di input. In poche parole, vogliamo un algoritmo che non solo si adatti bene ai nostri dati passati, ma soprattutto, che riesca a predire accuratamente un risultato futuro. Questa si chiama <strong>generalizzazione</strong> del nostro algoritmo. La modalità con la quale “spendiamo” i nostri dati ci aiuterà a capire come il nostro algoritmo generalizza i dati futuri.</p>
+<p>Si suppone che l’utente abbia già imparato le principali funzioni per esplorare i dataset e osservare più da vicino le variabili che li descrivono. In questo paragrafo approfondiremo una parte molto importante della modelizzazione tramite machine learning: la ripartizione dei dati. Questo step è di fondamentale importanza dato che da questo dipendono fattori come appunto la capacità generlizzante del modello.
+Per fornire una comprensione accurata della generalizzazione del nostro modello ottimale finale, possiamo dividere i nostri dati in set di dati di <strong>training</strong> e <strong>test</strong>:</p>
+<ul>
+<li><strong>Training set</strong>: questi dati vengono utilizzati per addestrare i nostri algoritmi, ottimizzare i parametri di apprendimento, confrontare i modelli e tutte le altre attività necessarie per scegliere un modello finale.</li>
+<li><strong>Test set</strong>: dopo aver scelto un modello finale, questi dati vengono utilizzati per stimare le prestazioni del modello, a cui ci riferiamo come <strong>errore di generalizzazione</strong>.</li>
+</ul>
+<p>Data una quantità fissa di dati, le raccomandazioni tipiche per dividere i dati in divisioni training-test includono il 60%(training)-40%(test), il 70%-30%, o l’80%-20%. In generale, queste sono linee guida appropriate da seguire; tuttavia, è bene tenere a mente i seguenti punti: <em>(i)</em> spendere troppo informazione (ad esempio, &gt;80%) non ci permetterà di ottenere una buona valutazione delle prestazioni predittive. Possiamo trovare un modello che si adatti molto bene ai dati del training, ma è poco generalizzabile; <em>(ii)</em> allocare troppi dati nel test set (&gt;40%) non ci permetterà di ottenere una buona valutazione dei parametri del modello durante l’addestramento.
+I due modi più comuni di dividere i dati sono il <strong>campionamento casuale semplice</strong> e il <strong>campionamento stratificato</strong>.</p>
+<div id="campionamento-casuale-semplice" class="section level3">
+<h3><span class="header-section-number">6.2.1</span> Campionamento casuale semplice</h3>
+<p>Il modo più semplice per dividere i dati in training e test set è prendere un campione casuale semplice. Ciò, ovviamente, non tiene conto di un campionamento secondo la distribuzione della nostra variabile di risposta <em>Y</em>.</p>
+<div class="figure">
+<img src="Images/03-03.png" alt="" />
+<p class="caption">Campionamento casuale semplice</p>
+</div>
+<p>Dato che il campionamento è un processo casuale, occore quindi impostare il generatore di numeri casuali con un funzione <em>set.seed</em> per ottenere dei risultati riproducibili. In questo questo libro, useremo spesso il <em>set.seed(123)</em> per la riproducibilità, ma il numero stesso non ha un significato speciale.</p>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="machine-learning-in-r-machine-learning.html#cb408-1"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)  <span class="co"># per la riproducibilità</span></span>
+<span id="cb408-2"><a href="machine-learning-in-r-machine-learning.html#cb408-2"></a>index_n &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(iris), <span class="kw">round</span>(<span class="kw">nrow</span>(iris) <span class="op">*</span><span class="st"> </span><span class="fl">0.7</span>))</span>
+<span id="cb408-3"><a href="machine-learning-in-r-machine-learning.html#cb408-3"></a>training_set &lt;-<span class="st"> </span>iris[index_n, ]</span>
+<span id="cb408-4"><a href="machine-learning-in-r-machine-learning.html#cb408-4"></a>test_set &lt;-<span class="st"> </span>iris[<span class="op">-</span>index_n, ]</span></code></pre></div>
+<p>Con una dimensione del campione sufficiente, questo metodo di campionamento si tradurrà in genere in una distribuzione normale della nostra variabile <em>Y</em> (nel caso sia numerica) tra il training e i test set, oppure in una simile distribuzione delle categorie nel caso in cui il nostro sia un problam di classificazione, come illustrato di seguito.</p>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="machine-learning-in-r-machine-learning.html#cb409-1"></a><span class="kw">table</span>(training_set<span class="op">$</span>Species)</span></code></pre></div>
+<pre><code>## 
+##     setosa versicolor  virginica 
+##         36         32         37</code></pre>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="machine-learning-in-r-machine-learning.html#cb411-1"></a><span class="kw">table</span>(test_set<span class="op">$</span>Species)</span></code></pre></div>
+<pre><code>## 
+##     setosa versicolor  virginica 
+##         14         18         13</code></pre>
+<p>Questo è già un primo passo per renderci conto se il nostro modello ha abbastanza diversità di categorie per poter apprnedere le relazioni tra le variabili.</p>
+</div>
+<div id="campionamento-stratificato" class="section level3">
+<h3><span class="header-section-number">6.2.2</span> Campionamento stratificato</h3>
+<p>Se il nostro insieme di dati non è abbastanza grande da permettere un apporccio casuale o se vogliamo controllare esplicitamente il campionamento in modo che il nostro training e test set abbiano simili distribuzioni della variabile <em>Y</em>, allora è necessario utilizzare un campionamento stratificato. Questo apporccio è comunemente più utilizzato con problemi di classificazione in cui la variabile di risposta può essere gravemente squilibrata (ad esempio, 90% delle osservazioni con risposta “Sì” e 10% con risposta “No”). Tuttavia, possiamo anche applicare il campionamento stratificato a problemi di regressione per set di dati che hanno una piccola dimensione del campione e in cui la variabile di risposta si discosta fortemente dalla normalità.</p>
+<p>Il modo più semplice per eseguire il campionamento stratificato su una variabile di risposta è usare il pacchetto <em>rsample</em>, dove si specifica la variabile di risposta. Applicando il campionamento stratificato sul nostro iris dataset, ovviamente scopriremo che le variabili categoriche sono ugualmente presenti nel nostro insieme.</p>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="machine-learning-in-r-machine-learning.html#cb413-1"></a><span class="kw">library</span>(rsample)  <span class="co"># per la riproducibilità</span></span>
+<span id="cb413-2"><a href="machine-learning-in-r-machine-learning.html#cb413-2"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(iris<span class="op">$</span>Species))</span></code></pre></div>
+<pre><code>## 
+##     setosa versicolor  virginica 
+##  0.3333333  0.3333333  0.3333333</code></pre>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="machine-learning-in-r-machine-learning.html#cb415-1"></a>split_n  &lt;-<span class="st"> </span><span class="kw">initial_split</span>(iris, <span class="dt">prop =</span> <span class="fl">0.7</span>, </span>
+<span id="cb415-2"><a href="machine-learning-in-r-machine-learning.html#cb415-2"></a>                              <span class="dt">strata =</span> <span class="st">&quot;Species&quot;</span>)</span>
+<span id="cb415-3"><a href="machine-learning-in-r-machine-learning.html#cb415-3"></a>training_set_strata  &lt;-<span class="st"> </span><span class="kw">training</span>(split_n)</span>
+<span id="cb415-4"><a href="machine-learning-in-r-machine-learning.html#cb415-4"></a>test_set_strata  &lt;-<span class="st"> </span><span class="kw">testing</span>(split_n)</span>
+<span id="cb415-5"><a href="machine-learning-in-r-machine-learning.html#cb415-5"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(training_set_strata<span class="op">$</span>Species))</span></code></pre></div>
+<pre><code>## 
+##     setosa versicolor  virginica 
+##  0.3333333  0.3333333  0.3333333</code></pre>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="machine-learning-in-r-machine-learning.html#cb417-1"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(test_set_strata<span class="op">$</span>Species))</span></code></pre></div>
+<pre><code>## 
+##     setosa versicolor  virginica 
+##  0.3333333  0.3333333  0.3333333</code></pre>
+<p>In questo caso quindi, il campionamento stratificato ci aiuta ad ottenere un uguale proporzione delle classi in ogni insieme di dati anche se non abbiamo ottenuto un risultato molto diverso da quello casuale. Ma supponiamo di avere un data set con una distribuzione della variabile categorica sbilanciata, come ad esempio una risposta <strong>Sì</strong> o <strong>No</strong>:</p>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="machine-learning-in-r-machine-learning.html#cb419-1"></a><span class="kw">library</span>(wakefield)</span></code></pre></div>
+<pre><code>## Warning: package &#39;wakefield&#39; was built under R version 4.0.2</code></pre>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="machine-learning-in-r-machine-learning.html#cb421-1"></a>yn_data &lt;-<span class="st"> </span><span class="kw">answer</span>(<span class="dv">200</span>, <span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Sì&quot;</span>), <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.8</span>, <span class="fl">0.2</span>), <span class="dt">name =</span> <span class="st">&quot;Risposte&quot;</span>)</span>
+<span id="cb421-2"><a href="machine-learning-in-r-machine-learning.html#cb421-2"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(yn_data))</span></code></pre></div>
+<pre><code>## yn_data
+##    No    Sì 
+## 0.805 0.195</code></pre>
+<p>In una situazione come questa, acquista molta più importanza ripartire i dati in modo che il numero di risposte <strong>Sì</strong> e <strong>No</strong> siano ugualmente distribuiti tra il training e il test set.</p>
+</div>
+</div>
+<div id="metodi-di-ricampionamento" class="section level2">
+<h2><span class="header-section-number">6.3</span> Metodi di ricampionamento</h2>
+<p>Forse starete scalpitando per poter sapere come mettere le mani sul vostro codice di machine learning e cominciare ad addestrare la vostra macchina. Purtroppo (o per fortuna) i passi da fare prima di arrivare a coronare il vostro sogno sono molti. Saper utilizzare algoritmi di machine learning e ottenere buoni risultati richiede un’attenta preparazione degli ingredienti e una conoscenza di tutti gli strumenti, esattamente come per preparare una piatto complesso.
+Come abbiamo già detto, una volta diviso il nostro insieme di dati, avremo due differenti partizioni, il training e il test set. Tuttavia, durante il processo di addestramento del modello non utilizzeremo il test set per valutare le prestazioni del modello durante il suo apprendimento. Quindi come valutiamo le prestazioni di generalizzazione del modello durante la fase di training?</p>
+<p>Un’opzione è quella di valutare un errore metrico basato sui dati di training. Sfortunatamente, questo porta a risultati parziali in quanto alcuni modelli possono eseguire molto bene sui dati di formazione, ma non generalizzare bene ad un nuovo set di dati.
+Un secondo metodo è quello di utilizzare quello che viene chiamato un <strong>validation approach</strong>, che comporta un’ulteriore suddivisione dell’insieme del training set per creare due parti: un training e un <strong>validation</strong> set. Possiamo quindi addestrare il nostro modello sul nuovo set di training e contemporaneamente stimare le prestazioni sul validation set, che verrà utilizzato dall’algorimto per stimare l’errore di predizione durante l’addestramento. In alcuni casi, per esempio quando si lavoro con un set di dati non molto grande, questa validazione può essere altamente variabile e inaffidabile. Possiamo dire che come la dimensione del nostro set di dati aumenta, più questa preoccupazione si riduce.</p>
+<p>I <strong>metodi di ricampionamento</strong> forniscono un approccio alternativo permettendoci di adattare ripetutamente un modello di interesse a parti dei dati di training e di testarne le prestazioni su altre parti. I due metodi di ricampionamento più comunemente usati includono la <strong>cross-validation</strong> e <strong>bootstrapping</strong>.</p>
+<div id="cross-validation" class="section level3">
+<h3><span class="header-section-number">6.3.1</span> Cross-validation</h3>
+<p>La <strong>k-fold cross-validation</strong> (o più comunemente <strong>k-fold CV</strong>) è un metodo di ricampionamento che divide casualmente i dati di training in <em>k</em> gruppi di dimensioni approssimativamente uguali. Il modello viene addestrato utilizzando i <em>k-1</em> gruppi mentre un gruppo viene utilizzato per calcolare le prestazioni del modello. Questa procedura viene ripetuta <em>k</em> volte; ogni volta, una gruppo diverso viene usato come convalida. Questo processo si traduce in <em>k</em> stime dell’errore di generalizzazione. In questo modo, la stima del k-fold CV è calcolata usando la media degli errori di prova di <em>k</em>, fornendoci un’approssimazione dell’errore che potremmo aspettarci su dati di test.</p>
+<div class="figure">
+<img src="Images/03-04.png" alt="" />
+<p class="caption">Esempio schematico di k-fold cross validation</p>
+</div>
+<p>Di conseguenza, con k-fold CV, ogni osservazione nei dati di addestramento sarà effettuata una sola volta per essere inclusa nella serie di test come illustrato nella figura 4. In pratica, si usa tipicamente <em>k=5</em> o <em>k=10</em>. Non esiste una regola formale per quanto riguarda le dimensioni di <em>k</em>; tuttavia, man mano che <em>k</em> diventa più grande, la differenza tra le prestazioni stimate e le prestazioni reali da vedere sul set di prova diminuirà. D’altra parte, usare <em>k</em> troppo grande può introdurre oneri computazionali.</p>
+<p>Alcuni pacchetti di machine learning (es. <em>h2o</em>) permettono di definire i gruppi per la k-fold CV all’interno delle loro funzioni. Se ciò non fosse possibile, non spaventatevi, ecco a voi un esempio su come fare:</p>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="machine-learning-in-r-machine-learning.html#cb423-1"></a><span class="kw">library</span>(randomForest)</span></code></pre></div>
+<pre><code>## randomForest 4.6-14</code></pre>
+<pre><code>## Type rfNews() to see new features/changes/bug fixes.</code></pre>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="machine-learning-in-r-machine-learning.html#cb426-1"></a>data &lt;-<span class="st"> </span>iris</span>
+<span id="cb426-2"><a href="machine-learning-in-r-machine-learning.html#cb426-2"></a></span>
+<span id="cb426-3"><a href="machine-learning-in-r-machine-learning.html#cb426-3"></a><span class="co"># In questo esempio, utilizziamo l&#39;iris data set per predire la &quot;Sepal Length&quot;</span></span>
+<span id="cb426-4"><a href="machine-learning-in-r-machine-learning.html#cb426-4"></a><span class="co"># a partire dalle altre variabili utilizzando una Random Forest (che vedremo più avanti).</span></span>
+<span id="cb426-5"><a href="machine-learning-in-r-machine-learning.html#cb426-5"></a></span>
+<span id="cb426-6"><a href="machine-learning-in-r-machine-learning.html#cb426-6"></a>k =<span class="st"> </span><span class="dv">5</span> <span class="co">#Folds</span></span>
+<span id="cb426-7"><a href="machine-learning-in-r-machine-learning.html#cb426-7"></a></span>
+<span id="cb426-8"><a href="machine-learning-in-r-machine-learning.html#cb426-8"></a><span class="co"># campione da 1 a k, nrow volte (il numero di osservazioni nel dataset)</span></span>
+<span id="cb426-9"><a href="machine-learning-in-r-machine-learning.html#cb426-9"></a>data<span class="op">$</span>id &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span>k, <span class="kw">nrow</span>(data), <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb426-10"><a href="machine-learning-in-r-machine-learning.html#cb426-10"></a>list &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span>k</span>
+<span id="cb426-11"><a href="machine-learning-in-r-machine-learning.html#cb426-11"></a></span>
+<span id="cb426-12"><a href="machine-learning-in-r-machine-learning.html#cb426-12"></a><span class="co"># il &quot;prediction&quot; e &quot;testset&quot; dataframes a cui aggiungiamo ogni iterazione di k</span></span>
+<span id="cb426-13"><a href="machine-learning-in-r-machine-learning.html#cb426-13"></a></span>
+<span id="cb426-14"><a href="machine-learning-in-r-machine-learning.html#cb426-14"></a>prediction &lt;-<span class="st"> </span><span class="kw">data.frame</span>()</span>
+<span id="cb426-15"><a href="machine-learning-in-r-machine-learning.html#cb426-15"></a>testsetCopy &lt;-<span class="st"> </span><span class="kw">data.frame</span>()</span>
+<span id="cb426-16"><a href="machine-learning-in-r-machine-learning.html#cb426-16"></a></span>
+<span id="cb426-17"><a href="machine-learning-in-r-machine-learning.html#cb426-17"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>k){</span>
+<span id="cb426-18"><a href="machine-learning-in-r-machine-learning.html#cb426-18"></a>  trainingset &lt;-<span class="st"> </span><span class="kw">subset</span>(data, id <span class="op">%in%</span><span class="st"> </span>list[<span class="op">-</span>i])</span>
+<span id="cb426-19"><a href="machine-learning-in-r-machine-learning.html#cb426-19"></a>  testset &lt;-<span class="st"> </span><span class="kw">subset</span>(data, id <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(i))</span>
+<span id="cb426-20"><a href="machine-learning-in-r-machine-learning.html#cb426-20"></a>  </span>
+<span id="cb426-21"><a href="machine-learning-in-r-machine-learning.html#cb426-21"></a>  <span class="co"># modello random forest </span></span>
+<span id="cb426-22"><a href="machine-learning-in-r-machine-learning.html#cb426-22"></a>  mymodel &lt;-<span class="st"> </span><span class="kw">randomForest</span>(trainingset<span class="op">$</span>Sepal.Length <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> trainingset, <span class="dt">ntree =</span> <span class="dv">100</span>)</span>
+<span id="cb426-23"><a href="machine-learning-in-r-machine-learning.html#cb426-23"></a>  </span>
+<span id="cb426-24"><a href="machine-learning-in-r-machine-learning.html#cb426-24"></a>  <span class="co"># rimuovere la variabile Y da predire</span></span>
+<span id="cb426-25"><a href="machine-learning-in-r-machine-learning.html#cb426-25"></a>  temp &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">predict</span>(mymodel, testset[,<span class="op">-</span><span class="dv">1</span>]))</span>
+<span id="cb426-26"><a href="machine-learning-in-r-machine-learning.html#cb426-26"></a>  <span class="co"># attaccare questa predizione al dataframe &quot;prediction&quot;</span></span>
+<span id="cb426-27"><a href="machine-learning-in-r-machine-learning.html#cb426-27"></a>  prediction &lt;-<span class="st"> </span><span class="kw">rbind</span>(prediction, temp)</span>
+<span id="cb426-28"><a href="machine-learning-in-r-machine-learning.html#cb426-28"></a>  </span>
+<span id="cb426-29"><a href="machine-learning-in-r-machine-learning.html#cb426-29"></a>  <span class="co"># attaccare il test set dell&#39;iterazione al data frame &quot;testsetCopy&quot;</span></span>
+<span id="cb426-30"><a href="machine-learning-in-r-machine-learning.html#cb426-30"></a>  <span class="co"># tenere solamente la colonna Sepal Length</span></span>
+<span id="cb426-31"><a href="machine-learning-in-r-machine-learning.html#cb426-31"></a>  testsetCopy &lt;-<span class="st"> </span><span class="kw">rbind</span>(testsetCopy, <span class="kw">as.data.frame</span>(testset[,<span class="dv">1</span>]))</span>
+<span id="cb426-32"><a href="machine-learning-in-r-machine-learning.html#cb426-32"></a>  </span>
+<span id="cb426-33"><a href="machine-learning-in-r-machine-learning.html#cb426-33"></a>}</span>
+<span id="cb426-34"><a href="machine-learning-in-r-machine-learning.html#cb426-34"></a><span class="co"># aggiungere predizioni e i valori osservati di Sepal Length</span></span>
+<span id="cb426-35"><a href="machine-learning-in-r-machine-learning.html#cb426-35"></a>result &lt;-<span class="st"> </span><span class="kw">cbind</span>(prediction, testsetCopy[, <span class="dv">1</span>])</span>
+<span id="cb426-36"><a href="machine-learning-in-r-machine-learning.html#cb426-36"></a><span class="kw">names</span>(result) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Predicted&quot;</span>, <span class="st">&quot;Actual&quot;</span>)</span>
+<span id="cb426-37"><a href="machine-learning-in-r-machine-learning.html#cb426-37"></a>result<span class="op">$</span>Difference &lt;-<span class="st"> </span><span class="kw">abs</span>(result<span class="op">$</span>Actual <span class="op">-</span><span class="st"> </span>result<span class="op">$</span>Predicted)</span>
+<span id="cb426-38"><a href="machine-learning-in-r-machine-learning.html#cb426-38"></a></span>
+<span id="cb426-39"><a href="machine-learning-in-r-machine-learning.html#cb426-39"></a><span class="co"># Come esempio, utilizziamo il  Mean Absolute Error per il calcolo dell&#39;errore </span></span>
+<span id="cb426-40"><a href="machine-learning-in-r-machine-learning.html#cb426-40"></a><span class="co"># (vedi più avanti per le metriche di errore) </span></span>
+<span id="cb426-41"><a href="machine-learning-in-r-machine-learning.html#cb426-41"></a><span class="kw">summary</span>(result<span class="op">$</span>Difference)</span></code></pre></div>
+<pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## 0.002942 0.124396 0.254740 0.314781 0.492432 1.272912</code></pre>
+<p>Non vi preoccupate se il funzionamento del modello di randomForest vi appare poco chiaro, avremo modo di esplorare in dettaglio i vari algoritmi di apprendimento nei prossimi paragrafi.</p>
+</div>
+<div id="bootstrapping" class="section level3">
+<h3><span class="header-section-number">6.3.2</span> Bootstrapping</h3>
+<p>Un campione bootstrap è un campione casuale dei dati presi con metodo di ricampionamento (in inglese <strong>resample</strong>). Ciò significa che, dopo che un osservazione è stato selezionata per essere inclusa nel sottoinsieme, è ancora disponibile per un’ulteriore selezione. Un campione di bootstrap è della stessa dimensione del set di dati originale da cui è stato costruito. La figura 5 fornisce uno schema di campionamento del bootstrap in cui ogni campione di bootstrap contiene 9 osservazioni proprio come nel set di dati originale. Inoltre, il campionamento di bootstrap conterrà approssimativamente la stessa distribuzione di valori (rappresentata dai colori) del set di dati originale.</p>
+<div class="figure">
+<img src="Images/03-05.png" alt="" />
+<p class="caption">Esempio schematico di bootstrapping</p>
+</div>
+<p>Data la procedura di resample, ogni campione di bootstrap è probabile che contenga valori duplicati. Le osservazioni originali non contenute in un particolare campione di bootstrap sono considerate <strong>out-of-bag (OOB)</strong>. Quando si avvia, un modello può essere costruito sui campioni selezionati e validato sui campioni OOB; questo è spesso fatto, ad esempio, nelle random forest (vedi più avanti).</p>
+<p>Dal momento che le osservazioni sono replicate in bootstrap, c’è una minore variabilità nella misura dell’errore rispetto a k-fold CV. Tuttavia, questo può anche aumentare la distorsione della stima dell’errore. Questo può essere problematico con set di dati più piccoli; tuttavia, per la maggior parte dei set di dati medio-grandi (maggiori di 1000) questa preoccupazione è spesso trascurabile.</p>
+<p>Per fare delle prove con il campionamento bootstrapping possiamo utilizzare semplicemente le funzioni base di R in questo esempio:</p>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="machine-learning-in-r-machine-learning.html#cb428-1"></a>resample &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(iris), <span class="kw">round</span>(<span class="kw">nrow</span>(iris) <span class="op">*</span><span class="st"> </span><span class="fl">0.7</span>), <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb428-2"><a href="machine-learning-in-r-machine-learning.html#cb428-2"></a></span>
+<span id="cb428-3"><a href="machine-learning-in-r-machine-learning.html#cb428-3"></a>bootstrap_set &lt;-<span class="st"> </span>iris[resample, ]</span>
+<span id="cb428-4"><a href="machine-learning-in-r-machine-learning.html#cb428-4"></a>OOB_set &lt;-<span class="st"> </span>iris[<span class="op">-</span>resample, ]</span></code></pre></div>
+</div>
+</div>
+<div id="stima-della-performance-del-modello" class="section level2">
+<h2><span class="header-section-number">6.4</span> Stima della performance del modello</h2>
+<p>L’approccio più valido alla valutazione delle prestazioni del modello consiste nel valutare l’accuratezza predittiva attraverso le <strong>loss function</strong>. Le loss function sono metriche che confrontano i valori predetti con il valore reale (l’output di una loss function è spesso indicato come l’errore o pseudo residuo). Quando eseguiamo metodi di ricampionamento, valutiamo i valori previsti per un insieme di convalida rispetto al valore obiettivo effettivo. Per esempio, in una regressione, un modo per misurare l’errore è prendere la differenza tra il valore effettivo e quello previsto per una data osservazione (questa è la definizione usuale di un residuo nella regressione lineare ordinaria). L’errore complessivo di convalida del modello è calcolato aggregando gli errori nell’intero set di dati di convalida.</p>
+<p>Ci sono molte loss function tra cui scegliere quando si valutano le prestazioni di un modello predittivo, ognuna delle quali fornisce una comprensione unica della precisione predittiva e differisce tra modelli di regressione e classificazione. Inoltre, il modo in cui una loss function è calcolata tenderà a sottolineare alcuni tipi di errori rispetto ad altri e può portare a drastiche differenze nel modo in cui interpretiamo il “modello ottimale”. È importante considerare il contesto del problema quando si identifica la metrica di prestazione preferita da utilizzare. E quando confrontiamo più modelli, dobbiamo confrontarli attraverso la stessa metrica.</p>
+<p>Vi presentiamo qui una lista delle metriche più utilizzate per modelli di regressione e classificazione rispettivamente. La maggior parte dei pacchetti di algoritmi di machine learning permette l’utilizzo di queste metriche attraverso l’utilizzo delle rispettive funzioni. In alcuni casi, i nomi delle metriche sono mantenute in inglese per un miglior riscontro con le funzioni in R.</p>
+<div id="modelli-di-regressione" class="section level3">
+<h3><span class="header-section-number">6.4.1</span> Modelli di regressione</h3>
+<ul>
+<li><p><strong>MSE</strong>: il <strong>Mean Squared Error</strong> è la stima dell’errore quadratico medio. Il componente quadrato comporta errori più grandi con penalità più grandi. Questa (insieme a l’RMSE) è la metrica di errore più comunemente usata.</p></li>
+<li><p><strong>RMSE</strong>: <strong>Root mean squared error</strong>. Questo prende semplicemente la radice quadrata della metrica MSE, in modo che il nostro errore sia nelle stesse unità della nostra variabile di risposta.</p></li>
+<li><p><strong>MAE</strong>: <strong>Mean Absolute Error</strong>. Molto simile all’ MSE ma, invece del quadrato, prende la differenza assoluta media fra i valori reali e previsti. Ciò si traduce in meno enfasi su errori più grandi di MSE.</p></li>
+<li><p><strong>Devianza</strong>: Abbreviazione di deviazione residua media. In sostanza, fornisce un grado al quale un modello spiega la variazione in un insieme di dati quando si utilizza la stima della massima probabilità. Essenzialmente questo confronta un modello saturo (i.e. completamente caratterizzato) ad un modello insaturo (i.e. intercettare solo o media). Se la distribuzione della variabile di risposta è gaussiana, allora sarà approssimativamente uguale a MSE. Quando non, di solito dà una stima più utile di errore. La devianza è spesso utilizzata anche con i modelli di classificazione.</p></li>
+<li><p><strong>R<sup>2</sup></strong>: Questa è una metrica molto popolare che rappresenta la proporzione della varianza nella variabile dipendente che è prevedibile dalla variabile indipendente. Purtroppo, ha diversi limiti. Per esempio, due modelli costruiti da due diversi set di dati potrebbero avere lo stesso RMSE ma se uno ha meno variabilità nella variabile di risposta allora avrebbe un minore R<sup>2</sup> rispetto all’altro. Non si dovrebbe porre troppa enfasi su questa metrica nel caso in cui i dati di training siano diversi.</p></li>
+</ul>
+</div>
+<div id="modelli-di-classificazione" class="section level3">
+<h3><span class="header-section-number">6.4.2</span> Modelli di classificazione</h3>
+<ul>
+<li><p><strong>Misclassification</strong>: Questo è l’errore generale. Per esempio, supponiamo di predire 3 classi (<em>Blu</em>, <em>Giallo</em>, <em>Rosso</em>) e ogni classe ha 15, 40, 35 osservazioni rispettivamente (90 osservazioni totali). Se si classificano male 4 osservazioni di classe <em>Blu</em>, 5 di classe <em>Giallo</em>, e 3 di classe <em>Rosso</em>, allora si misclassificano 12 su 90 osservazioni con conseguente tasso di errore di classificazione del 13.3%.</p></li>
+<li><p><strong>Media per errore di classe</strong>: Questo è il tasso di errore medio per ogni classe. Per l’esempio precedente, questa sarebbe la media di 4/15, 5/40, 3/35 (15.9%). Ovviamente, se le classi sono bilanciate, questo errore sarà identico a quello della misclassification.</p></li>
+<li><p><strong>MSE</strong>: Calcola la distanza tra 1 e la probabilità suggerita. Così, diciamo che abbiamo tre classi, <em>Blu</em>, <em>Giallo</em>, e <em>Rosso</em>, e il modello prevede una probabilità di 0,91 per <em>Blu</em>, 0,07 per <em>Giallo</em>, e 0,02 per <em>Rosso</em>. Se la risposta corretta è <em>Blu</em>, allora MSE = 0.0081 (<span class="math inline">\(0,09^2\)</span>) , se è <em>Giallo</em> MSE = 0.8649 (<span class="math inline">\(0,93^2\)</span>), se è <em>Rosso</em> MSE = 0.9604 (<span class="math inline">\(0,98^2\)</span>).</p></li>
+<li><p><strong>Cross-entropy</strong>: Simile all’MSE ma incorpora un logaritmo della probabilità prevista moltiplicato per la classe vera. Di conseguenza, questa metrica punisce in modo sproporzionato le previsioni in cui prevediamo una piccola probabilità per la vera classe.</p></li>
+<li><p><strong>Gini index</strong>: Utilizzato principalmente con metodi a base di <strong>classification tree</strong> e comunemente indicato come misura di <em>purezza</em> dove un piccolo valore indica che un nodo contiene prevalentemente osservazioni da una singola classe.</p></li>
+</ul>
+<p>Quando applichiamo i modelli di classificazione, usiamo spesso una <strong>matrice di confusione</strong> per valutare determinate misure di performance. Una matrice di confusione è semplicemente una matrice che confronta i livelli categorici effettivi con i livelli categorici previsti. Quando prevediamo il giusto livello, ci riferiamo a questo come ad un vero positivo. Tuttavia, se prevediamo un livello che non è accaduto questo è chiamato un falso positivo. Al contrario, quando non prevediamo un livello e questo non avviene, questo è chiamato un falso negativo.</p>
+<div class="figure">
+<img src="Images/03-06.png" alt="" />
+<p class="caption">Matrice di confusione</p>
+</div>
+<p>Possiamo estrarre diversi livelli di prestazioni per i classificatori binari. Ad esempio, data la matrice di confusione illustrata nella figura 6 possiamo valutare quanto segue:</p>
+<ul>
+<li><p><strong>Accuracy</strong>: Nel complesso, quanto spesso il classificatore è corretto? Esempio: <span class="math inline">\((VP+VN)/Totale\)</span>.</p></li>
+<li><p><strong>Precision</strong>: Con quale precisione il classificatore predice gli eventi? Questa metrica si occupa di massimizzare i veri positivi a falsi positivi. In altre parole, per il numero di previsioni che abbiamo fatto, quante erano corrette? Esempio: <span class="math inline">\(VP/(VP+FP)\)</span>.</p></li>
+<li><p><strong>Sensitivity</strong>: Con quale precisione il classificatore classifica gli eventi reali? Questa metrica si occupa di massimizzare il rapporto tra veri positivi e falsi negativi. In altre parole, per gli eventi che si sono verificati, quanti ne abbiamo previsti? Esempio: <span class="math inline">\(VP/(VP+FN)\)</span>.</p></li>
+<li><p><strong>Specificity</strong>: Con quale precisione il modello classifica i non-evento effettivi? Esempio: <span class="math inline">\(VN/(VN+FP)\)</span>.</p></li>
+</ul>
+</div>
+<div id="concludendo" class="section level3">
+<h3><span class="header-section-number">6.4.3</span> Concludendo…</h3>
+<p>Lo sappiamo, tutta questa matematica vi ha spaventati un po’. Man a mano che illustreremo i principali algoritmi di machine learning utilizzati in R, vi renderete conto quanto la conoscenza di quete nozioni sia più utile del riuscire a far girare il vostro personale modello di predizione. Infatti, dall’accortezza che avrete nel sapere dividere i vostri dati e nell’utilizzare la giusta metrica di errore, il vostro modello potrebbe portare a risultati drasticamente diversi! Ma non vi preoccupate, come si dice: <em>sbagliando si impara</em>, e dopo numerose prove illustrate in questo capitolo riuscirete meglio a capire come orientarvi in questo labirinto.</p>
+<p>Quindi, siamo arrivati al momento che tutti stavate aspettando! Rullo di tamburi e…</p>
+<p>Cominciamo a parlare di algoritmi e a smanettare un po’ sul codice!</p>
+</div>
+</div>
+<div id="algoritmi-di-machine-learning-in-r" class="section level2">
+<h2><span class="header-section-number">6.5</span> Algoritmi di Machine Learning in R</h2>
+<p><img src="Images/03-07.png" /></p>
+<div id="decision-trees" class="section level3">
+<h3><span class="header-section-number">6.5.1</span> Decision Trees</h3>
+<p>I modelli basati su <strong>Decision Trees</strong> sono una classe di algoritmi non parametrici che funzionano partizionando lo spazio delle funzionalità in un certo numero di regioni più piccole (non sovrapposte) con valori di risposta simili utilizzando un insieme di regole di suddivisione. Possono essere utilizzati sia per problemi di classificazione che di regressione. Le previsioni sono ottenute adattando un modello più semplice (ad esempio, una costante come il valore medio di risposta) in ogni regione. Tali metodi di <em>divide-and-conquer</em> possono produrre semplici regole che sono facili da interpretare e visualizzare con i diagrammi ad albero. Come vedremo, i decision trees offrono molti benefici; tuttavia, tipicamente mancano di prestazioni predittive rispetto ad algoritmi più complessi come le reti neurali. Tuttavia, nei prossimi paragrafi vedremo algoritmi di insieme, come le random forests, che sono costruiti combinando insieme molti alberi di decisione.</p>
+<p>Ci sono molte metodologie per costruire alberi decisionali, ma il più noto è l’algoritmo di classificazione e regressione (CART) proposto in Breiman (1984). Un albero decisionale di base suddivide i dati del training in sottogruppi omogenei (cioè gruppi con valori di risposta simili) e quindi inserisce una costante semplice in ogni sottogruppo (ad esempio, la media dei valori di risposta all’interno del gruppo per la regressione). I sottogruppi (chiamati anche nodi) sono formati ricorsivamente usando partizioni binarie formate facendo semplici domande yes-or-no su ogni caratteristica (ad esempio, la larghezza del petalo è maggiore di 1,8?). Questo viene fatto un certo numero di volte fino a quando un criterio di arresto adeguato è soddisfatto (ad esempio, una profondità massima dell’albero è raggiunta). Dopo che tutto il partizionamento è stato fatto, il modello predice l’output basato su: (1) i valori medi di risposta per tutte le osservazioni che rientrano in quel sottogruppo (problema di regressione), o (2) la classe che ha la rappresentazione maggioritaria (problema di classificazione). Per la classificazione, le probabilità previste possono essere ottenute utilizzando la proporzione di ciascuna classe all’interno del sottogruppo.</p>
+<p>Vediamo come costruire un nostro albero per un problema di classificazione utilizando l’iris dataset. Per farlo utilizzeremo le funzione del paccheto <em>rpart</em>:</p>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="machine-learning-in-r-machine-learning.html#cb429-1"></a><span class="kw">library</span>(rpart)</span>
+<span id="cb429-2"><a href="machine-learning-in-r-machine-learning.html#cb429-2"></a><span class="kw">library</span>(rpart.plot)</span></code></pre></div>
+<pre><code>## Warning: package &#39;rpart.plot&#39; was built under R version 4.0.2</code></pre>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="machine-learning-in-r-machine-learning.html#cb431-1"></a><span class="kw">set.seed</span>(<span class="dv">123</span>) </span>
+<span id="cb431-2"><a href="machine-learning-in-r-machine-learning.html#cb431-2"></a></span>
+<span id="cb431-3"><a href="machine-learning-in-r-machine-learning.html#cb431-3"></a><span class="co"># creazione training e test set</span></span>
+<span id="cb431-4"><a href="machine-learning-in-r-machine-learning.html#cb431-4"></a>xdata &lt;-<span class="st"> </span>iris</span>
+<span id="cb431-5"><a href="machine-learning-in-r-machine-learning.html#cb431-5"></a>index_n &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(xdata), <span class="kw">round</span>(<span class="kw">nrow</span>(xdata) <span class="op">*</span><span class="st"> </span><span class="fl">0.7</span>))</span>
+<span id="cb431-6"><a href="machine-learning-in-r-machine-learning.html#cb431-6"></a>training_set &lt;-<span class="st"> </span>xdata[index_n, ]</span>
+<span id="cb431-7"><a href="machine-learning-in-r-machine-learning.html#cb431-7"></a>test_set &lt;-<span class="st"> </span>xdata[<span class="op">-</span>index_n, ]</span>
+<span id="cb431-8"><a href="machine-learning-in-r-machine-learning.html#cb431-8"></a></span>
+<span id="cb431-9"><a href="machine-learning-in-r-machine-learning.html#cb431-9"></a><span class="co"># modello</span></span>
+<span id="cb431-10"><a href="machine-learning-in-r-machine-learning.html#cb431-10"></a>fit &lt;-<span class="st"> </span><span class="kw">rpart</span>(Species <span class="op">~</span>., <span class="dt">data =</span> training_set, <span class="dt">method =</span> <span class="st">&#39;class&#39;</span>)</span>
+<span id="cb431-11"><a href="machine-learning-in-r-machine-learning.html#cb431-11"></a><span class="co"># Species ~.: Formula del Decision Trees, vogliamo predire la specie </span></span>
+<span id="cb431-12"><a href="machine-learning-in-r-machine-learning.html#cb431-12"></a><span class="co"># sulla base delle altre variabili </span></span>
+<span id="cb431-13"><a href="machine-learning-in-r-machine-learning.html#cb431-13"></a><span class="co"># data: i dati di training</span></span>
+<span id="cb431-14"><a href="machine-learning-in-r-machine-learning.html#cb431-14"></a><span class="co"># method = &#39;class&#39;: in questo caso, il nostro è un modello di classificazione</span></span>
+<span id="cb431-15"><a href="machine-learning-in-r-machine-learning.html#cb431-15"></a><span class="kw">rpart.plot</span>(fit)</span></code></pre></div>
+<p><img src="03-Machine-Learning_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Complimenti! Avete appena “costruito” il vostro modello di machine learning! Facile no? Ma non è il momento di aprirsi una birra e rilassarsi. Come abbiamo già detto in precedenza, ci sono molte cose da esplorare e da tenere in conto per capire se il nsotro modello ha una buona performance predittiva o meno.</p>
+<p>Innanzitutto, guardiamo più da vicino il nostro modello grazie al pacchetto <em>rpart.plot</em>. Gli algoritmi di decision tree permettono di poter guardare facilmente all’interno degli ingranaggi del modello. Cosa che è molto più difficile fare con modelli di reti neurali e random forests (chiamati in gergo, per l’appunto, <strong>black-boxes</strong>). Partendo dal nodo <strong>radice</strong> (in alto) possiamo osservare:</p>
+<ul>
+<li>In cima, è la probabilità complessiva di appartanenza alle classi.</li>
+<li>Il nodo successivo “chiede” se il Petal Length è maggiore di 2,5. Se sì, allora si scende al nodo figlio sinistro della radice, dove il 100% degli individui appartiene alla specie <em>I. setosa</em>.</li>
+<li>Nel secondo nodo, si chiede se il Petal Width è minore di 1,8. Se sì, allora la probabilità di che si tratti di <em>I. versicolor</em> è dell’89%. Altrimenti c’è una probabilità del 97% che si tratti di <em>I. virginica</em></li>
+</ul>
+<p>Si noti che, una delle molte qualità di Decision Trees è che richiedono una preparazione dei dati molto limitata. In particolare, non richiedono ridimensionamento.</p>
+<p>Per impostazione predefinita, la funzione <em>rpart()</em> usa la misura del Gini Index per dividere i nodi. Più alto è il coefficiente di Gini, più diverse sono le istanze all’interno del nodo.</p>
+<p>Proviamo a predire i nostri dati di test utilizzando il modello appena costruito.</p>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="machine-learning-in-r-machine-learning.html#cb432-1"></a>predicted &lt;-<span class="st"> </span><span class="kw">predict</span>(fit, test_set, <span class="dt">type =</span> <span class="st">&#39;class&#39;</span>)</span>
+<span id="cb432-2"><a href="machine-learning-in-r-machine-learning.html#cb432-2"></a>table_mat &lt;-<span class="st"> </span><span class="kw">table</span>(test_set<span class="op">$</span>Species, predicted)</span>
+<span id="cb432-3"><a href="machine-learning-in-r-machine-learning.html#cb432-3"></a>table_mat</span></code></pre></div>
+<pre><code>##             predicted
+##              setosa versicolor virginica
+##   setosa         14          0         0
+##   versicolor      0         18         0
+##   virginica       0          1        12</code></pre>
+<p>WOW! Il nostro modello ha predetto la nostre classi molto bene! Ma con quale <strong>Accuracy</strong> di preciso?
+Vediamo:</p>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="machine-learning-in-r-machine-learning.html#cb434-1"></a>accuracy_Test &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="kw">diag</span>(table_mat)) <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(table_mat)</span>
+<span id="cb434-2"><a href="machine-learning-in-r-machine-learning.html#cb434-2"></a><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&#39;Accuracy for test&#39;</span>, accuracy_Test))</span></code></pre></div>
+<pre><code>## [1] &quot;Accuracy for test 0.977777777777778&quot;</code></pre>
+<p>Possiamo dire: ottimo! Il nostro modello ha un’accuratezza del 97% sui dati indipendenti. Più che soddisfacente!</p>
+<p>I decision trees in R hanno vari parametri che controllano gli aspetti del <em>fit</em>. Nella libreria <em>rpart</em> è possibile controllare questi parametri utilizzando la funzione <em>rpart.control()</em>. Qui di seguito, ci sono alcuni parametri che potete regolare:</p>
+<ul>
+<li>minsplit: Imposta il numero minimo di osservazioni nel nodo prima che l’algoritmo esegua una divisione.</li>
+<li>minbucket: Imposta il numero minimo di osservazioni nella nota finale ossia <em>la foglia</em> dell’albero.</li>
+<li>maxdepth: imposta la profondità massima di qualsiasi nodo dell’albero finale. Il nodo radice è trattato con una profondità 0.</li>
+</ul>
+</div>
+<div id="random-forests" class="section level3">
+<h3><span class="header-section-number">6.5.2</span> Random Forests</h3>
+<p>Le <strong>Random Forests</strong> consistono in un insieme di algoritmi che costruiscono una vasta collezione di alberi de-correlati per migliorare ulteriormente le prestazioni predittive. Sono diventati un algoritmo di apprendimento “out-of-the-box” molto popolare che gode di buone prestazioni predittive con relativamente poca sintonizzazione degli iperparametri. Esistono molte implementazioni moderne di random forests; tuttavia, l’algoritmo di Leo Breiman (Breiman 2001) è diventato in gran parte la procedura più autorevole.</p>
+<p>Le random forests sono costruite utilizzando gli stessi principi degli alberi di decisione. L’algoritmo di costruzione degli alberi introduce un componente casuale nel processo di apprendimento, costruendo molti alberi su copie bootstrapped dei dati di formazione. Questa aggregazione riduce la varianza della procedura complessiva e si traduce in una migliore performance predittiva.</p>
+<p>Lo schema di campionamento predefinito per le random forests è un bootstrapping dove il 100% delle osservazioni sono campionate con la sostituzione (in altre parole, ogni copia bootstrap ha le stesse dimensioni dei dati di training originali); tuttavia, possiamo regolare sia la dimensione del campione e se campionare con o senza sostituzione. Il parametro della dimensione del campione determina il numero di osservazioni da effettuare per l’addestramento di ciascun albero. Diminuendo la dimensione del campione si ottengono alberi più diversi e quindi si riduce la correlazione tra gli alberi, il che può avere un effetto positivo sulla precisione di previsione. Di conseguenza, se ci sono alcune caratteristiche dominanti nel vostro insieme di dati, riducendo la dimensione del campione può anche aiutare a ridurre al minimo la correlazione tra gli alberi.</p>
+<p>Anche le random forests possono essere utilizzati per probalemi di classificazione e regressione. Dato che abbiamo già utilizzato l’esempio con l’iris dataset, quest volta proviamo a costruire il nsotro modello utilizzando una variabile di output continua (e quindi una regressione).</p>
+<p>In questo caso, quindi, utilizziamo l’mtcars dataset e, prima di addestrare il modello, normalizziamo i nostri dati in un intervallo tra 0 e 1 per facilitare il processo di apprendimento.</p>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="machine-learning-in-r-machine-learning.html#cb436-1"></a><span class="co"># nromalizzazione dei dati</span></span>
+<span id="cb436-2"><a href="machine-learning-in-r-machine-learning.html#cb436-2"></a><span class="kw">library</span>(vegan)</span></code></pre></div>
+<pre><code>## Warning: package &#39;vegan&#39; was built under R version 4.0.2</code></pre>
+<pre><code>## Carico il pacchetto richiesto: permute</code></pre>
+<pre><code>## Carico il pacchetto richiesto: lattice</code></pre>
+<pre><code>## This is vegan 2.5-7</code></pre>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="machine-learning-in-r-machine-learning.html#cb441-1"></a>xdata &lt;-<span class="st"> </span>mtcars</span>
+<span id="cb441-2"><a href="machine-learning-in-r-machine-learning.html#cb441-2"></a>xdata_n &lt;-<span class="st"> </span><span class="kw">decostand</span>(xdata, <span class="dt">method =</span> <span class="st">&quot;range&quot;</span>)</span>
+<span id="cb441-3"><a href="machine-learning-in-r-machine-learning.html#cb441-3"></a><span class="kw">head</span>(xdata_n)</span></code></pre></div>
+<pre><code>##                         mpg cyl      disp        hp      drat        wt
+## Mazda RX4         0.4510638 0.5 0.2217511 0.2049470 0.5253456 0.2830478
+## Mazda RX4 Wag     0.4510638 0.5 0.2217511 0.2049470 0.5253456 0.3482485
+## Datsun 710        0.5276596 0.0 0.0920429 0.1448763 0.5023041 0.2063411
+## Hornet 4 Drive    0.4680851 0.5 0.4662010 0.2049470 0.1474654 0.4351828
+## Hornet Sportabout 0.3531915 1.0 0.7206286 0.4346290 0.1797235 0.4927129
+## Valiant           0.3276596 0.5 0.3838863 0.1872792 0.0000000 0.4978266
+##                        qsec vs am gear      carb
+## Mazda RX4         0.2333333  0  1  0.5 0.4285714
+## Mazda RX4 Wag     0.3000000  0  1  0.5 0.4285714
+## Datsun 710        0.4892857  1  1  0.5 0.0000000
+## Hornet 4 Drive    0.5880952  1  0  0.0 0.0000000
+## Hornet Sportabout 0.3000000  0  0  0.0 0.1428571
+## Valiant           0.6809524  1  0  0.0 0.0000000</code></pre>
+<p>Bene. Ora che i nostri dati sono normalizzati. Passiamo alla costruzione del modello:</p>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="machine-learning-in-r-machine-learning.html#cb443-1"></a><span class="kw">library</span>(randomForest)</span>
+<span id="cb443-2"><a href="machine-learning-in-r-machine-learning.html#cb443-2"></a><span class="co"># creazione training e test set</span></span>
+<span id="cb443-3"><a href="machine-learning-in-r-machine-learning.html#cb443-3"></a>index_n &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(xdata_n), <span class="kw">round</span>(<span class="kw">nrow</span>(xdata_n) <span class="op">*</span><span class="st"> </span><span class="fl">0.7</span>))</span>
+<span id="cb443-4"><a href="machine-learning-in-r-machine-learning.html#cb443-4"></a>training_set &lt;-<span class="st"> </span>xdata_n[index_n, ]</span>
+<span id="cb443-5"><a href="machine-learning-in-r-machine-learning.html#cb443-5"></a>test_set &lt;-<span class="st"> </span>xdata_n[<span class="op">-</span>index_n, ]</span>
+<span id="cb443-6"><a href="machine-learning-in-r-machine-learning.html#cb443-6"></a></span>
+<span id="cb443-7"><a href="machine-learning-in-r-machine-learning.html#cb443-7"></a><span class="co"># modello</span></span>
+<span id="cb443-8"><a href="machine-learning-in-r-machine-learning.html#cb443-8"></a>rf.fit &lt;-<span class="st"> </span><span class="kw">randomForest</span>(mpg <span class="op">~</span>., <span class="dt">data =</span> training_set, </span>
+<span id="cb443-9"><a href="machine-learning-in-r-machine-learning.html#cb443-9"></a>                       <span class="dt">ntree =</span> <span class="dv">500</span>, <span class="co"># il numero di alberi che verranno costruiti</span></span>
+<span id="cb443-10"><a href="machine-learning-in-r-machine-learning.html#cb443-10"></a>                       <span class="dt">mtry =</span> <span class="dv">3</span>) <span class="co"># il umero di variabili predittive (scelte casualmente) </span></span>
+<span id="cb443-11"><a href="machine-learning-in-r-machine-learning.html#cb443-11"></a>                                 <span class="co"># che verrano utilizzate per la costruzione di ogni albero</span></span>
+<span id="cb443-12"><a href="machine-learning-in-r-machine-learning.html#cb443-12"></a><span class="kw">print</span>(rf.fit)</span></code></pre></div>
+<pre><code>## 
+## Call:
+##  randomForest(formula = mpg ~ ., data = training_set, ntree = 500,      mtry = 3) 
+##                Type of random forest: regression
+##                      Number of trees: 500
+## No. of variables tried at each split: 3
+## 
+##           Mean of squared residuals: 0.01401642
+##                     % Var explained: 79.95</code></pre>
+<p>Possiamo osservare già da subito alcune cose. Sotto la voce <em>Type</em> è indicato <em>regression</em>. Il modello ha riconosciuto da solo che si tratta di una variabile numerica continua. Inoltre, il modello calcola l’RMSE sui dati di training utilizzando le osservazioni <strong>out-of-bag (OOB)</strong> (vedi sopra: <strong>Metodi di ricampionamento</strong>) per la stima dell’errore, dato che il processo di campionamento dei dati avviene attraverso un bootstrapping.</p>
+<p>Adesso, utilizziamo il modello per predire le nuove osservazioni e calcolare l’errore di predizione utilizzando questa volta R<sup>2</sup>:</p>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="machine-learning-in-r-machine-learning.html#cb445-1"></a>rf.pred &lt;-<span class="st"> </span><span class="kw">predict</span>(rf.fit, <span class="dt">newdata =</span> test_set[<span class="op">-</span><span class="dv">1</span>]) <span class="co"># togliamo dal test_set la colonna con i valori da predire</span></span>
+<span id="cb445-2"><a href="machine-learning-in-r-machine-learning.html#cb445-2"></a>obsPred &lt;-<span class="st"> </span><span class="kw">cbind</span>(rf.pred, test_set[, <span class="dv">1</span>])</span>
+<span id="cb445-3"><a href="machine-learning-in-r-machine-learning.html#cb445-3"></a><span class="kw">colnames</span>(obsPred) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Predicted&quot;</span>, <span class="st">&quot;Observed&quot;</span>)</span>
+<span id="cb445-4"><a href="machine-learning-in-r-machine-learning.html#cb445-4"></a>obsPred</span></code></pre></div>
+<pre><code>##                    Predicted  Observed
+## Merc 240D          0.5428932 0.5957447
+## Merc 280C          0.3999806 0.3148936
+## Merc 450SE         0.2168960 0.2553191
+## Merc 450SL         0.2160671 0.2936170
+## Cadillac Fleetwood 0.1264838 0.0000000
+## Dodge Challenger   0.2500200 0.2170213
+## AMC Javelin        0.3031936 0.2042553
+## Camaro Z28         0.2081350 0.1234043
+## Pontiac Firebird   0.2607244 0.3744681
+## Ferrari Dino       0.3971294 0.3957447</code></pre>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="machine-learning-in-r-machine-learning.html#cb447-1"></a>rss &lt;-<span class="st"> </span><span class="kw">sum</span>((rf.pred <span class="op">-</span><span class="st"> </span>test_set[, <span class="dv">1</span>]) <span class="op">^</span><span class="st"> </span><span class="dv">2</span>)  <span class="co">## residui della somma dei quadrati</span></span>
+<span id="cb447-2"><a href="machine-learning-in-r-machine-learning.html#cb447-2"></a>tss &lt;-<span class="st"> </span><span class="kw">sum</span>((test_set[, <span class="dv">1</span>] <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(test_set[, <span class="dv">1</span>])) <span class="op">^</span><span class="st"> </span><span class="dv">2</span>)  <span class="co">## somma totale dei quadrati</span></span>
+<span id="cb447-3"><a href="machine-learning-in-r-machine-learning.html#cb447-3"></a>rsq &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>rss<span class="op">/</span>tss</span>
+<span id="cb447-4"><a href="machine-learning-in-r-machine-learning.html#cb447-4"></a>rsq</span></code></pre></div>
+<pre><code>## [1] 0.7272982</code></pre>
+<p>Ricordate il discorso delle black-boxes? Vi sarete resi conto che, a meno che non andiamo a vedere da vicino ognuno dei 500 alberi (follia!!!), non è pssibile vedere quali variabili predittive incidano di più sul processo predittivo. Per ovviare a ciò, il pacchetto randomForest offre una funzione che stima l’importanze delle variabili.</p>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="machine-learning-in-r-machine-learning.html#cb449-1"></a><span class="kw">varImpPlot</span>(rf.fit)</span></code></pre></div>
+<p><img src="03-Machine-Learning_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>L’importanza di ciascuna variabile è valutata sulla base di due criteri:</p>
+<ul>
+<li><p><strong>MeanDecreaseAccuracy</strong>: fornisce una stima approssimativa della perdita di prestazioni predittive quando tale variabile particolare viene omessa dal l’insieme degli allenamenti. Avvertenza: se due variabili sono un po’ ridondanti, allora omettere una di esse potrebbe non portare a enormi guadagni nelle prestazioni di previsione, ma renderebbe la seconda variabile più importante.</p></li>
+<li><p><strong>MeandecreaseGini</strong>: Gini è una misura dell’impurità dei nodi. Pensatela in questo modo: se usate questa funzione per dividere i dati, quanto saranno puri i nodi? Massima purezza significa che ogni nodo contiene solo elementi di una singola classe. La valutazione della diminuzione di Gini quando quella caratteristica è omessa conduce ad una comprensione di quanto importante quella caratteristica deve dividere correttamente i dati.</p></li>
+</ul>
+<p>Si noti che queste misure sono utilizzate per classificare le variabili in termini di importanza e, quindi, i loro valori assoluti potrebbero essere ignorati.</p>
+
+<div id="refs" class="references">
+<div>
+<p>Cockerham, C. Clark. 1969. “Variance of Gene Frequencies.” <em>Evolution</em> 23 (1): 72. <a href="https://doi.org/10.2307/2406485">https://doi.org/10.2307/2406485</a>.</p>
+</div>
+<div>
+<p>Evanno, G., S. Regnaut, and J. Goudet. 2005. “Detecting the number of clusters of individuals using the software STRUCTURE: A simulation study.” <em>Molecular Ecology</em> 14 (8): 2611–20. <a href="https://doi.org/10.1111/j.1365-294X.2005.02553.x">https://doi.org/10.1111/j.1365-294X.2005.02553.x</a>.</p>
+</div>
+<div>
+<p>Holsinger, Kent E, and Bruce S Weir. 2009. “Genetics in geographically structured populations: defining, estimating and interpreting F&lt;sub&gt;st&lt;/sub&gt;.” <em>Nature Reviews. Genetics</em> 10 (9): 639–50. <a href="https://doi.org/10.1038/nrg2611">https://doi.org/10.1038/nrg2611</a>.</p>
+</div>
+<div>
+<p>Morales‐Hojas, Ramiro, Jingxuan Sun, Fernando Alvira Iraizoz, Xiaoling Tan, and Julian Chen. 2020. “Contrasting population structure and demographic history of cereal aphids in different environmental and agricultural landscapes.” <em>Ecology and Evolution</em> 10 (18): 9647–62. <a href="https://doi.org/10.1002/ece3.6565">https://doi.org/10.1002/ece3.6565</a>.</p>
+</div>
+<div>
+<p>Paradis, Emmanuel. 2012. <em>Analysis of Phylogenetics and Evolution with R</em>. Edited by Giovanni G. Parmigiani Robert Gentleman Kurt Hornik. Second. Use R! Springer, New York, NY.</p>
+</div>
+<div>
+<p>Pritchard, J K, M. Stephens, and P Donnelly. 2000. “Inference of population structure using multilocus genotype data.” <em>Genetics</em> 155 (2): 945–59. <a href="https://doi.org/10.1111/j.1471-8286.2007.01758.x">https://doi.org/10.1111/j.1471-8286.2007.01758.x</a>.</p>
+</div>
+<div>
+<p>Stamatakis, Alexandros. 2014. “RAxML version 8: A tool for phylogenetic analysis and post-analysis of large phylogenies.” <em>Bioinformatics</em>. <a href="https://doi.org/10.1093/bioinformatics/btu033">https://doi.org/10.1093/bioinformatics/btu033</a>.</p>
+</div>
+<div>
+<p>Taylor, Zachary S., and Susan M. G. Hoffman. 2012. “Microsatellite genetic structure and cytonuclear discordance in naturally fragmented populations of deer mice (peromyscus maniculatus).” <em>Journal of Heredity</em> 103 (1): 71–79. <a href="https://doi.org/10.1093/jhered/esr100">https://doi.org/10.1093/jhered/esr100</a>.</p>
+</div>
+<div>
+<p>Wright, S. 1951. “The genetical structure of populations.” <em>Annals of Eugenics</em> 15: 323–54. <a href="https://doi.org/10.2307/2407273">https://doi.org/10.2307/2407273</a>.</p>
+</div>
+<div>
+<p>Wright, Sewall. 1931. “Evolution in Mendelian populations.” <em>Bulletin of Mathematical Biology</em> 52 (1-2): 241–95. <a href="https://doi.org/10.1016/S0092-8240(05)80011-4">https://doi.org/10.1016/S0092-8240(05)80011-4</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="gen.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Libro_MIR.pdf", "Libro_MIR.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
