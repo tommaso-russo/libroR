@@ -3768,7 +3768,7 @@ sort(x)
 ```
 
 ```
-##  [1] 10 11 19 25 34 35 57 72 79 90
+##  [1]  4  8 12 18 22 24 53 78 94 97
 ```
 
 ```r
@@ -3776,7 +3776,7 @@ sort(x, decreasing = T)
 ```
 
 ```
-##  [1] 90 79 72 57 35 34 25 19 11 10
+##  [1] 97 94 78 53 24 22 18 12  8  4
 ```
 
 **order**, infine, ci permette di estrarre gli indici di posizione ordinati degli elementi di un oggetto.
@@ -3789,7 +3789,7 @@ x
 ```
 
 ```
-##  [1] 70 18 85 98 42 59 16 66 81 71
+##  [1]  85  14  61  55  11 100  40  41   6  25
 ```
 
 ```r
@@ -3797,7 +3797,7 @@ sort(x)
 ```
 
 ```
-##  [1] 16 18 42 59 66 70 71 81 85 98
+##  [1]   6  11  14  25  40  41  55  61  85 100
 ```
 
 ```r
@@ -3805,7 +3805,7 @@ order(x)
 ```
 
 ```
-##  [1]  7  2  5  6  8  1 10  9  3  4
+##  [1]  9  5  2 10  7  8  4  3  1  6
 ```
 
 ```r
@@ -3813,14 +3813,53 @@ order(x, decreasing = T)
 ```
 
 ```
-##  [1]  4  3  9 10  1  8  6  5  2  7
+##  [1]  6  1  3  4  8  7 10  2  5  9
 ```
 
 Passiamo ora a un gruppo di funzione utili per combinare tra loro diversi oggetti.
 
-
-
 ### sample
+
+Più che per la combinazione, **sample** serve per la ri-combinazione: mediante questa funzione è possibile generare un  nuovo vettore _campionando_ (_sampling_) gli elementi di un altro vettore. Gli argomenti da fornire a questa funzione sono:
+
+1. **x**, cioè l'insieme dei dati da cui estrarre i valori campionati. Generalmente è un vettore numerico ma può essere anche di altro tipo
+2. **size**, cioè il numero di osservazioni che vogliamo estrarre. Qui può nascere un problema. Di _default_, **sample** si comporta come il croupier nella tombola: ogni elemento estratto da **x** viene rimosso da **x**, per cui **x** non può contenere un  numero di elementi minore del valore di **size**.... a meno che....
+3. **replace** (o **rep**) è l'opzione che, se impostata come TRUE, autorizza R a ricampionare gli stessi elementi di **x**, senza rimuovere i valori estratti
+4. Sempre per _default_, la funzione **sample** estrae "a caso "gli elementi di **x** assegnando a ciascuno di essi la stessa probabilità di estrazione. Mediante l'argomento **prob** è possibile però indicare a R un valori di probabilità per ogni elemento di **x**.
+
+Esaminiamo alcuni esempi:
+
+
+```r
+x = 1:10
+y = sample(x, 3)
+y
+```
+
+```
+## [1] 5 8 6
+```
+
+```r
+y = sample(x, 20, rep = TRUE)
+y
+```
+
+```
+##  [1]  9  6  1  9  9  4 10  3  3 10 10  3 10  1  6  3  3  5  9  4
+```
+
+```r
+y = sample(x, 10, prob = c(1, rep(0.1, 9)))
+y
+```
+
+```
+##  [1]  3  1  9  4 10  7  6  2  5  8
+```
+
+
+
 ### apply
 ### which
 ### match
@@ -3830,6 +3869,9 @@ Passiamo ora a un gruppo di funzione utili per combinare tra loro diversi oggett
 ### merge
 ### cbind
 ### rbind
+
+
+Il prossimo gruppo da esaminare è quello delle funzioni statistiche di base.
 
 ### min, max, range
 ### summary
