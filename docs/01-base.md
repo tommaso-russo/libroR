@@ -3719,6 +3719,7 @@ table(iris$Species)
 ##     setosa versicolor  virginica 
 ##         50         50         50
 ```
+Gli oggetti che restituisce questa funzione sono delle **tabelle** che corrispondono a vettori nel caso in cui siano stati generati da un vettore (una singola variabile).
 
 Quella dell'esempio è una **tabella di contingenza** per la variabile specie, ma possiamo ottenere tabella combinando più variabili, dandole come argomento a **table** e separandolo, come sempre, con le virgole.
 Vediamo un esempio intuitivo.
@@ -3740,6 +3741,7 @@ table(iris$color, iris$Species)
 ```
 
 In questo caso abbiamo generato una nuova colonna di iris, chiamata **color**, e contenente valori casuali di rosso e di blu.
+
 
 
 ### rev, sort e order
@@ -3768,7 +3770,7 @@ sort(x)
 ```
 
 ```
-##  [1]  4  8 12 18 22 24 53 78 94 97
+##  [1]  5 15 22 38 58 62 65 74 81 85
 ```
 
 ```r
@@ -3776,7 +3778,7 @@ sort(x, decreasing = T)
 ```
 
 ```
-##  [1] 97 94 78 53 24 22 18 12  8  4
+##  [1] 85 81 74 65 62 58 38 22 15  5
 ```
 
 **order**, infine, ci permette di estrarre gli indici di posizione ordinati degli elementi di un oggetto.
@@ -3789,7 +3791,7 @@ x
 ```
 
 ```
-##  [1]  85  14  61  55  11 100  40  41   6  25
+##  [1] 52 10 68 62 36 96  2 80 94 67
 ```
 
 ```r
@@ -3797,7 +3799,7 @@ sort(x)
 ```
 
 ```
-##  [1]   6  11  14  25  40  41  55  61  85 100
+##  [1]  2 10 36 52 62 67 68 80 94 96
 ```
 
 ```r
@@ -3805,7 +3807,7 @@ order(x)
 ```
 
 ```
-##  [1]  9  5  2 10  7  8  4  3  1  6
+##  [1]  7  2  5  1  4 10  3  8  9  6
 ```
 
 ```r
@@ -3813,7 +3815,7 @@ order(x, decreasing = T)
 ```
 
 ```
-##  [1]  6  1  3  4  8  7 10  2  5  9
+##  [1]  6  9  8  3 10  4  1  5  2  7
 ```
 
 Passiamo ora a un gruppo di funzione utili per combinare tra loro diversi oggetti.
@@ -3837,7 +3839,7 @@ y
 ```
 
 ```
-## [1] 5 8 6
+## [1]  5 10  8
 ```
 
 ```r
@@ -3846,29 +3848,60 @@ y
 ```
 
 ```
-##  [1]  9  6  1  9  9  4 10  3  3 10 10  3 10  1  6  3  3  5  9  4
+##  [1] 10  8  6  9  5  6  4  9  8  9  8  1  3  7  4  2  5 10  3  3
 ```
 
 ```r
-y = sample(x, 10, prob = c(1, rep(0.1, 9)))
+y = sample(x, 30, rep = TRUE, prob = c(1, rep(0.1, 9)))
 y
 ```
 
 ```
-##  [1]  3  1  9  4 10  7  6  2  5  8
+##  [1]  1  9  1 10  1  8  1  1  1  8  3  1  1  1  1  2  1  4  7  1  1  4  1  1  1
+## [26]  5  1  3  3  1
 ```
 
+Dunque, nei primi due esempi abbiamo visto come usare l'opzione **rep**, nell'ultimo esempio possiamo notare come le probabilità di estrazione, fortemente sbilanciate a favore del valore 1, si riflettono sulla composizione del campione estratto.
 
+### cbind e rbind
+
+Queste due funzioni ci consentono di "incollare" insieme vettori, matrici o data frame. In particolare **cbind** (column bind) permette di incollare colonne, mentre **rbind** permette di incollare righe. Il vincolo principale di queste operazioni è legato alla coerenza della geometria, degli attributi e anche dei nomi. Ad esempio, posso incollare insieme righe di due data frame se esse sono omogenee rispetto alle colonne
+
+
+```r
+small_iris = rbind(iris[1,], iris[51,], iris[150,])
+small_iris
+```
+
+```
+##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species  id color
+## 1            5.1         3.5          1.4         0.2     setosa   1   red
+## 51           7.0         3.2          4.7         1.4 versicolor  51   red
+## 150          5.9         3.0          5.1         1.8  virginica 150  blue
+```
+
+### which
+
+Abbiamo già parlato di questa funzione in precedenza (Sezione 4.12 a proposito dell'Algebra di Boole). 
+
+
+### match
+
+
+
+
+### intersect
+
+### setdiff
+
+### union
+
+### merge
 
 ### apply
-### which
-### match
-### intersect
-### setdiff
-### union
-### merge
-### cbind
-### rbind
+
+
+
 
 
 Il prossimo gruppo da esaminare è quello delle funzioni statistiche di base.

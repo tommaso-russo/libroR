@@ -31,6 +31,8 @@ biblio-style: apalike
 # Copertina {#Copertina}
 
 ![](Images/coverR.png)
+Questo manuale è stato realizzato grazie al supporto del Consorzio Interuniversitario delle Scienze del Mare [CoNISMa](http://www.conisma.it/it/). 
+
 
 # Prefazione {#Prefazione}
 

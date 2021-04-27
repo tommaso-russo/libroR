@@ -45,15 +45,14 @@ unique
 table
 rev-sort-e-order
 sample
-apply
+cbind-e-rbind
 which
 match
 intersect
 setdiff
 union
 merge
-cbind
-rbind
+apply
 min-max-range
 summary
 cumsum
@@ -99,3 +98,4 @@ concludendo
 algoritmi-di-machine-learning-in-r
 decision-trees
 random-forests
+bibliografia
