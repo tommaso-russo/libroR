@@ -3770,7 +3770,7 @@ sort(x)
 ```
 
 ```
-##  [1]  5 15 22 38 58 62 65 74 81 85
+##  [1]  1 21 34 42 48 54 70 93 94 98
 ```
 
 ```r
@@ -3778,7 +3778,7 @@ sort(x, decreasing = T)
 ```
 
 ```
-##  [1] 85 81 74 65 62 58 38 22 15  5
+##  [1] 98 94 93 70 54 48 42 34 21  1
 ```
 
 **order**, infine, ci permette di estrarre gli indici di posizione ordinati degli elementi di un oggetto.
@@ -3791,7 +3791,7 @@ x
 ```
 
 ```
-##  [1] 52 10 68 62 36 96  2 80 94 67
+##  [1] 51 69 90 35 72 79 11 76 13 43
 ```
 
 ```r
@@ -3799,7 +3799,7 @@ sort(x)
 ```
 
 ```
-##  [1]  2 10 36 52 62 67 68 80 94 96
+##  [1] 11 13 35 43 51 69 72 76 79 90
 ```
 
 ```r
@@ -3807,7 +3807,7 @@ order(x)
 ```
 
 ```
-##  [1]  7  2  5  1  4 10  3  8  9  6
+##  [1]  7  9  4 10  1  2  5  8  6  3
 ```
 
 ```r
@@ -3815,7 +3815,7 @@ order(x, decreasing = T)
 ```
 
 ```
-##  [1]  6  9  8  3 10  4  1  5  2  7
+##  [1]  3  6  8  5  2  1 10  4  9  7
 ```
 
 Passiamo ora a un gruppo di funzione utili per combinare tra loro diversi oggetti.
@@ -3839,7 +3839,7 @@ y
 ```
 
 ```
-## [1]  5 10  8
+## [1] 4 6 2
 ```
 
 ```r
@@ -3848,7 +3848,7 @@ y
 ```
 
 ```
-##  [1] 10  8  6  9  5  6  4  9  8  9  8  1  3  7  4  2  5 10  3  3
+##  [1]  2  6  9 10  7 10  9 10 10  2  1 10  9  9  6  3  7  1  5  3
 ```
 
 ```r
@@ -3857,8 +3857,8 @@ y
 ```
 
 ```
-##  [1]  1  9  1 10  1  8  1  1  1  8  3  1  1  1  1  2  1  4  7  1  1  4  1  1  1
-## [26]  5  1  3  3  1
+##  [1]  1  1  1  1  5  1  1  2  5  1  1  3  3  1  1  5  1  1 10  1  1  4  1  6  1
+## [26]  1  1  1  4  8
 ```
 
 Dunque, nei primi due esempi abbiamo visto come usare l'opzione **rep**, nell'ultimo esempio possiamo notare come le probabilità di estrazione, fortemente sbilanciate a favore del valore 1, si riflettono sulla composizione del campione estratto.
@@ -3869,15 +3869,16 @@ Queste due funzioni ci consentono di "incollare" insieme vettori, matrici o data
 
 
 ```r
+data(iris)
 small_iris = rbind(iris[1,], iris[51,], iris[150,])
 small_iris
 ```
 
 ```
-##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species  id color
-## 1            5.1         3.5          1.4         0.2     setosa   1   red
-## 51           7.0         3.2          4.7         1.4 versicolor  51   red
-## 150          5.9         3.0          5.1         1.8  virginica 150  blue
+##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+## 1            5.1         3.5          1.4         0.2     setosa
+## 51           7.0         3.2          4.7         1.4 versicolor
+## 150          5.9         3.0          5.1         1.8  virginica
 ```
 
 ### which
@@ -3887,16 +3888,120 @@ Abbiamo già parlato di questa funzione in precedenza (Sezione 4.12 a proposito 
 
 ### match
 
+Si tratta di una funzione molto utile per associare vettori diversi. Nello specifico, **match** individua tutti gli elementi del vettore **x** (primo argomento) che corrispondono a elementi del vettore **table** (secondo argomento). Vediamo due esempi
 
 
 
-### intersect
+```r
+v1 = c("A","B","B","C","A")
+v2 = c("A", "B", "C", "D", "E", "F", "G")
 
-### setdiff
+match(x = v1, table = v2)
+```
 
-### union
+```
+## [1] 1 2 2 3 1
+```
+
+```r
+match(x = v2, table = v1)
+```
+
+```
+## [1]  1  2  4 NA NA NA NA
+```
+
+Abbiamo generato due vettori, _v1_ e _v2_, il primo dei quali contiene meno valori univoci e alcune duplicazioni rispetto al secondo.
+Quando abbiamo confrontato il primo vettore usando come riferimento (**table**) il secondo, otteniamo dei valori numerici che altro non sono se non gli indici di posizione degli elementi di _v1_ rispetto a _v2_. Viceversa, abbiamo ottenuto 3 valori numerici e 4 NA poichè gli ultimi 4 elementi di _v2_ non hanno riscontro in _v1_.
+
+
+### intersect, setdiff, e union
+
+Con questa triade di funzioni facciamo capolino nel salotto di **George Boole**. Come suggeriscono i loro nomi, **intersect** serve a fare intersezioni, **union** a fare unioni e **setdiff** calcolare la differenza simmetrica (insieme complementare).
+Ad esempio:
+
+
+```r
+v1 = c("A","B","B","C","A","H")
+v2 = c("A", "B", "C", "D", "E", "F", "G")
+
+intersect(v1, v2)
+```
+
+```
+## [1] "A" "B" "C"
+```
+
+```r
+union(v1, v2)
+```
+
+```
+## [1] "A" "B" "C" "H" "D" "E" "F" "G"
+```
+
+```r
+setdiff(v1, v2)
+```
+
+```
+## [1] "H"
+```
+
+```r
+setdiff(v2, v1)
+```
+
+```
+## [1] "D" "E" "F" "G"
+```
+I primi due esempi sono immediati. Gli altri due meritano di essere guardati meglio: a seconda dell'ordine con cui forniamo gli argomenti otteniamo delle differenze simmetriche diverse. In particolare, otteniamo gli elementi del primo insieme che non sono comuni al secondo.
+Il limite di queste funzioni è che sono tutte capaci di operare solo su 2 argomenti alla volta.
 
 ### merge
+
+Chiunque abbiamo "risistemato" dei dati con un foglio di calcolo tipo excel sa bene come va a finire quando dobbiamo appaiare degli insiemi di dati che "si parlano" tra loro mediante una o più colonne ma differiscono per altre. Un gran pasticcio, che diventa ingestibile quando i dataset sono grandi e articolati.
+La funzione **merge** serve proprio per fondere due data frame che abbiano in comune delle colonne (usate come riferimento).
+Ad esempio:
+
+
+```r
+data(iris)
+iris$id = 1:150
+
+iris_c = data.frame(id = sample(1:150,150),
+                    color = factor(rep(c("red","blue"), 75),
+                    levels = c("red","blue")))
+
+head(iris_c)
+```
+
+```
+##    id color
+## 1 122   red
+## 2  35  blue
+## 3  18   red
+## 4  57  blue
+## 5  40   red
+## 6  13  blue
+```
+
+```r
+iris_full = merge(iris, iris_c)
+
+head(iris_full)
+```
+
+```
+##   id Sepal.Length Sepal.Width Petal.Length Petal.Width Species color
+## 1  1          5.1         3.5          1.4         0.2  setosa   red
+## 2  2          4.9         3.0          1.4         0.2  setosa   red
+## 3  3          4.7         3.2          1.3         0.2  setosa  blue
+## 4  4          4.6         3.1          1.5         0.2  setosa   red
+## 5  5          5.0         3.6          1.4         0.2  setosa   red
+## 6  6          5.4         3.9          1.7         0.4  setosa  blue
+```
+
 
 ### apply
 

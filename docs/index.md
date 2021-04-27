@@ -5,7 +5,7 @@ title: "Un viaggio nell'ambiente R"
 author: 
 - name: Tommaso Russo, Giuliano Colosimo, Ciro Fanelli, Simone Franceschini, Antonio Parisi
 
-date: "2021-04-26"
+date: "2021-04-27"
 
 output:
   html_document:
@@ -51,6 +51,10 @@ Quest'opera non vuole essere nessuna delle due... ed entrambe. Ci piacerebbe int
 
 Il filo conduttore usato negli esempi e nell'approccio concettuale appartiene sempre al campo delle scienze naturali. D'altronde la squadra degli autori comprende due ecologi, uno statistico e uno zoologo... poi la competizione ha fatto il suo corso e l'opera ha preso una piega che privilegia temi come il cambiamento climatico e gli impatti dell'uomo sull'ambiente. Ma la vera storia dietro questo team e questa iniziativa è quella di un gruppo di colleghi a cui piace lavorare insieme e che hanno scoperto che le loro competenze si integrano con un arricchimento reciproco.
 
+Questo manuale non ha la pretesa di essere esaustivo. Nei vari capitoli sono descritti solo alcuni dei tanti argomenti e metodi presenti in R e, sia nella parte di base che nei capitoli applicativi, gli autori hanno cercato un compromesso tra completezza del tema trattato e necessità di accompagnare i neofiti lungo un percorso di apprendimento progressivo e rapido.
+Questo manuale è e sarà il più a lungo possibile un _work-in-progress_, che sarà ampliato e approfondito in base alla disponibilità degli autori presenti e futuri.
+Se avete voglia di partecipare alla sua crescita e diventare co-autori, scrivete a questo indirizzo email: **Tommaso.Russo@Uniroma2.it**.
+Sarete i benvenuti a bordo!
 
 # Gli autori {#Autori}
 

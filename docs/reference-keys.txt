@@ -48,9 +48,7 @@ sample
 cbind-e-rbind
 which
 match
-intersect
-setdiff
-union
+intersect-setdiff-e-union
 merge
 apply
 min-max-range
