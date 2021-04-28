@@ -67,7 +67,13 @@ read.csv
 write.csv
 readrds
 saverds
-jpeg-bmp-png-tiff
+un-pò-di-grafici-di-base
+plot
+hist
+barplot
+boxplot
+plot2
+jpeg-bmp-png-tiff-e-pdf
 gen
 gen_intro
 perché-la-genetica-con-r

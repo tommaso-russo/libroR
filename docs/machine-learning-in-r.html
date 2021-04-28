@@ -203,7 +203,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.14.38" data-path="base.html"><a href="base.html#write.csv"><i class="fa fa-check"></i><b>4.14.38</b> write.csv</a></li>
 <li class="chapter" data-level="4.14.39" data-path="base.html"><a href="base.html#readrds"><i class="fa fa-check"></i><b>4.14.39</b> readRDS</a></li>
 <li class="chapter" data-level="4.14.40" data-path="base.html"><a href="base.html#saverds"><i class="fa fa-check"></i><b>4.14.40</b> saveRDS</a></li>
-<li class="chapter" data-level="4.14.41" data-path="base.html"><a href="base.html#jpeg-bmp-png-tiff"><i class="fa fa-check"></i><b>4.14.41</b> jpeg, bmp, png, tiff</a></li>
+</ul></li>
+<li class="chapter" data-level="4.15" data-path="base.html"><a href="base.html#un-pò-di-grafici-di-base"><i class="fa fa-check"></i><b>4.15</b> Un pò di grafici di base</a><ul>
+<li class="chapter" data-level="4.15.1" data-path="base.html"><a href="base.html#plot"><i class="fa fa-check"></i><b>4.15.1</b> plot</a></li>
+<li class="chapter" data-level="4.15.2" data-path="base.html"><a href="base.html#hist"><i class="fa fa-check"></i><b>4.15.2</b> hist</a></li>
+<li class="chapter" data-level="4.15.3" data-path="base.html"><a href="base.html#barplot"><i class="fa fa-check"></i><b>4.15.3</b> barplot</a></li>
+<li class="chapter" data-level="4.15.4" data-path="base.html"><a href="base.html#boxplot"><i class="fa fa-check"></i><b>4.15.4</b> boxplot</a></li>
+<li class="chapter" data-level="4.15.5" data-path="base.html"><a href="base.html#plot2"><i class="fa fa-check"></i><b>4.15.5</b> plot(2)</a></li>
+<li class="chapter" data-level="4.15.6" data-path="base.html"><a href="base.html#jpeg-bmp-png-tiff-e-pdf"><i class="fa fa-check"></i><b>4.15.6</b> jpeg, bmp, png, tiff e pdf</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="gen.html"><a href="gen.html"><i class="fa fa-check"></i><b>5</b> Analisi di dati genetici</a><ul>
@@ -307,9 +314,9 @@ La ragione è piuttosto semplice se ci pensate: se ci adattiamo ad un modello pr
 <h3><span class="header-section-number">6.1.3</span> Dati</h3>
 <p>I set di dati scelti per questo libro ci permetteranno di illustrare le diverse caratteristiche degli algoritmi di machine learning presentati. Di conseguenza, i set di dati esemplari che vi consigliamo di utilizzare sono quelli più comunemente utilizzati nel mondo di R (es. <em>mtcars</em>, <em>iris</em>, <em>geyser</em>).
 L’<strong>iris dataset</strong> può essere facilmente scaricato ed esplorato utilizzando il pacchetto <em>datasets</em>:</p>
-<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="machine-learning-in-r.html#cb444-1"></a><span class="kw">library</span>(datasets)</span>
-<span id="cb444-2"><a href="machine-learning-in-r.html#cb444-2"></a><span class="kw">data</span>(iris)</span>
-<span id="cb444-3"><a href="machine-learning-in-r.html#cb444-3"></a><span class="kw">summary</span>(iris)</span></code></pre></div>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="machine-learning-in-r.html#cb480-1"></a><span class="kw">library</span>(datasets)</span>
+<span id="cb480-2"><a href="machine-learning-in-r.html#cb480-2"></a><span class="kw">data</span>(iris)</span>
+<span id="cb480-3"><a href="machine-learning-in-r.html#cb480-3"></a><span class="kw">summary</span>(iris)</span></code></pre></div>
 <pre><code>##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
 ##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
 ##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
@@ -325,8 +332,8 @@ L’<strong>iris dataset</strong> può essere facilmente scaricato ed esplorato 
 ##                 
 ## </code></pre>
 <p>Ugualmente per quanto riguarda l’<strong>mtcars dataset</strong>:</p>
-<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="machine-learning-in-r.html#cb446-1"></a><span class="kw">data</span>(mtcars)</span>
-<span id="cb446-2"><a href="machine-learning-in-r.html#cb446-2"></a><span class="kw">head</span>(mtcars, <span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="machine-learning-in-r.html#cb482-1"></a><span class="kw">data</span>(mtcars)</span>
+<span id="cb482-2"><a href="machine-learning-in-r.html#cb482-2"></a><span class="kw">head</span>(mtcars, <span class="dv">6</span>)</span></code></pre></div>
 <pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
 ## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
 ## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
@@ -356,16 +363,16 @@ I due modi più comuni di dividere i dati sono il <strong>campionamento casuale 
 <p class="caption">Campionamento casuale semplice</p>
 </div>
 <p>Dato che il campionamento è un processo casuale, occore quindi impostare il generatore di numeri casuali con un funzione <em>set.seed</em> per ottenere dei risultati riproducibili. In questo questo libro, useremo spesso il <em>set.seed(123)</em> per la riproducibilità, ma il numero stesso non ha un significato speciale.</p>
-<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="machine-learning-in-r.html#cb448-1"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)  <span class="co"># per la riproducibilità</span></span>
-<span id="cb448-2"><a href="machine-learning-in-r.html#cb448-2"></a>index_n &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(iris), <span class="kw">round</span>(<span class="kw">nrow</span>(iris) <span class="op">*</span><span class="st"> </span><span class="fl">0.7</span>))</span>
-<span id="cb448-3"><a href="machine-learning-in-r.html#cb448-3"></a>training_set &lt;-<span class="st"> </span>iris[index_n, ]</span>
-<span id="cb448-4"><a href="machine-learning-in-r.html#cb448-4"></a>test_set &lt;-<span class="st"> </span>iris[<span class="op">-</span>index_n, ]</span></code></pre></div>
+<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="machine-learning-in-r.html#cb484-1"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)  <span class="co"># per la riproducibilità</span></span>
+<span id="cb484-2"><a href="machine-learning-in-r.html#cb484-2"></a>index_n &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(iris), <span class="kw">round</span>(<span class="kw">nrow</span>(iris) <span class="op">*</span><span class="st"> </span><span class="fl">0.7</span>))</span>
+<span id="cb484-3"><a href="machine-learning-in-r.html#cb484-3"></a>training_set &lt;-<span class="st"> </span>iris[index_n, ]</span>
+<span id="cb484-4"><a href="machine-learning-in-r.html#cb484-4"></a>test_set &lt;-<span class="st"> </span>iris[<span class="op">-</span>index_n, ]</span></code></pre></div>
 <p>Con una dimensione del campione sufficiente, questo metodo di campionamento si tradurrà in genere in una distribuzione normale della nostra variabile <em>Y</em> (nel caso sia numerica) tra il training e i test set, oppure in una simile distribuzione delle categorie nel caso in cui il nostro sia un problam di classificazione, come illustrato di seguito.</p>
-<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="machine-learning-in-r.html#cb449-1"></a><span class="kw">table</span>(training_set<span class="op">$</span>Species)</span></code></pre></div>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="machine-learning-in-r.html#cb485-1"></a><span class="kw">table</span>(training_set<span class="op">$</span>Species)</span></code></pre></div>
 <pre><code>## 
 ##     setosa versicolor  virginica 
 ##         36         32         37</code></pre>
-<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="machine-learning-in-r.html#cb451-1"></a><span class="kw">table</span>(test_set<span class="op">$</span>Species)</span></code></pre></div>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="machine-learning-in-r.html#cb487-1"></a><span class="kw">table</span>(test_set<span class="op">$</span>Species)</span></code></pre></div>
 <pre><code>## 
 ##     setosa versicolor  virginica 
 ##         14         18         13</code></pre>
@@ -375,28 +382,28 @@ I due modi più comuni di dividere i dati sono il <strong>campionamento casuale 
 <h3><span class="header-section-number">6.2.2</span> Campionamento stratificato</h3>
 <p>Se il nostro insieme di dati non è abbastanza grande da permettere un apporccio casuale o se vogliamo controllare esplicitamente il campionamento in modo che il nostro training e test set abbiano simili distribuzioni della variabile <em>Y</em>, allora è necessario utilizzare un campionamento stratificato. Questo apporccio è comunemente più utilizzato con problemi di classificazione in cui la variabile di risposta può essere gravemente squilibrata (ad esempio, 90% delle osservazioni con risposta “Sì” e 10% con risposta “No”). Tuttavia, possiamo anche applicare il campionamento stratificato a problemi di regressione per set di dati che hanno una piccola dimensione del campione e in cui la variabile di risposta si discosta fortemente dalla normalità.</p>
 <p>Il modo più semplice per eseguire il campionamento stratificato su una variabile di risposta è usare il pacchetto <em>rsample</em>, dove si specifica la variabile di risposta. Applicando il campionamento stratificato sul nostro iris dataset, ovviamente scopriremo che le variabili categoriche sono ugualmente presenti nel nostro insieme.</p>
-<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="machine-learning-in-r.html#cb453-1"></a><span class="kw">library</span>(rsample)  <span class="co"># per la riproducibilità</span></span>
-<span id="cb453-2"><a href="machine-learning-in-r.html#cb453-2"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(iris<span class="op">$</span>Species))</span></code></pre></div>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="machine-learning-in-r.html#cb489-1"></a><span class="kw">library</span>(rsample)  <span class="co"># per la riproducibilità</span></span>
+<span id="cb489-2"><a href="machine-learning-in-r.html#cb489-2"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(iris<span class="op">$</span>Species))</span></code></pre></div>
 <pre><code>## 
 ##     setosa versicolor  virginica 
 ##  0.3333333  0.3333333  0.3333333</code></pre>
-<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="machine-learning-in-r.html#cb455-1"></a>split_n  &lt;-<span class="st"> </span><span class="kw">initial_split</span>(iris, <span class="dt">prop =</span> <span class="fl">0.7</span>, </span>
-<span id="cb455-2"><a href="machine-learning-in-r.html#cb455-2"></a>                              <span class="dt">strata =</span> <span class="st">&quot;Species&quot;</span>)</span>
-<span id="cb455-3"><a href="machine-learning-in-r.html#cb455-3"></a>training_set_strata  &lt;-<span class="st"> </span><span class="kw">training</span>(split_n)</span>
-<span id="cb455-4"><a href="machine-learning-in-r.html#cb455-4"></a>test_set_strata  &lt;-<span class="st"> </span><span class="kw">testing</span>(split_n)</span>
-<span id="cb455-5"><a href="machine-learning-in-r.html#cb455-5"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(training_set_strata<span class="op">$</span>Species))</span></code></pre></div>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="machine-learning-in-r.html#cb491-1"></a>split_n  &lt;-<span class="st"> </span><span class="kw">initial_split</span>(iris, <span class="dt">prop =</span> <span class="fl">0.7</span>, </span>
+<span id="cb491-2"><a href="machine-learning-in-r.html#cb491-2"></a>                              <span class="dt">strata =</span> <span class="st">&quot;Species&quot;</span>)</span>
+<span id="cb491-3"><a href="machine-learning-in-r.html#cb491-3"></a>training_set_strata  &lt;-<span class="st"> </span><span class="kw">training</span>(split_n)</span>
+<span id="cb491-4"><a href="machine-learning-in-r.html#cb491-4"></a>test_set_strata  &lt;-<span class="st"> </span><span class="kw">testing</span>(split_n)</span>
+<span id="cb491-5"><a href="machine-learning-in-r.html#cb491-5"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(training_set_strata<span class="op">$</span>Species))</span></code></pre></div>
 <pre><code>## 
 ##     setosa versicolor  virginica 
 ##  0.3333333  0.3333333  0.3333333</code></pre>
-<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="machine-learning-in-r.html#cb457-1"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(test_set_strata<span class="op">$</span>Species))</span></code></pre></div>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="machine-learning-in-r.html#cb493-1"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(test_set_strata<span class="op">$</span>Species))</span></code></pre></div>
 <pre><code>## 
 ##     setosa versicolor  virginica 
 ##  0.3333333  0.3333333  0.3333333</code></pre>
 <p>In questo caso quindi, il campionamento stratificato ci aiuta ad ottenere un uguale proporzione delle classi in ogni insieme di dati anche se non abbiamo ottenuto un risultato molto diverso da quello casuale. Ma supponiamo di avere un data set con una distribuzione della variabile categorica sbilanciata, come ad esempio una risposta <strong>Sì</strong> o <strong>No</strong>:</p>
-<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="machine-learning-in-r.html#cb459-1"></a><span class="kw">library</span>(wakefield)</span></code></pre></div>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="machine-learning-in-r.html#cb495-1"></a><span class="kw">library</span>(wakefield)</span></code></pre></div>
 <pre><code>## Warning: package &#39;wakefield&#39; was built under R version 4.0.2</code></pre>
-<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="machine-learning-in-r.html#cb461-1"></a>yn_data &lt;-<span class="st"> </span><span class="kw">answer</span>(<span class="dv">200</span>, <span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Sì&quot;</span>), <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.8</span>, <span class="fl">0.2</span>), <span class="dt">name =</span> <span class="st">&quot;Risposte&quot;</span>)</span>
-<span id="cb461-2"><a href="machine-learning-in-r.html#cb461-2"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(yn_data))</span></code></pre></div>
+<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="machine-learning-in-r.html#cb497-1"></a>yn_data &lt;-<span class="st"> </span><span class="kw">answer</span>(<span class="dv">200</span>, <span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Sì&quot;</span>), <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.8</span>, <span class="fl">0.2</span>), <span class="dt">name =</span> <span class="st">&quot;Risposte&quot;</span>)</span>
+<span id="cb497-2"><a href="machine-learning-in-r.html#cb497-2"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(yn_data))</span></code></pre></div>
 <pre><code>## yn_data
 ##    No    Sì 
 ## 0.805 0.195</code></pre>
@@ -419,50 +426,50 @@ Un secondo metodo è quello di utilizzare quello che viene chiamato un <strong>v
 </div>
 <p>Di conseguenza, con k-fold CV, ogni osservazione nei dati di addestramento sarà effettuata una sola volta per essere inclusa nella serie di test come illustrato nella figura 4. In pratica, si usa tipicamente <em>k=5</em> o <em>k=10</em>. Non esiste una regola formale per quanto riguarda le dimensioni di <em>k</em>; tuttavia, man mano che <em>k</em> diventa più grande, la differenza tra le prestazioni stimate e le prestazioni reali da vedere sul set di prova diminuirà. D’altra parte, usare <em>k</em> troppo grande può introdurre oneri computazionali.</p>
 <p>Alcuni pacchetti di machine learning (es. <em>h2o</em>) permettono di definire i gruppi per la k-fold CV all’interno delle loro funzioni. Se ciò non fosse possibile, non spaventatevi, ecco a voi un esempio su come fare:</p>
-<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="machine-learning-in-r.html#cb463-1"></a><span class="kw">library</span>(randomForest)</span></code></pre></div>
+<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="machine-learning-in-r.html#cb499-1"></a><span class="kw">library</span>(randomForest)</span></code></pre></div>
 <pre><code>## randomForest 4.6-14</code></pre>
 <pre><code>## Type rfNews() to see new features/changes/bug fixes.</code></pre>
-<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="machine-learning-in-r.html#cb466-1"></a>data &lt;-<span class="st"> </span>iris</span>
-<span id="cb466-2"><a href="machine-learning-in-r.html#cb466-2"></a></span>
-<span id="cb466-3"><a href="machine-learning-in-r.html#cb466-3"></a><span class="co"># In questo esempio, utilizziamo l&#39;iris data set per predire la &quot;Sepal Length&quot;</span></span>
-<span id="cb466-4"><a href="machine-learning-in-r.html#cb466-4"></a><span class="co"># a partire dalle altre variabili utilizzando una Random Forest (che vedremo più avanti).</span></span>
-<span id="cb466-5"><a href="machine-learning-in-r.html#cb466-5"></a></span>
-<span id="cb466-6"><a href="machine-learning-in-r.html#cb466-6"></a>k =<span class="st"> </span><span class="dv">5</span> <span class="co">#Folds</span></span>
-<span id="cb466-7"><a href="machine-learning-in-r.html#cb466-7"></a></span>
-<span id="cb466-8"><a href="machine-learning-in-r.html#cb466-8"></a><span class="co"># campione da 1 a k, nrow volte (il numero di osservazioni nel dataset)</span></span>
-<span id="cb466-9"><a href="machine-learning-in-r.html#cb466-9"></a>data<span class="op">$</span>id &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span>k, <span class="kw">nrow</span>(data), <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb466-10"><a href="machine-learning-in-r.html#cb466-10"></a>list &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span>k</span>
-<span id="cb466-11"><a href="machine-learning-in-r.html#cb466-11"></a></span>
-<span id="cb466-12"><a href="machine-learning-in-r.html#cb466-12"></a><span class="co"># il &quot;prediction&quot; e &quot;testset&quot; dataframes a cui aggiungiamo ogni iterazione di k</span></span>
-<span id="cb466-13"><a href="machine-learning-in-r.html#cb466-13"></a></span>
-<span id="cb466-14"><a href="machine-learning-in-r.html#cb466-14"></a>prediction &lt;-<span class="st"> </span><span class="kw">data.frame</span>()</span>
-<span id="cb466-15"><a href="machine-learning-in-r.html#cb466-15"></a>testsetCopy &lt;-<span class="st"> </span><span class="kw">data.frame</span>()</span>
-<span id="cb466-16"><a href="machine-learning-in-r.html#cb466-16"></a></span>
-<span id="cb466-17"><a href="machine-learning-in-r.html#cb466-17"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>k){</span>
-<span id="cb466-18"><a href="machine-learning-in-r.html#cb466-18"></a>  trainingset &lt;-<span class="st"> </span><span class="kw">subset</span>(data, id <span class="op">%in%</span><span class="st"> </span>list[<span class="op">-</span>i])</span>
-<span id="cb466-19"><a href="machine-learning-in-r.html#cb466-19"></a>  testset &lt;-<span class="st"> </span><span class="kw">subset</span>(data, id <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(i))</span>
-<span id="cb466-20"><a href="machine-learning-in-r.html#cb466-20"></a>  </span>
-<span id="cb466-21"><a href="machine-learning-in-r.html#cb466-21"></a>  <span class="co"># modello random forest </span></span>
-<span id="cb466-22"><a href="machine-learning-in-r.html#cb466-22"></a>  mymodel &lt;-<span class="st"> </span><span class="kw">randomForest</span>(trainingset<span class="op">$</span>Sepal.Length <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> trainingset, <span class="dt">ntree =</span> <span class="dv">100</span>)</span>
-<span id="cb466-23"><a href="machine-learning-in-r.html#cb466-23"></a>  </span>
-<span id="cb466-24"><a href="machine-learning-in-r.html#cb466-24"></a>  <span class="co"># rimuovere la variabile Y da predire</span></span>
-<span id="cb466-25"><a href="machine-learning-in-r.html#cb466-25"></a>  temp &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">predict</span>(mymodel, testset[,<span class="op">-</span><span class="dv">1</span>]))</span>
-<span id="cb466-26"><a href="machine-learning-in-r.html#cb466-26"></a>  <span class="co"># attaccare questa predizione al dataframe &quot;prediction&quot;</span></span>
-<span id="cb466-27"><a href="machine-learning-in-r.html#cb466-27"></a>  prediction &lt;-<span class="st"> </span><span class="kw">rbind</span>(prediction, temp)</span>
-<span id="cb466-28"><a href="machine-learning-in-r.html#cb466-28"></a>  </span>
-<span id="cb466-29"><a href="machine-learning-in-r.html#cb466-29"></a>  <span class="co"># attaccare il test set dell&#39;iterazione al data frame &quot;testsetCopy&quot;</span></span>
-<span id="cb466-30"><a href="machine-learning-in-r.html#cb466-30"></a>  <span class="co"># tenere solamente la colonna Sepal Length</span></span>
-<span id="cb466-31"><a href="machine-learning-in-r.html#cb466-31"></a>  testsetCopy &lt;-<span class="st"> </span><span class="kw">rbind</span>(testsetCopy, <span class="kw">as.data.frame</span>(testset[,<span class="dv">1</span>]))</span>
-<span id="cb466-32"><a href="machine-learning-in-r.html#cb466-32"></a>  </span>
-<span id="cb466-33"><a href="machine-learning-in-r.html#cb466-33"></a>}</span>
-<span id="cb466-34"><a href="machine-learning-in-r.html#cb466-34"></a><span class="co"># aggiungere predizioni e i valori osservati di Sepal Length</span></span>
-<span id="cb466-35"><a href="machine-learning-in-r.html#cb466-35"></a>result &lt;-<span class="st"> </span><span class="kw">cbind</span>(prediction, testsetCopy[, <span class="dv">1</span>])</span>
-<span id="cb466-36"><a href="machine-learning-in-r.html#cb466-36"></a><span class="kw">names</span>(result) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Predicted&quot;</span>, <span class="st">&quot;Actual&quot;</span>)</span>
-<span id="cb466-37"><a href="machine-learning-in-r.html#cb466-37"></a>result<span class="op">$</span>Difference &lt;-<span class="st"> </span><span class="kw">abs</span>(result<span class="op">$</span>Actual <span class="op">-</span><span class="st"> </span>result<span class="op">$</span>Predicted)</span>
-<span id="cb466-38"><a href="machine-learning-in-r.html#cb466-38"></a></span>
-<span id="cb466-39"><a href="machine-learning-in-r.html#cb466-39"></a><span class="co"># Come esempio, utilizziamo il  Mean Absolute Error per il calcolo dell&#39;errore </span></span>
-<span id="cb466-40"><a href="machine-learning-in-r.html#cb466-40"></a><span class="co"># (vedi più avanti per le metriche di errore) </span></span>
-<span id="cb466-41"><a href="machine-learning-in-r.html#cb466-41"></a><span class="kw">summary</span>(result<span class="op">$</span>Difference)</span></code></pre></div>
+<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="machine-learning-in-r.html#cb502-1"></a>data &lt;-<span class="st"> </span>iris</span>
+<span id="cb502-2"><a href="machine-learning-in-r.html#cb502-2"></a></span>
+<span id="cb502-3"><a href="machine-learning-in-r.html#cb502-3"></a><span class="co"># In questo esempio, utilizziamo l&#39;iris data set per predire la &quot;Sepal Length&quot;</span></span>
+<span id="cb502-4"><a href="machine-learning-in-r.html#cb502-4"></a><span class="co"># a partire dalle altre variabili utilizzando una Random Forest (che vedremo più avanti).</span></span>
+<span id="cb502-5"><a href="machine-learning-in-r.html#cb502-5"></a></span>
+<span id="cb502-6"><a href="machine-learning-in-r.html#cb502-6"></a>k =<span class="st"> </span><span class="dv">5</span> <span class="co">#Folds</span></span>
+<span id="cb502-7"><a href="machine-learning-in-r.html#cb502-7"></a></span>
+<span id="cb502-8"><a href="machine-learning-in-r.html#cb502-8"></a><span class="co"># campione da 1 a k, nrow volte (il numero di osservazioni nel dataset)</span></span>
+<span id="cb502-9"><a href="machine-learning-in-r.html#cb502-9"></a>data<span class="op">$</span>id &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span>k, <span class="kw">nrow</span>(data), <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb502-10"><a href="machine-learning-in-r.html#cb502-10"></a>list &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span>k</span>
+<span id="cb502-11"><a href="machine-learning-in-r.html#cb502-11"></a></span>
+<span id="cb502-12"><a href="machine-learning-in-r.html#cb502-12"></a><span class="co"># il &quot;prediction&quot; e &quot;testset&quot; dataframes a cui aggiungiamo ogni iterazione di k</span></span>
+<span id="cb502-13"><a href="machine-learning-in-r.html#cb502-13"></a></span>
+<span id="cb502-14"><a href="machine-learning-in-r.html#cb502-14"></a>prediction &lt;-<span class="st"> </span><span class="kw">data.frame</span>()</span>
+<span id="cb502-15"><a href="machine-learning-in-r.html#cb502-15"></a>testsetCopy &lt;-<span class="st"> </span><span class="kw">data.frame</span>()</span>
+<span id="cb502-16"><a href="machine-learning-in-r.html#cb502-16"></a></span>
+<span id="cb502-17"><a href="machine-learning-in-r.html#cb502-17"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>k){</span>
+<span id="cb502-18"><a href="machine-learning-in-r.html#cb502-18"></a>  trainingset &lt;-<span class="st"> </span><span class="kw">subset</span>(data, id <span class="op">%in%</span><span class="st"> </span>list[<span class="op">-</span>i])</span>
+<span id="cb502-19"><a href="machine-learning-in-r.html#cb502-19"></a>  testset &lt;-<span class="st"> </span><span class="kw">subset</span>(data, id <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(i))</span>
+<span id="cb502-20"><a href="machine-learning-in-r.html#cb502-20"></a>  </span>
+<span id="cb502-21"><a href="machine-learning-in-r.html#cb502-21"></a>  <span class="co"># modello random forest </span></span>
+<span id="cb502-22"><a href="machine-learning-in-r.html#cb502-22"></a>  mymodel &lt;-<span class="st"> </span><span class="kw">randomForest</span>(trainingset<span class="op">$</span>Sepal.Length <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> trainingset, <span class="dt">ntree =</span> <span class="dv">100</span>)</span>
+<span id="cb502-23"><a href="machine-learning-in-r.html#cb502-23"></a>  </span>
+<span id="cb502-24"><a href="machine-learning-in-r.html#cb502-24"></a>  <span class="co"># rimuovere la variabile Y da predire</span></span>
+<span id="cb502-25"><a href="machine-learning-in-r.html#cb502-25"></a>  temp &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">predict</span>(mymodel, testset[,<span class="op">-</span><span class="dv">1</span>]))</span>
+<span id="cb502-26"><a href="machine-learning-in-r.html#cb502-26"></a>  <span class="co"># attaccare questa predizione al dataframe &quot;prediction&quot;</span></span>
+<span id="cb502-27"><a href="machine-learning-in-r.html#cb502-27"></a>  prediction &lt;-<span class="st"> </span><span class="kw">rbind</span>(prediction, temp)</span>
+<span id="cb502-28"><a href="machine-learning-in-r.html#cb502-28"></a>  </span>
+<span id="cb502-29"><a href="machine-learning-in-r.html#cb502-29"></a>  <span class="co"># attaccare il test set dell&#39;iterazione al data frame &quot;testsetCopy&quot;</span></span>
+<span id="cb502-30"><a href="machine-learning-in-r.html#cb502-30"></a>  <span class="co"># tenere solamente la colonna Sepal Length</span></span>
+<span id="cb502-31"><a href="machine-learning-in-r.html#cb502-31"></a>  testsetCopy &lt;-<span class="st"> </span><span class="kw">rbind</span>(testsetCopy, <span class="kw">as.data.frame</span>(testset[,<span class="dv">1</span>]))</span>
+<span id="cb502-32"><a href="machine-learning-in-r.html#cb502-32"></a>  </span>
+<span id="cb502-33"><a href="machine-learning-in-r.html#cb502-33"></a>}</span>
+<span id="cb502-34"><a href="machine-learning-in-r.html#cb502-34"></a><span class="co"># aggiungere predizioni e i valori osservati di Sepal Length</span></span>
+<span id="cb502-35"><a href="machine-learning-in-r.html#cb502-35"></a>result &lt;-<span class="st"> </span><span class="kw">cbind</span>(prediction, testsetCopy[, <span class="dv">1</span>])</span>
+<span id="cb502-36"><a href="machine-learning-in-r.html#cb502-36"></a><span class="kw">names</span>(result) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Predicted&quot;</span>, <span class="st">&quot;Actual&quot;</span>)</span>
+<span id="cb502-37"><a href="machine-learning-in-r.html#cb502-37"></a>result<span class="op">$</span>Difference &lt;-<span class="st"> </span><span class="kw">abs</span>(result<span class="op">$</span>Actual <span class="op">-</span><span class="st"> </span>result<span class="op">$</span>Predicted)</span>
+<span id="cb502-38"><a href="machine-learning-in-r.html#cb502-38"></a></span>
+<span id="cb502-39"><a href="machine-learning-in-r.html#cb502-39"></a><span class="co"># Come esempio, utilizziamo il  Mean Absolute Error per il calcolo dell&#39;errore </span></span>
+<span id="cb502-40"><a href="machine-learning-in-r.html#cb502-40"></a><span class="co"># (vedi più avanti per le metriche di errore) </span></span>
+<span id="cb502-41"><a href="machine-learning-in-r.html#cb502-41"></a><span class="kw">summary</span>(result<span class="op">$</span>Difference)</span></code></pre></div>
 <pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
 ## 0.002942 0.124396 0.254740 0.314781 0.492432 1.272912</code></pre>
 <p>Non vi preoccupate se il funzionamento del modello di randomForest vi appare poco chiaro, avremo modo di esplorare in dettaglio i vari algoritmi di apprendimento nei prossimi paragrafi.</p>
@@ -477,10 +484,10 @@ Un secondo metodo è quello di utilizzare quello che viene chiamato un <strong>v
 <p>Data la procedura di resample, ogni campione di bootstrap è probabile che contenga valori duplicati. Le osservazioni originali non contenute in un particolare campione di bootstrap sono considerate <strong>out-of-bag (OOB)</strong>. Quando si avvia, un modello può essere costruito sui campioni selezionati e validato sui campioni OOB; questo è spesso fatto, ad esempio, nelle random forest (vedi più avanti).</p>
 <p>Dal momento che le osservazioni sono replicate in bootstrap, c’è una minore variabilità nella misura dell’errore rispetto a k-fold CV. Tuttavia, questo può anche aumentare la distorsione della stima dell’errore. Questo può essere problematico con set di dati più piccoli; tuttavia, per la maggior parte dei set di dati medio-grandi (maggiori di 1000) questa preoccupazione è spesso trascurabile.</p>
 <p>Per fare delle prove con il campionamento bootstrapping possiamo utilizzare semplicemente le funzioni base di R in questo esempio:</p>
-<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="machine-learning-in-r.html#cb468-1"></a>resample &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(iris), <span class="kw">round</span>(<span class="kw">nrow</span>(iris) <span class="op">*</span><span class="st"> </span><span class="fl">0.7</span>), <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb468-2"><a href="machine-learning-in-r.html#cb468-2"></a></span>
-<span id="cb468-3"><a href="machine-learning-in-r.html#cb468-3"></a>bootstrap_set &lt;-<span class="st"> </span>iris[resample, ]</span>
-<span id="cb468-4"><a href="machine-learning-in-r.html#cb468-4"></a>OOB_set &lt;-<span class="st"> </span>iris[<span class="op">-</span>resample, ]</span></code></pre></div>
+<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="machine-learning-in-r.html#cb504-1"></a>resample &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(iris), <span class="kw">round</span>(<span class="kw">nrow</span>(iris) <span class="op">*</span><span class="st"> </span><span class="fl">0.7</span>), <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb504-2"><a href="machine-learning-in-r.html#cb504-2"></a></span>
+<span id="cb504-3"><a href="machine-learning-in-r.html#cb504-3"></a>bootstrap_set &lt;-<span class="st"> </span>iris[resample, ]</span>
+<span id="cb504-4"><a href="machine-learning-in-r.html#cb504-4"></a>OOB_set &lt;-<span class="st"> </span>iris[<span class="op">-</span>resample, ]</span></code></pre></div>
 </div>
 </div>
 <div id="stima-della-performance-del-modello" class="section level2">
@@ -535,24 +542,24 @@ Un secondo metodo è quello di utilizzare quello che viene chiamato un <strong>v
 <p>I modelli basati su <strong>Decision Trees</strong> sono una classe di algoritmi non parametrici che funzionano partizionando lo spazio delle funzionalità in un certo numero di regioni più piccole (non sovrapposte) con valori di risposta simili utilizzando un insieme di regole di suddivisione. Possono essere utilizzati sia per problemi di classificazione che di regressione. Le previsioni sono ottenute adattando un modello più semplice (ad esempio, una costante come il valore medio di risposta) in ogni regione. Tali metodi di <em>divide-and-conquer</em> possono produrre semplici regole che sono facili da interpretare e visualizzare con i diagrammi ad albero. Come vedremo, i decision trees offrono molti benefici; tuttavia, tipicamente mancano di prestazioni predittive rispetto ad algoritmi più complessi come le reti neurali. Tuttavia, nei prossimi paragrafi vedremo algoritmi di insieme, come le random forests, che sono costruiti combinando insieme molti alberi di decisione.</p>
 <p>Ci sono molte metodologie per costruire alberi decisionali, ma il più noto è l’algoritmo di classificazione e regressione (CART) proposto in Breiman (1984). Un albero decisionale di base suddivide i dati del training in sottogruppi omogenei (cioè gruppi con valori di risposta simili) e quindi inserisce una costante semplice in ogni sottogruppo (ad esempio, la media dei valori di risposta all’interno del gruppo per la regressione). I sottogruppi (chiamati anche nodi) sono formati ricorsivamente usando partizioni binarie formate facendo semplici domande yes-or-no su ogni caratteristica (ad esempio, la larghezza del petalo è maggiore di 1,8?). Questo viene fatto un certo numero di volte fino a quando un criterio di arresto adeguato è soddisfatto (ad esempio, una profondità massima dell’albero è raggiunta). Dopo che tutto il partizionamento è stato fatto, il modello predice l’output basato su: (1) i valori medi di risposta per tutte le osservazioni che rientrano in quel sottogruppo (problema di regressione), o (2) la classe che ha la rappresentazione maggioritaria (problema di classificazione). Per la classificazione, le probabilità previste possono essere ottenute utilizzando la proporzione di ciascuna classe all’interno del sottogruppo.</p>
 <p>Vediamo come costruire un nostro albero per un problema di classificazione utilizando l’iris dataset. Per farlo utilizzeremo le funzione del paccheto <em>rpart</em>:</p>
-<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="machine-learning-in-r.html#cb469-1"></a><span class="kw">library</span>(rpart)</span>
-<span id="cb469-2"><a href="machine-learning-in-r.html#cb469-2"></a><span class="kw">library</span>(rpart.plot)</span></code></pre></div>
+<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="machine-learning-in-r.html#cb505-1"></a><span class="kw">library</span>(rpart)</span>
+<span id="cb505-2"><a href="machine-learning-in-r.html#cb505-2"></a><span class="kw">library</span>(rpart.plot)</span></code></pre></div>
 <pre><code>## Warning: package &#39;rpart.plot&#39; was built under R version 4.0.2</code></pre>
-<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="machine-learning-in-r.html#cb471-1"></a><span class="kw">set.seed</span>(<span class="dv">123</span>) </span>
-<span id="cb471-2"><a href="machine-learning-in-r.html#cb471-2"></a></span>
-<span id="cb471-3"><a href="machine-learning-in-r.html#cb471-3"></a><span class="co"># creazione training e test set</span></span>
-<span id="cb471-4"><a href="machine-learning-in-r.html#cb471-4"></a>xdata &lt;-<span class="st"> </span>iris</span>
-<span id="cb471-5"><a href="machine-learning-in-r.html#cb471-5"></a>index_n &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(xdata), <span class="kw">round</span>(<span class="kw">nrow</span>(xdata) <span class="op">*</span><span class="st"> </span><span class="fl">0.7</span>))</span>
-<span id="cb471-6"><a href="machine-learning-in-r.html#cb471-6"></a>training_set &lt;-<span class="st"> </span>xdata[index_n, ]</span>
-<span id="cb471-7"><a href="machine-learning-in-r.html#cb471-7"></a>test_set &lt;-<span class="st"> </span>xdata[<span class="op">-</span>index_n, ]</span>
-<span id="cb471-8"><a href="machine-learning-in-r.html#cb471-8"></a></span>
-<span id="cb471-9"><a href="machine-learning-in-r.html#cb471-9"></a><span class="co"># modello</span></span>
-<span id="cb471-10"><a href="machine-learning-in-r.html#cb471-10"></a>fit &lt;-<span class="st"> </span><span class="kw">rpart</span>(Species <span class="op">~</span>., <span class="dt">data =</span> training_set, <span class="dt">method =</span> <span class="st">&#39;class&#39;</span>)</span>
-<span id="cb471-11"><a href="machine-learning-in-r.html#cb471-11"></a><span class="co"># Species ~.: Formula del Decision Trees, vogliamo predire la specie </span></span>
-<span id="cb471-12"><a href="machine-learning-in-r.html#cb471-12"></a><span class="co"># sulla base delle altre variabili </span></span>
-<span id="cb471-13"><a href="machine-learning-in-r.html#cb471-13"></a><span class="co"># data: i dati di training</span></span>
-<span id="cb471-14"><a href="machine-learning-in-r.html#cb471-14"></a><span class="co"># method = &#39;class&#39;: in questo caso, il nostro è un modello di classificazione</span></span>
-<span id="cb471-15"><a href="machine-learning-in-r.html#cb471-15"></a><span class="kw">rpart.plot</span>(fit)</span></code></pre></div>
+<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="machine-learning-in-r.html#cb507-1"></a><span class="kw">set.seed</span>(<span class="dv">123</span>) </span>
+<span id="cb507-2"><a href="machine-learning-in-r.html#cb507-2"></a></span>
+<span id="cb507-3"><a href="machine-learning-in-r.html#cb507-3"></a><span class="co"># creazione training e test set</span></span>
+<span id="cb507-4"><a href="machine-learning-in-r.html#cb507-4"></a>xdata &lt;-<span class="st"> </span>iris</span>
+<span id="cb507-5"><a href="machine-learning-in-r.html#cb507-5"></a>index_n &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(xdata), <span class="kw">round</span>(<span class="kw">nrow</span>(xdata) <span class="op">*</span><span class="st"> </span><span class="fl">0.7</span>))</span>
+<span id="cb507-6"><a href="machine-learning-in-r.html#cb507-6"></a>training_set &lt;-<span class="st"> </span>xdata[index_n, ]</span>
+<span id="cb507-7"><a href="machine-learning-in-r.html#cb507-7"></a>test_set &lt;-<span class="st"> </span>xdata[<span class="op">-</span>index_n, ]</span>
+<span id="cb507-8"><a href="machine-learning-in-r.html#cb507-8"></a></span>
+<span id="cb507-9"><a href="machine-learning-in-r.html#cb507-9"></a><span class="co"># modello</span></span>
+<span id="cb507-10"><a href="machine-learning-in-r.html#cb507-10"></a>fit &lt;-<span class="st"> </span><span class="kw">rpart</span>(Species <span class="op">~</span>., <span class="dt">data =</span> training_set, <span class="dt">method =</span> <span class="st">&#39;class&#39;</span>)</span>
+<span id="cb507-11"><a href="machine-learning-in-r.html#cb507-11"></a><span class="co"># Species ~.: Formula del Decision Trees, vogliamo predire la specie </span></span>
+<span id="cb507-12"><a href="machine-learning-in-r.html#cb507-12"></a><span class="co"># sulla base delle altre variabili </span></span>
+<span id="cb507-13"><a href="machine-learning-in-r.html#cb507-13"></a><span class="co"># data: i dati di training</span></span>
+<span id="cb507-14"><a href="machine-learning-in-r.html#cb507-14"></a><span class="co"># method = &#39;class&#39;: in questo caso, il nostro è un modello di classificazione</span></span>
+<span id="cb507-15"><a href="machine-learning-in-r.html#cb507-15"></a><span class="kw">rpart.plot</span>(fit)</span></code></pre></div>
 <p><img src="03-Machine-Learning_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>Complimenti! Avete appena “costruito” il vostro modello di machine learning! Facile no? Ma non è il momento di aprirsi una birra e rilassarsi. Come abbiamo già detto in precedenza, ci sono molte cose da esplorare e da tenere in conto per capire se il nsotro modello ha una buona performance predittiva o meno.</p>
 <p>Innanzitutto, guardiamo più da vicino il nostro modello grazie al pacchetto <em>rpart.plot</em>. Gli algoritmi di decision tree permettono di poter guardare facilmente all’interno degli ingranaggi del modello. Cosa che è molto più difficile fare con modelli di reti neurali e random forests (chiamati in gergo, per l’appunto, <strong>black-boxes</strong>). Partendo dal nodo <strong>radice</strong> (in alto) possiamo osservare:</p>
@@ -564,9 +571,9 @@ Un secondo metodo è quello di utilizzare quello che viene chiamato un <strong>v
 <p>Si noti che, una delle molte qualità di Decision Trees è che richiedono una preparazione dei dati molto limitata. In particolare, non richiedono ridimensionamento.</p>
 <p>Per impostazione predefinita, la funzione <em>rpart()</em> usa la misura del Gini Index per dividere i nodi. Più alto è il coefficiente di Gini, più diverse sono le istanze all’interno del nodo.</p>
 <p>Proviamo a predire i nostri dati di test utilizzando il modello appena costruito.</p>
-<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="machine-learning-in-r.html#cb472-1"></a>predicted &lt;-<span class="st"> </span><span class="kw">predict</span>(fit, test_set, <span class="dt">type =</span> <span class="st">&#39;class&#39;</span>)</span>
-<span id="cb472-2"><a href="machine-learning-in-r.html#cb472-2"></a>table_mat &lt;-<span class="st"> </span><span class="kw">table</span>(test_set<span class="op">$</span>Species, predicted)</span>
-<span id="cb472-3"><a href="machine-learning-in-r.html#cb472-3"></a>table_mat</span></code></pre></div>
+<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="machine-learning-in-r.html#cb508-1"></a>predicted &lt;-<span class="st"> </span><span class="kw">predict</span>(fit, test_set, <span class="dt">type =</span> <span class="st">&#39;class&#39;</span>)</span>
+<span id="cb508-2"><a href="machine-learning-in-r.html#cb508-2"></a>table_mat &lt;-<span class="st"> </span><span class="kw">table</span>(test_set<span class="op">$</span>Species, predicted)</span>
+<span id="cb508-3"><a href="machine-learning-in-r.html#cb508-3"></a>table_mat</span></code></pre></div>
 <pre><code>##             predicted
 ##              setosa versicolor virginica
 ##   setosa         14          0         0
@@ -574,8 +581,8 @@ Un secondo metodo è quello di utilizzare quello che viene chiamato un <strong>v
 ##   virginica       0          1        12</code></pre>
 <p>WOW! Il nostro modello ha predetto la nostre classi molto bene! Ma con quale <strong>Accuracy</strong> di preciso?
 Vediamo:</p>
-<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="machine-learning-in-r.html#cb474-1"></a>accuracy_Test &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="kw">diag</span>(table_mat)) <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(table_mat)</span>
-<span id="cb474-2"><a href="machine-learning-in-r.html#cb474-2"></a><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&#39;Accuracy for test&#39;</span>, accuracy_Test))</span></code></pre></div>
+<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="machine-learning-in-r.html#cb510-1"></a>accuracy_Test &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="kw">diag</span>(table_mat)) <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(table_mat)</span>
+<span id="cb510-2"><a href="machine-learning-in-r.html#cb510-2"></a><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&#39;Accuracy for test&#39;</span>, accuracy_Test))</span></code></pre></div>
 <pre><code>## [1] &quot;Accuracy for test 0.977777777777778&quot;</code></pre>
 <p>Possiamo dire: ottimo! Il nostro modello ha un’accuratezza del 97% sui dati indipendenti. Più che soddisfacente!</p>
 <p>I decision trees in R hanno vari parametri che controllano gli aspetti del <em>fit</em>. Nella libreria <em>rpart</em> è possibile controllare questi parametri utilizzando la funzione <em>rpart.control()</em>. Qui di seguito, ci sono alcuni parametri che potete regolare:</p>
@@ -592,15 +599,15 @@ Vediamo:</p>
 <p>Lo schema di campionamento predefinito per le random forests è un bootstrapping dove il 100% delle osservazioni sono campionate con la sostituzione (in altre parole, ogni copia bootstrap ha le stesse dimensioni dei dati di training originali); tuttavia, possiamo regolare sia la dimensione del campione e se campionare con o senza sostituzione. Il parametro della dimensione del campione determina il numero di osservazioni da effettuare per l’addestramento di ciascun albero. Diminuendo la dimensione del campione si ottengono alberi più diversi e quindi si riduce la correlazione tra gli alberi, il che può avere un effetto positivo sulla precisione di previsione. Di conseguenza, se ci sono alcune caratteristiche dominanti nel vostro insieme di dati, riducendo la dimensione del campione può anche aiutare a ridurre al minimo la correlazione tra gli alberi.</p>
 <p>Anche le random forests possono essere utilizzati per probalemi di classificazione e regressione. Dato che abbiamo già utilizzato l’esempio con l’iris dataset, quest volta proviamo a costruire il nsotro modello utilizzando una variabile di output continua (e quindi una regressione).</p>
 <p>In questo caso, quindi, utilizziamo l’mtcars dataset e, prima di addestrare il modello, normalizziamo i nostri dati in un intervallo tra 0 e 1 per facilitare il processo di apprendimento.</p>
-<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="machine-learning-in-r.html#cb476-1"></a><span class="co"># nromalizzazione dei dati</span></span>
-<span id="cb476-2"><a href="machine-learning-in-r.html#cb476-2"></a><span class="kw">library</span>(vegan)</span></code></pre></div>
+<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="machine-learning-in-r.html#cb512-1"></a><span class="co"># nromalizzazione dei dati</span></span>
+<span id="cb512-2"><a href="machine-learning-in-r.html#cb512-2"></a><span class="kw">library</span>(vegan)</span></code></pre></div>
 <pre><code>## Warning: package &#39;vegan&#39; was built under R version 4.0.2</code></pre>
 <pre><code>## Carico il pacchetto richiesto: permute</code></pre>
 <pre><code>## Carico il pacchetto richiesto: lattice</code></pre>
 <pre><code>## This is vegan 2.5-7</code></pre>
-<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="machine-learning-in-r.html#cb481-1"></a>xdata &lt;-<span class="st"> </span>mtcars</span>
-<span id="cb481-2"><a href="machine-learning-in-r.html#cb481-2"></a>xdata_n &lt;-<span class="st"> </span><span class="kw">decostand</span>(xdata, <span class="dt">method =</span> <span class="st">&quot;range&quot;</span>)</span>
-<span id="cb481-3"><a href="machine-learning-in-r.html#cb481-3"></a><span class="kw">head</span>(xdata_n)</span></code></pre></div>
+<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="machine-learning-in-r.html#cb517-1"></a>xdata &lt;-<span class="st"> </span>mtcars</span>
+<span id="cb517-2"><a href="machine-learning-in-r.html#cb517-2"></a>xdata_n &lt;-<span class="st"> </span><span class="kw">decostand</span>(xdata, <span class="dt">method =</span> <span class="st">&quot;range&quot;</span>)</span>
+<span id="cb517-3"><a href="machine-learning-in-r.html#cb517-3"></a><span class="kw">head</span>(xdata_n)</span></code></pre></div>
 <pre><code>##                         mpg cyl      disp        hp      drat        wt
 ## Mazda RX4         0.4510638 0.5 0.2217511 0.2049470 0.5253456 0.2830478
 ## Mazda RX4 Wag     0.4510638 0.5 0.2217511 0.2049470 0.5253456 0.3482485
@@ -616,18 +623,18 @@ Vediamo:</p>
 ## Hornet Sportabout 0.3000000  0  0  0.0 0.1428571
 ## Valiant           0.6809524  1  0  0.0 0.0000000</code></pre>
 <p>Bene. Ora che i nostri dati sono normalizzati. Passiamo alla costruzione del modello:</p>
-<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="machine-learning-in-r.html#cb483-1"></a><span class="kw">library</span>(randomForest)</span>
-<span id="cb483-2"><a href="machine-learning-in-r.html#cb483-2"></a><span class="co"># creazione training e test set</span></span>
-<span id="cb483-3"><a href="machine-learning-in-r.html#cb483-3"></a>index_n &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(xdata_n), <span class="kw">round</span>(<span class="kw">nrow</span>(xdata_n) <span class="op">*</span><span class="st"> </span><span class="fl">0.7</span>))</span>
-<span id="cb483-4"><a href="machine-learning-in-r.html#cb483-4"></a>training_set &lt;-<span class="st"> </span>xdata_n[index_n, ]</span>
-<span id="cb483-5"><a href="machine-learning-in-r.html#cb483-5"></a>test_set &lt;-<span class="st"> </span>xdata_n[<span class="op">-</span>index_n, ]</span>
-<span id="cb483-6"><a href="machine-learning-in-r.html#cb483-6"></a></span>
-<span id="cb483-7"><a href="machine-learning-in-r.html#cb483-7"></a><span class="co"># modello</span></span>
-<span id="cb483-8"><a href="machine-learning-in-r.html#cb483-8"></a>rf.fit &lt;-<span class="st"> </span><span class="kw">randomForest</span>(mpg <span class="op">~</span>., <span class="dt">data =</span> training_set, </span>
-<span id="cb483-9"><a href="machine-learning-in-r.html#cb483-9"></a>                       <span class="dt">ntree =</span> <span class="dv">500</span>, <span class="co"># il numero di alberi che verranno costruiti</span></span>
-<span id="cb483-10"><a href="machine-learning-in-r.html#cb483-10"></a>                       <span class="dt">mtry =</span> <span class="dv">3</span>) <span class="co"># il umero di variabili predittive (scelte casualmente) </span></span>
-<span id="cb483-11"><a href="machine-learning-in-r.html#cb483-11"></a>                                 <span class="co"># che verrano utilizzate per la costruzione di ogni albero</span></span>
-<span id="cb483-12"><a href="machine-learning-in-r.html#cb483-12"></a><span class="kw">print</span>(rf.fit)</span></code></pre></div>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="machine-learning-in-r.html#cb519-1"></a><span class="kw">library</span>(randomForest)</span>
+<span id="cb519-2"><a href="machine-learning-in-r.html#cb519-2"></a><span class="co"># creazione training e test set</span></span>
+<span id="cb519-3"><a href="machine-learning-in-r.html#cb519-3"></a>index_n &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(xdata_n), <span class="kw">round</span>(<span class="kw">nrow</span>(xdata_n) <span class="op">*</span><span class="st"> </span><span class="fl">0.7</span>))</span>
+<span id="cb519-4"><a href="machine-learning-in-r.html#cb519-4"></a>training_set &lt;-<span class="st"> </span>xdata_n[index_n, ]</span>
+<span id="cb519-5"><a href="machine-learning-in-r.html#cb519-5"></a>test_set &lt;-<span class="st"> </span>xdata_n[<span class="op">-</span>index_n, ]</span>
+<span id="cb519-6"><a href="machine-learning-in-r.html#cb519-6"></a></span>
+<span id="cb519-7"><a href="machine-learning-in-r.html#cb519-7"></a><span class="co"># modello</span></span>
+<span id="cb519-8"><a href="machine-learning-in-r.html#cb519-8"></a>rf.fit &lt;-<span class="st"> </span><span class="kw">randomForest</span>(mpg <span class="op">~</span>., <span class="dt">data =</span> training_set, </span>
+<span id="cb519-9"><a href="machine-learning-in-r.html#cb519-9"></a>                       <span class="dt">ntree =</span> <span class="dv">500</span>, <span class="co"># il numero di alberi che verranno costruiti</span></span>
+<span id="cb519-10"><a href="machine-learning-in-r.html#cb519-10"></a>                       <span class="dt">mtry =</span> <span class="dv">3</span>) <span class="co"># il umero di variabili predittive (scelte casualmente) </span></span>
+<span id="cb519-11"><a href="machine-learning-in-r.html#cb519-11"></a>                                 <span class="co"># che verrano utilizzate per la costruzione di ogni albero</span></span>
+<span id="cb519-12"><a href="machine-learning-in-r.html#cb519-12"></a><span class="kw">print</span>(rf.fit)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ##  randomForest(formula = mpg ~ ., data = training_set, ntree = 500,      mtry = 3) 
@@ -639,10 +646,10 @@ Vediamo:</p>
 ##                     % Var explained: 79.95</code></pre>
 <p>Possiamo osservare già da subito alcune cose. Sotto la voce <em>Type</em> è indicato <em>regression</em>. Il modello ha riconosciuto da solo che si tratta di una variabile numerica continua. Inoltre, il modello calcola l’RMSE sui dati di training utilizzando le osservazioni <strong>out-of-bag (OOB)</strong> (vedi sopra: <strong>Metodi di ricampionamento</strong>) per la stima dell’errore, dato che il processo di campionamento dei dati avviene attraverso un bootstrapping.</p>
 <p>Adesso, utilizziamo il modello per predire le nuove osservazioni e calcolare l’errore di predizione utilizzando questa volta R<sup>2</sup>:</p>
-<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="machine-learning-in-r.html#cb485-1"></a>rf.pred &lt;-<span class="st"> </span><span class="kw">predict</span>(rf.fit, <span class="dt">newdata =</span> test_set[<span class="op">-</span><span class="dv">1</span>]) <span class="co"># togliamo dal test_set la colonna con i valori da predire</span></span>
-<span id="cb485-2"><a href="machine-learning-in-r.html#cb485-2"></a>obsPred &lt;-<span class="st"> </span><span class="kw">cbind</span>(rf.pred, test_set[, <span class="dv">1</span>])</span>
-<span id="cb485-3"><a href="machine-learning-in-r.html#cb485-3"></a><span class="kw">colnames</span>(obsPred) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Predicted&quot;</span>, <span class="st">&quot;Observed&quot;</span>)</span>
-<span id="cb485-4"><a href="machine-learning-in-r.html#cb485-4"></a>obsPred</span></code></pre></div>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="machine-learning-in-r.html#cb521-1"></a>rf.pred &lt;-<span class="st"> </span><span class="kw">predict</span>(rf.fit, <span class="dt">newdata =</span> test_set[<span class="op">-</span><span class="dv">1</span>]) <span class="co"># togliamo dal test_set la colonna con i valori da predire</span></span>
+<span id="cb521-2"><a href="machine-learning-in-r.html#cb521-2"></a>obsPred &lt;-<span class="st"> </span><span class="kw">cbind</span>(rf.pred, test_set[, <span class="dv">1</span>])</span>
+<span id="cb521-3"><a href="machine-learning-in-r.html#cb521-3"></a><span class="kw">colnames</span>(obsPred) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Predicted&quot;</span>, <span class="st">&quot;Observed&quot;</span>)</span>
+<span id="cb521-4"><a href="machine-learning-in-r.html#cb521-4"></a>obsPred</span></code></pre></div>
 <pre><code>##                    Predicted  Observed
 ## Merc 240D          0.5428932 0.5957447
 ## Merc 280C          0.3999806 0.3148936
@@ -654,13 +661,13 @@ Vediamo:</p>
 ## Camaro Z28         0.2081350 0.1234043
 ## Pontiac Firebird   0.2607244 0.3744681
 ## Ferrari Dino       0.3971294 0.3957447</code></pre>
-<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="machine-learning-in-r.html#cb487-1"></a>rss &lt;-<span class="st"> </span><span class="kw">sum</span>((rf.pred <span class="op">-</span><span class="st"> </span>test_set[, <span class="dv">1</span>]) <span class="op">^</span><span class="st"> </span><span class="dv">2</span>)  <span class="co">## residui della somma dei quadrati</span></span>
-<span id="cb487-2"><a href="machine-learning-in-r.html#cb487-2"></a>tss &lt;-<span class="st"> </span><span class="kw">sum</span>((test_set[, <span class="dv">1</span>] <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(test_set[, <span class="dv">1</span>])) <span class="op">^</span><span class="st"> </span><span class="dv">2</span>)  <span class="co">## somma totale dei quadrati</span></span>
-<span id="cb487-3"><a href="machine-learning-in-r.html#cb487-3"></a>rsq &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>rss<span class="op">/</span>tss</span>
-<span id="cb487-4"><a href="machine-learning-in-r.html#cb487-4"></a>rsq</span></code></pre></div>
+<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="machine-learning-in-r.html#cb523-1"></a>rss &lt;-<span class="st"> </span><span class="kw">sum</span>((rf.pred <span class="op">-</span><span class="st"> </span>test_set[, <span class="dv">1</span>]) <span class="op">^</span><span class="st"> </span><span class="dv">2</span>)  <span class="co">## residui della somma dei quadrati</span></span>
+<span id="cb523-2"><a href="machine-learning-in-r.html#cb523-2"></a>tss &lt;-<span class="st"> </span><span class="kw">sum</span>((test_set[, <span class="dv">1</span>] <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(test_set[, <span class="dv">1</span>])) <span class="op">^</span><span class="st"> </span><span class="dv">2</span>)  <span class="co">## somma totale dei quadrati</span></span>
+<span id="cb523-3"><a href="machine-learning-in-r.html#cb523-3"></a>rsq &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>rss<span class="op">/</span>tss</span>
+<span id="cb523-4"><a href="machine-learning-in-r.html#cb523-4"></a>rsq</span></code></pre></div>
 <pre><code>## [1] 0.7272982</code></pre>
 <p>Ricordate il discorso delle black-boxes? Vi sarete resi conto che, a meno che non andiamo a vedere da vicino ognuno dei 500 alberi (follia!!!), non è pssibile vedere quali variabili predittive incidano di più sul processo predittivo. Per ovviare a ciò, il pacchetto randomForest offre una funzione che stima l’importanze delle variabili.</p>
-<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="machine-learning-in-r.html#cb489-1"></a><span class="kw">varImpPlot</span>(rf.fit)</span></code></pre></div>
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="machine-learning-in-r.html#cb525-1"></a><span class="kw">varImpPlot</span>(rf.fit)</span></code></pre></div>
 <p><img src="03-Machine-Learning_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p>L’importanza di ciascuna variabile è valutata sulla base di due criteri:</p>
 <ul>

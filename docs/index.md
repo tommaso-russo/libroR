@@ -33,6 +33,8 @@ biblio-style: apalike
 ![](Images/coverR.png)
 Questo manuale è stato realizzato grazie al supporto del Consorzio Interuniversitario delle Scienze del Mare [CoNISMa](http://www.conisma.it/it/). 
 
+Gli autori ringraziano [Jacopo Romei] (https://jacoporomei.com/) per il prezioso aiuto con github.
+
 
 # Prefazione {#Prefazione}
 

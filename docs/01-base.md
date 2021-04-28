@@ -3770,7 +3770,7 @@ sort(x)
 ```
 
 ```
-##  [1]  4  6 31 37 39 53 55 77 82 98
+##  [1]  5 14 19 27 52 55 69 74 79 85
 ```
 
 ```r
@@ -3778,7 +3778,7 @@ sort(x, decreasing = T)
 ```
 
 ```
-##  [1] 98 82 77 55 53 39 37 31  6  4
+##  [1] 85 79 74 69 55 52 27 19 14  5
 ```
 
 **order**, infine, ci permette di estrarre gli indici di posizione ordinati degli elementi di un oggetto.
@@ -3791,7 +3791,7 @@ x
 ```
 
 ```
-##  [1] 39 45 70 91 26 14 72 90 99 87
+##  [1]  89  34  12  82  26  40 100  54  32   2
 ```
 
 ```r
@@ -3799,7 +3799,7 @@ sort(x)
 ```
 
 ```
-##  [1] 14 26 39 45 70 72 87 90 91 99
+##  [1]   2  12  26  32  34  40  54  82  89 100
 ```
 
 ```r
@@ -3807,7 +3807,7 @@ order(x)
 ```
 
 ```
-##  [1]  6  5  1  2  3  7 10  8  4  9
+##  [1] 10  3  5  9  2  6  8  4  1  7
 ```
 
 ```r
@@ -3815,7 +3815,7 @@ order(x, decreasing = T)
 ```
 
 ```
-##  [1]  9  4  8 10  7  3  2  1  5  6
+##  [1]  7  1  4  8  6  2  9  5  3 10
 ```
 
 Passiamo ora a un gruppo di funzione utili per combinare tra loro diversi oggetti.
@@ -3839,7 +3839,7 @@ y
 ```
 
 ```
-## [1] 7 1 8
+## [1] 5 2 6
 ```
 
 ```r
@@ -3848,7 +3848,7 @@ y
 ```
 
 ```
-##  [1]  1  7  3  8  6  1  3  8  4  2  6  5 10  1  9  6  8  3  8  2
+##  [1]  7  8  4  4  4  5  1  3  3  1  5  6  1  9  7  3  8  5 10  4
 ```
 
 ```r
@@ -3857,7 +3857,8 @@ y
 ```
 
 ```
-##  [1] 9 1 9 7 1 1 3 4 1 7 8 5 1 3 8 1 1 9 6 3 8 1 1 1 4 1 6 1 1 1
+##  [1]  1  1  1  1  1  1  9  1  1  4  1  1  2  2  6  1  5  1 10  3  2  1  2  5  1
+## [26]  1  1  1  1  8
 ```
 
 Dunque, nei primi due esempi abbiamo visto come usare l'opzione **rep**, nell'ultimo esempio possiamo notare come le probabilità di estrazione, fortemente sbilanciate a favore del valore 1, si riflettono sulla composizione del campione estratto.
@@ -3977,12 +3978,12 @@ head(iris_c)
 
 ```
 ##    id color
-## 1  87   red
-## 2  17  blue
-## 3 111   red
-## 4 126  blue
-## 5  10   red
-## 6  11  blue
+## 1 137   red
+## 2 111  blue
+## 3 112   red
+## 4 106  blue
+## 5 148   red
+## 6 121  blue
 ```
 
 ```r
@@ -3993,26 +3994,26 @@ head(iris_full, 20)
 
 ```
 ##    id Sepal.Length Sepal.Width Petal.Length Petal.Width Species color
-## 1   1          5.1         3.5          1.4         0.2  setosa  blue
+## 1   1          5.1         3.5          1.4         0.2  setosa   red
 ## 2   2          4.9         3.0          1.4         0.2  setosa  blue
 ## 3   3          4.7         3.2          1.3         0.2  setosa   red
 ## 4   4          4.6         3.1          1.5         0.2  setosa  blue
 ## 5   5          5.0         3.6          1.4         0.2  setosa   red
-## 6   6          5.4         3.9          1.7         0.4  setosa   red
-## 7   7          4.6         3.4          1.4         0.3  setosa   red
+## 6   6          5.4         3.9          1.7         0.4  setosa  blue
+## 7   7          4.6         3.4          1.4         0.3  setosa  blue
 ## 8   8          5.0         3.4          1.5         0.2  setosa  blue
 ## 9   9          4.4         2.9          1.4         0.2  setosa  blue
 ## 10 10          4.9         3.1          1.5         0.1  setosa   red
 ## 11 11          5.4         3.7          1.5         0.2  setosa  blue
-## 12 12          4.8         3.4          1.6         0.2  setosa   red
+## 12 12          4.8         3.4          1.6         0.2  setosa  blue
 ## 13 13          4.8         3.0          1.4         0.1  setosa   red
-## 14 14          4.3         3.0          1.1         0.1  setosa  blue
+## 14 14          4.3         3.0          1.1         0.1  setosa   red
 ## 15 15          5.8         4.0          1.2         0.2  setosa  blue
 ## 16 16          5.7         4.4          1.5         0.4  setosa   red
-## 17 17          5.4         3.9          1.3         0.4  setosa  blue
-## 18 18          5.1         3.5          1.4         0.3  setosa  blue
+## 17 17          5.4         3.9          1.3         0.4  setosa   red
+## 18 18          5.1         3.5          1.4         0.3  setosa   red
 ## 19 19          5.7         3.8          1.7         0.3  setosa   red
-## 20 20          5.1         3.8          1.5         0.3  setosa   red
+## 20 20          5.1         3.8          1.5         0.3  setosa  blue
 ```
 
 Noterete che:
@@ -4136,13 +4137,83 @@ apply(X = iris, MARGIN = 2, FUN = "length")
 ## Sepal.Length  Sepal.Width Petal.Length  Petal.Width      Species 
 ##          150          150          150          150          150
 ```
+
 Questa volta non è stato necessario restingere il valore di **X** alle prime 4 colonne.
 
 
 Il prossimo gruppo da esaminare è quello delle funzioni statistiche di base. Cominciamo col dire che tutte queste funzioni si appliano a dati quantitativi e quindi essenzialmete della classe **numeric**.
 
 ### min, max, range
+Queste tre funzioni generiche calcolano il minimo (**min**), il massimo (**max**) e l'intervallo (**range**) di un insieme di dati. Vediamo alcuni esempi intuitivi.
 
+
+```r
+data(iris)
+min(iris$Sepal.Length)
+```
+
+```
+## [1] 4.3
+```
+
+```r
+max(iris$Sepal.Length)
+```
+
+```
+## [1] 7.9
+```
+
+```r
+range(iris$Sepal.Length)
+```
+
+```
+## [1] 4.3 7.9
+```
+
+In tutti questi casi abbiamo usato queste funzioni su vettori, vediamo cosa succede quando siamo alle prese con matrici o data frame.
+
+
+```r
+m = matrix(sample(1:100, 25), 5, 5)
+range(m)
+```
+
+```
+## [1]  2 88
+```
+
+```r
+data(iris)
+max(iris[, 1:4])
+```
+
+```
+## [1] 7.9
+```
+
+Come di può vedere queste funzioni "mangiano" di tutto. In più sono in grado di ignorare i valori "strani" (i NA e i NaN). Per farlo, è necessario usare l'opzione *na.rm*.
+
+
+```r
+m = matrix(sample(1:100, 25), 5, 5)
+m[sample(1:5, 2),sample(1:5, 2)] = NA
+
+range(m)
+```
+
+```
+## [1] NA NA
+```
+
+```r
+range(m, na.rm = T)
+```
+
+```
+## [1]  2 95
+```
 
 
 ### summary
@@ -4172,18 +4243,309 @@ Il prossimo gruppo da esaminare è quello delle funzioni statistiche di base. Co
 ### saveRDS
 
 
+## Un pò di grafici di base
 
+Per completare la nostra parziale panoramica dei metodi base di R, è necessario esaminare le funzioni di base per produrre grafici. Queste funzioni sono estremamente flessibili e, sebbene il loro uso di base sia rapido ed efficace, possono essere utilizzate anche per produrre figure complesse. 
 
+Esistono almeno 5 tipologie di grafici di base, riassunte nella figura seguente:
 
+* gli **scatterplot**, cioè la rappresentazione bidimensionale di un gruppo di osservazioni (es. altezza contro peso oppure due delle 4 biometrie di _iris_). Questo tipo di grafico è scelta più naturale quando si vogliono esaminare correlazioni
+
+* Gli **istogrammi**, cioè delle rappresentazione della distribuzione dei valori di una certa variabile, tipicamente continua oppure discreta ma con tante classi ordinali. E' la scelta più immediata quando si vuole studiare il comportamento di una certa quantità
+
+* i **grafici a barre**, che sono simili agli istogrammi ma generalmente sono la loro alternativa quando i dati non sono continui
+
+* i **box & wisker**, un vero e proprio classico per rappresentare simultaneamente varie distribuzioni di dati che, spesso, non sono normali (non seguono una distribuzione normale)
+
+* i **dendrogrammi**, strumento classico nella rappresentazione gerarchica di gruppi di osservazioni
 
 
 ![](Images/01-14.png)
 
+### plot
+
+**plot** è una delle funzioni più generiche di R, tanto che sarebbe più appropriato parlare di un **metodo** invece che di una semplice funzione. Spesso, infatti, pacchetti addizionali di R hanno delle loro specifiche funzioni **plot**. Questo è possibile - e avviene senza crera confusione ed equivoci tra funzioni omonime, perchè R **è capace di riconoscere la classe di ogni oggetto e di applicare su di esso la funzione plot più appropriate**. Vedremo tra poco come **plot**, se riferita a un albero di classificazione, restituisce un dendrogramma invece che uno scatterplot.
+Comunque, andando con ordine, cominciamo dalla funzione **plot** del pacchetto base, cioè appunto quella per rappresentare nuvole di punti in uno spazio bidimensionale.
+Gli argomenti di **plot** sono _x_ (la coordinata sull'asse delle ascisse) e _y_ (la coordinata sull'asse delle ordinate). Se le coordinate sono numerico (intere o reali non ha importanza) non c'è molto da dire, se sono dei ordinati, R li trattera come una sequenza di numeri naturali 1, 2, 3, ... _n_ dove _n_ rappresenta il numero di livelli del factor. Se sono dei factor non ordinati... R produrra qualcosa che assomiglia a una tabella di contingenza. Vediamo degli esempi
 
 
-### jpeg, bmp, png, tiff
+
+```r
+data(iris)
+iris$color = factor(rep(c("red","blue"), 75), levels = c("red","blue"))
+
+plot(iris$Sepal.Length, iris$Sepal.Width)
+```
+
+<img src="01-base_files/figure-html/unnamed-chunk-117-1.png" width="672" />
+
+```r
+plot(iris$Sepal.Length, iris$Species)
+```
+
+<img src="01-base_files/figure-html/unnamed-chunk-117-2.png" width="672" />
+
+```r
+plot(iris$Species, iris$color)
+```
+
+<img src="01-base_files/figure-html/unnamed-chunk-117-3.png" width="672" />
+
+Oltre a questo, occorre solo sapere che **plot** ha una lunga serie di argomenti opzionali che servono a specificare:
+
+* il tipo di grafico (punti, linee, punti e linee, etc.)
+* la forma dei punti
+* il colore del punti e dello sfondo
+* i titoli degli assi e il titolo del grafico
+* le dimesioni dei caratteri
+* tanti altri aspetti (margini, ecc.)
+ 
+ Tutti questi argomenti opzionali sono, più propriamente, gli argomenti di un'altra funzione, chiamata **par** (abbraviativo di _parameter_) che si usa per definire questi aspetti **prima** di usare **plot**. Vediamo degli esempi
+ 
+ 
+
+```r
+data(iris)
+
+plot(iris$Sepal.Length, iris$Sepal.Width, pch = 19, 
+     main = "Esempio di utilizzo dell'argomento pch")
+```
+
+<img src="01-base_files/figure-html/unnamed-chunk-118-1.png" width="672" />
+
+```r
+plot(iris$Sepal.Length, iris$Sepal.Width, pch = 19, col = "red",
+     main = "Esempio di utilizzo dell'argomento col")
+```
+
+<img src="01-base_files/figure-html/unnamed-chunk-118-2.png" width="672" />
+
+```r
+plot(iris$Sepal.Length, iris$Sepal.Width, pch = 19, col = "red", type = "b",
+     main = "Esempio di utilizzo dell'argomento type")
+```
+
+<img src="01-base_files/figure-html/unnamed-chunk-118-3.png" width="672" />
+
+```r
+plot(iris$Sepal.Length, iris$Sepal.Width, pch = 19, col = "red", cex = 3,
+     main = "Esempio di utilizzo dell'argomento cex")
+```
+
+<img src="01-base_files/figure-html/unnamed-chunk-118-4.png" width="672" />
+
+```r
+plot(iris$Sepal.Length, iris$Sepal.Width, pch = 19, col = "red", 
+     xlab = "lunghezza dei sepali", ylab = "larghezza dei sepali",
+     main = "Esempio di utilizzo degli argomenti xlab e ylab")
+```
+
+<img src="01-base_files/figure-html/unnamed-chunk-118-5.png" width="672" />
+
+```r
+par(mfrow = c(2,2))
+plot(iris$Sepal.Length, iris$Sepal.Width, pch = 19)
+plot(iris$Sepal.Length, iris$Petal.Length, pch = 19)
+plot(iris$Sepal.Length, iris$Petal.Width, pch = 19)
+plot(iris$Sepal.Width, iris$Petal.Width, pch = 19)
+```
+
+<img src="01-base_files/figure-html/unnamed-chunk-118-6.png" width="672" />
 
 
+Nell'ultimo esempio abbiamo usato **par** e **mfrow** (un suo argomento) per inizializzare uno "spazio grafico" avente 2 righe e 2 colonne, in modo da ottenere un mosaico di scatterplot perfettamente coerenti dal punto di vista grafico (stesse proporzioni, stessi caratteri, stesso allineamento, ecc.).
+
+Il bravo neofita è invitato a giocare con le (quasi) infinte opzioni di plot, che sarebbe noioso esaminare una per una. Piuttosto, è utile insistere sull' "intuito" della funzione **plot**. Vediamo cosa succede se la applichiamo a un data frame
+
+
+
+```r
+data(iris)
+plot(iris)
+```
+
+<img src="01-base_files/figure-html/unnamed-chunk-119-1.png" width="672" />
+
+Il risultato è soprendente, ma non troppo: R è partito dall'assunto che il data frame
+sia una raccolta di osservazioni (righe) rispetto a 5 variabili... e quindi ci ha restituito uno scatterplot di tutte le possibili coppie di variabili. Un metodo rozzo ma efficace per avere una prima visione d'insieme dei dati (primo passaggio di un qualsiasi protocollo statistico di analisi dei dati).
+
+A questo punto viene spontaneo chiedersi come si comporterà **plot** con oggetti di altri tipo. Vediamo degli esempi
+
+
+
+```r
+m = matrix(sample(1:100, 30), 10, 3)
+plot(m)
+```
+
+<img src="01-base_files/figure-html/unnamed-chunk-120-1.png" width="672" />
+
+```r
+v = sample(1:100, 10)
+plot(v)
+```
+
+<img src="01-base_files/figure-html/unnamed-chunk-120-2.png" width="672" />
+
+Nel primo caso (la matrice _m_), R ha usato le prime due colonne come _x_ e _y_, rispettivamente, e ignorando la terza colonna. Ce ne accorgiamo dai nomi dei due assi dello scatterplot.
+Nel secondo caso (il vettore _v_), R ha trattato i dati come una serie e ha usato i valori del vettore come _y_ contro una _x_ rappresentata dagli indici di posizione degli elementi che compongono _v_.
+
+
+### hist
+
+La funzione **hist** (da non confondere con la quasi omonimo **histogram** del pacchetto **lattice**) ha bisogno di due argomenti:
+
+1. **x**, cioè il vettore dei valori di cui si vuole rappresentare la distribuzione
+2. **breaks** (tagli), cioè la serie di intervalli o il criterio per generarli
+
+Ad esempio:
+
+
+```r
+data(iris)
+
+hist(iris$Sepal.Length, breaks = 3)
+```
+
+<img src="01-base_files/figure-html/unnamed-chunk-121-1.png" width="672" />
+
+```r
+hist(iris$Sepal.Length, breaks = seq(1, 10, by = 1))
+```
+
+<img src="01-base_files/figure-html/unnamed-chunk-121-2.png" width="672" />
+
+```r
+hist(iris$Sepal.Length, breaks = c(1,6,7,8))
+```
+
+<img src="01-base_files/figure-html/unnamed-chunk-121-3.png" width="672" />
+
+Nel primo caso abbiamo usato **breaks** per dire a R di fare 3 "tagli" e quindi generare 4 gruppi di dati. Nel secondo caso abbiamo specificato un vettore di intervalli omogenei. Nel terzo esempio abbiamo definito degli intervalli di ampiezza eterogenea.
+
+Anche **hist** ha diverse opzioni per specificare titoli, colori, ecc.
+
+
+### barplot
+
+Il grafico a barre è un cugino degli istogrammi ma è usato principalmente per rappresentare il numero di occorrenze rispetto a una serie di casi. Il suo unico argomento obbligatorio, **height**, è un vettore che rappresente appunto il numero di osservazioni, qualcosa come l'ouput della funzione **table**. Volendo, si possono indicare i nomi delle classi. Ad esempio:
+
+
+```r
+data(iris)
+iris$color = factor(sample(c("red","blue"), 150, rep = T),
+                    levels = c("red","blue"))
+  
+tab_iris = table(iris$color)
+barplot(height = tab_iris, names.arg = names(tab_iris))
+```
+
+<img src="01-base_files/figure-html/unnamed-chunk-122-1.png" width="672" />
+
+Nell'esempio precedente ci siamo avvalsi della funzione **names** che serve a estrarre i nomi delle classi di una tabella.
+
+
+
+### boxplot
+
+Il grafici del tipo Box and Wisker sono molto utili per confrontare in maniera non parametrica (cioè mediante mediana e quantili) diverse distribuzioni di dati.
+**boxplot** è una funzione molto generica, un pò come visto per **plot**.
+Vediamo alcuni esempi della sua applicazione.
+
+
+
+```r
+data(iris)
+
+boxplot(iris$Sepal.Length)
+```
+
+<img src="01-base_files/figure-html/unnamed-chunk-123-1.png" width="672" />
+
+```r
+boxplot(iris, cex.axis = 0.7)
+```
+
+<img src="01-base_files/figure-html/unnamed-chunk-123-2.png" width="672" />
+
+```r
+boxplot(matrix(sample(1:100, 40), 10, 4))
+```
+
+<img src="01-base_files/figure-html/unnamed-chunk-123-3.png" width="672" />
+
+Nel primo caso abbiamo usato una singola colonna di _iris_ e abbiamo ottenuto un singolo grafico, in cui gli estremi delle barre rappresentano il minimo e il massimo delle osservazioni, la linea nera spessa rappresenta il valore della mediana e gli estremi del rettangolo grigio rappresentano il secondo e il terzo **quartile**, rispettivamente.
+Questo genera di grafici è molto utile per catturare al volo la _curtosi_ e la _simmetria_ della distribuzione di una serie di valori. 
+
+Nel secondo esempio abbiamo applicato **boxplot** all'intero _iris_, ottenendo una figura per ciascuna variabile (colonna) di _iris_. Con la stessa logica si spiega il terzo esempio, in cui R ci restituisce le distribuzioni dei valori di ogni colonna della matrice.
+
+Per completare il discorso su questi grafici, dobbiamo fare conoscenza con la tilde, cioè il simbolo **~** . Questo simbolo si usa, in R, per specificare una **formula**, 
+cioè una relazione matematica di qualche tipo. Nel prosieguo di questo manuale la tilde diventerà di uso sempre più frequente.
+
+Per capirne il significato, partiamo dal modello dell'equazione lineare di una retta:
+y = mx + q. La tilde sostituisce il simbolo = in questa formula, e ha lo stesso senso: mettere in relazione la variabile dipendente con quella(e) indipendente(i).
+
+Adesso vediamo un suo utilizzo
+
+
+```r
+data(iris)
+
+boxplot(iris$Sepal.Length ~ iris$Species)
+```
+
+<img src="01-base_files/figure-html/unnamed-chunk-124-1.png" width="672" />
+
+
+
+### plot(2)
+
+
+
+
+
+
+### jpeg, bmp, png, tiff e pdf
+
+Non ci resta che dire come fare a esportare i grafici (via via più belli) che impareremo a fare con R. Tra i tanti vantaggi di R c'è la sua capacità di produrre grafici in tanti formati e delle dimensioni e risoluzione desiderati. Tra i più comuni formati ci sono sicuramente:
+
+* il **jpeg**  [(**Joint Photographic Experts Group**) un comitato di esperti ISO/CCITT che ha definito il primo standard internazionale di compressione dell'immagine digitale a tono continuo, sia a livelli di grigio sia a colori](https://it.wikipedia.org/wiki/JPEG), un formato molto comodo perchè leggero ma sicuramente non lo stardard ottimale per immagini di elevata qualità
+
+* il **bmp** [(**bitmap**) un formato dati utilizzato per la rappresentazione di immagini raster sui sistemi operativi Microsoft Windows](https://it.wikipedia.org/wiki/Windows_bitmap), uno dei formati più usati per la grafica raster
+
+* il **png** [(**Portable Network Graphics**), un formato simile a quello **gif** ma con molte meno limitazioni](https://it.wikipedia.org/wiki/Portable_Network_Graphics)
+
+* il **tiff** [(**Tagged Image File Format**) è un formato immagine di tipo raster sviluppato dalla Aldus Corporation (oggi Adobe)](https://it.wikipedia.org/wiki/Tagged_Image_File_Format) che è molto flessibile e spesso usato per immagini di elevata qualità
+
+* il **pdf** [(**Portable Document Format**), è un formato di file basato su un linguaggio di descrizione di pagina sviluppato da Adobe negli anni '90 per rappresentare documenti di testo e immagini in modo indipendente dall'hardware e dal software utilizzati per generarli o per visualizzarli](https://it.wikipedia.org/wiki/Portable_Document_Format) 
+
+Tutte queste funzioni si usano nello stesso modo per cui, dopo aver scelto il formato che più ci aggrada, dobbiamo specificare i seguenti argomenti:
+
+* **filename**: il nome della figura che vogliamo generare. E' bene darle un'estensione coerente, ad esempio .jpeg.
+* **width** e **height**: la larghezza e l'altezza dell'immagine nell'unità di misura indicata da **units**. Può essere _px_ (pixel), _in_ (pollici), _cm_ o _mm_.
+* la sua risoluzione (**res**), ad esempio 120 dpi
+
+Per applicare la funzione dobbiamo inserirla in cui codice in modo che **preceda** le funzioni che generano il grafico. Dopo la funzione che crea la figura, infine, è necessario specificare il comando **dev(off)**.
+Questo perchè le funzioni come **jpeg** inizializzano un _device_, cioè un sottospazio in cui viene creata la figura, e per salvarla e chiudere il _device_ è necessario appunto specificare **dev(off)**.
+
+Vediamo un esempio:
+
+
+
+```r
+data(iris)
+
+jpeg(filename = "hist.jpeg",
+     width = 1000, height = 600, units = "px")
+  hist(iris$Sepal.Length, breaks = 3)
+dev.off()
+```
+
+```
+## quartz_off_screen 
+##                 2
+```
+Se controlliamo, la procedura ha salvato nel nostro hard disk una figura chiamata hist.jpeg contenente l'istogramma della variabile di _iris_ Sepal.Length.
 
 
 
