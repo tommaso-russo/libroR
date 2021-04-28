@@ -3770,7 +3770,7 @@ sort(x)
 ```
 
 ```
-##  [1]  1 21 34 42 48 54 70 93 94 98
+##  [1]  4  6 31 37 39 53 55 77 82 98
 ```
 
 ```r
@@ -3778,7 +3778,7 @@ sort(x, decreasing = T)
 ```
 
 ```
-##  [1] 98 94 93 70 54 48 42 34 21  1
+##  [1] 98 82 77 55 53 39 37 31  6  4
 ```
 
 **order**, infine, ci permette di estrarre gli indici di posizione ordinati degli elementi di un oggetto.
@@ -3791,7 +3791,7 @@ x
 ```
 
 ```
-##  [1] 51 69 90 35 72 79 11 76 13 43
+##  [1] 39 45 70 91 26 14 72 90 99 87
 ```
 
 ```r
@@ -3799,7 +3799,7 @@ sort(x)
 ```
 
 ```
-##  [1] 11 13 35 43 51 69 72 76 79 90
+##  [1] 14 26 39 45 70 72 87 90 91 99
 ```
 
 ```r
@@ -3807,7 +3807,7 @@ order(x)
 ```
 
 ```
-##  [1]  7  9  4 10  1  2  5  8  6  3
+##  [1]  6  5  1  2  3  7 10  8  4  9
 ```
 
 ```r
@@ -3815,7 +3815,7 @@ order(x, decreasing = T)
 ```
 
 ```
-##  [1]  3  6  8  5  2  1 10  4  9  7
+##  [1]  9  4  8 10  7  3  2  1  5  6
 ```
 
 Passiamo ora a un gruppo di funzione utili per combinare tra loro diversi oggetti.
@@ -3839,7 +3839,7 @@ y
 ```
 
 ```
-## [1] 4 6 2
+## [1] 7 1 8
 ```
 
 ```r
@@ -3848,7 +3848,7 @@ y
 ```
 
 ```
-##  [1]  2  6  9 10  7 10  9 10 10  2  1 10  9  9  6  3  7  1  5  3
+##  [1]  1  7  3  8  6  1  3  8  4  2  6  5 10  1  9  6  8  3  8  2
 ```
 
 ```r
@@ -3857,8 +3857,7 @@ y
 ```
 
 ```
-##  [1]  1  1  1  1  5  1  1  2  5  1  1  3  3  1  1  5  1  1 10  1  1  4  1  6  1
-## [26]  1  1  1  4  8
+##  [1] 9 1 9 7 1 1 3 4 1 7 8 5 1 3 8 1 1 9 6 3 8 1 1 1 4 1 6 1 1 1
 ```
 
 Dunque, nei primi due esempi abbiamo visto come usare l'opzione **rep**, nell'ultimo esempio possiamo notare come le probabilità di estrazione, fortemente sbilanciate a favore del valore 1, si riflettono sulla composizione del campione estratto.
@@ -3978,40 +3977,174 @@ head(iris_c)
 
 ```
 ##    id color
-## 1 122   red
-## 2  35  blue
-## 3  18   red
-## 4  57  blue
-## 5  40   red
-## 6  13  blue
+## 1  87   red
+## 2  17  blue
+## 3 111   red
+## 4 126  blue
+## 5  10   red
+## 6  11  blue
 ```
 
 ```r
 iris_full = merge(iris, iris_c)
 
-head(iris_full)
+head(iris_full, 20)
 ```
 
 ```
-##   id Sepal.Length Sepal.Width Petal.Length Petal.Width Species color
-## 1  1          5.1         3.5          1.4         0.2  setosa   red
-## 2  2          4.9         3.0          1.4         0.2  setosa   red
-## 3  3          4.7         3.2          1.3         0.2  setosa  blue
-## 4  4          4.6         3.1          1.5         0.2  setosa   red
-## 5  5          5.0         3.6          1.4         0.2  setosa   red
-## 6  6          5.4         3.9          1.7         0.4  setosa  blue
+##    id Sepal.Length Sepal.Width Petal.Length Petal.Width Species color
+## 1   1          5.1         3.5          1.4         0.2  setosa  blue
+## 2   2          4.9         3.0          1.4         0.2  setosa  blue
+## 3   3          4.7         3.2          1.3         0.2  setosa   red
+## 4   4          4.6         3.1          1.5         0.2  setosa  blue
+## 5   5          5.0         3.6          1.4         0.2  setosa   red
+## 6   6          5.4         3.9          1.7         0.4  setosa   red
+## 7   7          4.6         3.4          1.4         0.3  setosa   red
+## 8   8          5.0         3.4          1.5         0.2  setosa  blue
+## 9   9          4.4         2.9          1.4         0.2  setosa  blue
+## 10 10          4.9         3.1          1.5         0.1  setosa   red
+## 11 11          5.4         3.7          1.5         0.2  setosa  blue
+## 12 12          4.8         3.4          1.6         0.2  setosa   red
+## 13 13          4.8         3.0          1.4         0.1  setosa   red
+## 14 14          4.3         3.0          1.1         0.1  setosa  blue
+## 15 15          5.8         4.0          1.2         0.2  setosa  blue
+## 16 16          5.7         4.4          1.5         0.4  setosa   red
+## 17 17          5.4         3.9          1.3         0.4  setosa  blue
+## 18 18          5.1         3.5          1.4         0.3  setosa  blue
+## 19 19          5.7         3.8          1.7         0.3  setosa   red
+## 20 20          5.1         3.8          1.5         0.3  setosa   red
 ```
 
+Noterete che:
+
+* abbiamo aggiunto a iris il campo _id_ come un progressivo numerico da 1 a 150
+* abbiamo creato un data frame (**iris_c**) contente un campo id analogo a quello di iris, ma con valori casuali (usando opportunamento la funzione **sample**)
+* quindi abbiamo accoppiato i due data frame _iris_ e _iris_c_ usando **merge**.
+**Merge** è capace di lavorare in autonomia individuando le colonne in comune tra i due data frame e, se queste sono omogenee (la variabile _id_ non può essere numerica in un caso e character in un altro), le usa per fondere i due data frame. Tuttavia questa funzione possiede alcuni argomenti opzionali (**by**, **by.x**, **by.y**) che ci consentono di specificare quali colonne usare o quali righe usare.
 
 ### apply
 
+Abbiamo già avuto modo di spiegare che i data frame non sono oggetti ottimizzati per fare i calcoli. Sono utilissimi per gestire i dati, ma non possiamo applicare ad essi funzioni estramemente utili come **apply**. Per capire a cosa serve questa funzione prendiamo un esempio: abbiamo bisogno di calcolare (per motivi oscuri) il valore medio delle 4 biometrie contenute in iris. Come possiamo fare? E' evidente che calcolare riga per riga le medie è un'operazione laboriosa... a parte il fatto che dovremo limitare il calcolo alle prime 4 colonne del data frame.
+
+
+```r
+data(iris)
+b1 = mean(as.numeric(iris[,1]))
+b2 = mean(as.numeric(iris[,2]))
+b3 = mean(as.numeric(iris[,3]))
+b4 = mean(as.numeric(iris[,4]))
+
+b1
+```
+
+```
+## [1] 5.843333
+```
+
+```r
+b2
+```
+
+```
+## [1] 3.057333
+```
+
+```r
+b3
+```
+
+```
+## [1] 3.758
+```
+
+```r
+b4
+```
+
+```
+## [1] 1.199333
+```
+
+Ok, prima cosa: abbiamo introdotto di soppiatto la funzione **mean**, della quale parleremo tra poco. Per ora basti sapere che questa funzione consente di calcolare la media degli elementi di un vettore numerico.
+Torniamo alla domanda originale (calcolare il valore medio delle 4 biometrie contenute in iris, possibilmente in un'unica operazione)..... forse potremmo usare un ciclo iterativo?... ma non abbiamo ancora incontrato i _cicli_ e spesso non sono il modo più veloce per fare operazioni di questo tipo.
+
+**apply** ci viene in aiuto. Questa funzione ha 3 argomenti:
+
+* **X**, cioè l'oggetto su cui applicare la funzione **FUN**. **X** può essere un qualsiasi oggetto assimilabile a un array numerico (se **FUN** si applica ai numeri) o non numerico (se **FUN** si applica anche ad altre classi)
+* **MARGIN**, ovvero la "direzione" rispetto alla quale applicare **FUN** 
+* **FUN**, cioè la funzione che ci interessa applicare
+
+Vediamo degli esempi
+
+
+```r
+data(iris)
+apply(X = iris[,1:4], MARGIN = 1, FUN = "mean")
+```
+
+```
+##   [1] 2.550 2.375 2.350 2.350 2.550 2.850 2.425 2.525 2.225 2.400 2.700 2.500
+##  [13] 2.325 2.125 2.800 3.000 2.750 2.575 2.875 2.675 2.675 2.675 2.350 2.650
+##  [25] 2.575 2.450 2.600 2.600 2.550 2.425 2.425 2.675 2.725 2.825 2.425 2.400
+##  [37] 2.625 2.500 2.225 2.550 2.525 2.100 2.275 2.675 2.800 2.375 2.675 2.350
+##  [49] 2.675 2.475 4.075 3.900 4.100 3.275 3.850 3.575 3.975 2.900 3.850 3.300
+##  [61] 2.875 3.650 3.300 3.775 3.350 3.900 3.650 3.400 3.600 3.275 3.925 3.550
+##  [73] 3.800 3.700 3.725 3.850 3.950 4.100 3.725 3.200 3.200 3.150 3.400 3.850
+##  [85] 3.600 3.875 4.000 3.575 3.500 3.325 3.425 3.775 3.400 2.900 3.450 3.525
+##  [97] 3.525 3.675 2.925 3.475 4.525 3.875 4.525 4.150 4.375 4.825 3.400 4.575
+## [109] 4.200 4.850 4.200 4.075 4.350 3.800 4.025 4.300 4.200 5.100 4.875 3.675
+## [121] 4.525 3.825 4.800 3.925 4.450 4.550 3.900 3.950 4.225 4.400 4.550 5.025
+## [133] 4.250 3.925 3.925 4.775 4.425 4.200 3.900 4.375 4.450 4.350 3.875 4.550
+## [145] 4.550 4.300 3.925 4.175 4.325 3.950
+```
+
+```r
+apply(X = iris[,1:4], MARGIN = 2, FUN = "mean")
+```
+
+```
+## Sepal.Length  Sepal.Width Petal.Length  Petal.Width 
+##     5.843333     3.057333     3.758000     1.199333
+```
+
+
+Nel primo esempio abbiamo applicato la funzione **mean** alle prime 4 colonne di _iris_ (quelle con le biometrie), assegnando a **MARGIN** il valore 1 che, come spiega l'help di questa funzione, indica le righe. Di conseguenza, **apply** ci restituisce un vettore di 150 elementi (ovvero le righe di _iris_), ognuno corrispondente alle medie che, prima, ci eravano messi a calcolare una per una.
+
+Nel secondo esempio abbiamo applicato la funzione **mean** alle prime 4 colonne di _iris_ (quelle con le biometrie), assegnando a **MARGIN** il valore 2 che indica le colonne. Questa volta **apply** ci restituisce un vettore di soli 4 elementi (corrispondenti le colonne di _iris_).
+Vediamo un ultimo esempio che coinvolge la funzione **length** che già conosciamo
 
 
 
+```r
+data(iris)
+apply(X = iris, MARGIN = 1, FUN = "length")
+```
 
-Il prossimo gruppo da esaminare è quello delle funzioni statistiche di base.
+```
+##   [1] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
+##  [38] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
+##  [75] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
+## [112] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
+## [149] 5 5
+```
+
+```r
+apply(X = iris, MARGIN = 2, FUN = "length")
+```
+
+```
+## Sepal.Length  Sepal.Width Petal.Length  Petal.Width      Species 
+##          150          150          150          150          150
+```
+Questa volta non è stato necessario restingere il valore di **X** alle prime 4 colonne.
+
+
+Il prossimo gruppo da esaminare è quello delle funzioni statistiche di base. Cominciamo col dire che tutte queste funzioni si appliano a dati quantitativi e quindi essenzialmete della classe **numeric**.
 
 ### min, max, range
+
+
+
 ### summary
 ### cumsum
 ### median
@@ -4024,18 +4157,31 @@ Il prossimo gruppo da esaminare è quello delle funzioni statistiche di base.
 
 
 
+
+
+
+
+
+
+
 ### read.table
 ### write.table
 ### read.csv
 ### write.csv
 ### readRDS
 ### saveRDS
-### jpeg, bmp, png, tiff
+
+
+
+
 
 
 
 ![](Images/01-14.png)
 
+
+
+### jpeg, bmp, png, tiff
 
 
 
