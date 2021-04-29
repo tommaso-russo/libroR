@@ -54,9 +54,9 @@ apply
 min-max-range
 summary
 cumsum
-median
+median-e-mean
 quantile
-mean
+section
 sd
 runif
 rnorm

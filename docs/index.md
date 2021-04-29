@@ -5,7 +5,7 @@ title: "Un viaggio nell'ambiente R"
 author: 
 - name: Tommaso Russo, Giuliano Colosimo, Ciro Fanelli, Simone Franceschini, Antonio Parisi
 
-date: "2021-04-28"
+date: "2021-04-29"
 
 output:
   html_document:
@@ -33,7 +33,7 @@ biblio-style: apalike
 ![](Images/coverR.png)
 Questo manuale è stato realizzato grazie al supporto del Consorzio Interuniversitario delle Scienze del Mare [CoNISMa](http://www.conisma.it/it/). 
 
-Gli autori ringraziano [Jacopo Romei] (https://jacoporomei.com/) per il prezioso aiuto con github.
+Gli autori ringraziano [Jacopo Romei](https://jacoporomei.com/) per il prezioso aiuto con github.
 
 
 # Prefazione {#Prefazione}

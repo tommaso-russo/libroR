@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-04-28" />
+<meta name="date" content="2021-04-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -190,9 +190,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.14.25" data-path="base.html"><a href="base.html#min-max-range"><i class="fa fa-check"></i><b>4.14.25</b> min, max, range</a></li>
 <li class="chapter" data-level="4.14.26" data-path="base.html"><a href="base.html#summary"><i class="fa fa-check"></i><b>4.14.26</b> summary</a></li>
 <li class="chapter" data-level="4.14.27" data-path="base.html"><a href="base.html#cumsum"><i class="fa fa-check"></i><b>4.14.27</b> cumsum</a></li>
-<li class="chapter" data-level="4.14.28" data-path="base.html"><a href="base.html#median"><i class="fa fa-check"></i><b>4.14.28</b> median</a></li>
+<li class="chapter" data-level="4.14.28" data-path="base.html"><a href="base.html#median-e-mean"><i class="fa fa-check"></i><b>4.14.28</b> median e mean</a></li>
 <li class="chapter" data-level="4.14.29" data-path="base.html"><a href="base.html#quantile"><i class="fa fa-check"></i><b>4.14.29</b> quantile</a></li>
-<li class="chapter" data-level="4.14.30" data-path="base.html"><a href="base.html#mean"><i class="fa fa-check"></i><b>4.14.30</b> mean</a></li>
+<li class="chapter" data-level="4.14.30" data-path="base.html"><a href="base.html#section"><i class="fa fa-check"></i><b>4.14.30</b> </a></li>
 <li class="chapter" data-level="4.14.31" data-path="base.html"><a href="base.html#sd"><i class="fa fa-check"></i><b>4.14.31</b> sd</a></li>
 <li class="chapter" data-level="4.14.32" data-path="base.html"><a href="base.html#runif"><i class="fa fa-check"></i><b>4.14.32</b> runif</a></li>
 <li class="chapter" data-level="4.14.33" data-path="base.html"><a href="base.html#rnorm"><i class="fa fa-check"></i><b>4.14.33</b> rnorm</a></li>
@@ -2916,20 +2916,20 @@ Ad esempio:</p>
 <div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="base.html#cb367-1"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">10</span>))</span>
 <span id="cb367-2"><a href="base.html#cb367-2"></a></span>
 <span id="cb367-3"><a href="base.html#cb367-3"></a><span class="kw">sort</span>(x)</span></code></pre></div>
-<pre><code>##  [1]  5 14 19 27 52 55 69 74 79 85</code></pre>
+<pre><code>##  [1] 11 20 32 33 51 60 62 74 84 89</code></pre>
 <div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="base.html#cb369-1"></a><span class="kw">sort</span>(x, <span class="dt">decreasing =</span> T)</span></code></pre></div>
-<pre><code>##  [1] 85 79 74 69 55 52 27 19 14  5</code></pre>
+<pre><code>##  [1] 89 84 74 62 60 51 33 32 20 11</code></pre>
 <p><strong>order</strong>, infine, ci permette di estrarre gli indici di posizione ordinati degli elementi di un oggetto.</p>
 <div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="base.html#cb371-1"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">10</span>))</span>
 <span id="cb371-2"><a href="base.html#cb371-2"></a></span>
 <span id="cb371-3"><a href="base.html#cb371-3"></a>x</span></code></pre></div>
-<pre><code>##  [1]  89  34  12  82  26  40 100  54  32   2</code></pre>
+<pre><code>##  [1] 69 75 64 45 55  8  4 27 37 35</code></pre>
 <div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="base.html#cb373-1"></a><span class="kw">sort</span>(x)</span></code></pre></div>
-<pre><code>##  [1]   2  12  26  32  34  40  54  82  89 100</code></pre>
+<pre><code>##  [1]  4  8 27 35 37 45 55 64 69 75</code></pre>
 <div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="base.html#cb375-1"></a><span class="kw">order</span>(x)</span></code></pre></div>
-<pre><code>##  [1] 10  3  5  9  2  6  8  4  1  7</code></pre>
+<pre><code>##  [1]  7  6  8 10  9  4  5  3  1  2</code></pre>
 <div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="base.html#cb377-1"></a><span class="kw">order</span>(x, <span class="dt">decreasing =</span> T)</span></code></pre></div>
-<pre><code>##  [1]  7  1  4  8  6  2  9  5  3 10</code></pre>
+<pre><code>##  [1]  2  1  3  5  4  9 10  8  6  7</code></pre>
 <p>Passiamo ora a un gruppo di funzione utili per combinare tra loro diversi oggetti.</p>
 </div>
 <div id="sample" class="section level3">
@@ -2945,14 +2945,14 @@ Ad esempio:</p>
 <div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="base.html#cb379-1"></a>x =<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
 <span id="cb379-2"><a href="base.html#cb379-2"></a>y =<span class="st"> </span><span class="kw">sample</span>(x, <span class="dv">3</span>)</span>
 <span id="cb379-3"><a href="base.html#cb379-3"></a>y</span></code></pre></div>
-<pre><code>## [1] 5 2 6</code></pre>
+<pre><code>## [1] 3 7 6</code></pre>
 <div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="base.html#cb381-1"></a>y =<span class="st"> </span><span class="kw">sample</span>(x, <span class="dv">20</span>, <span class="dt">rep =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb381-2"><a href="base.html#cb381-2"></a>y</span></code></pre></div>
-<pre><code>##  [1]  7  8  4  4  4  5  1  3  3  1  5  6  1  9  7  3  8  5 10  4</code></pre>
+<pre><code>##  [1]  7 10  6  9  9  4  3  2  2  1  7  1 10  9  6  6  9  9  4  7</code></pre>
 <div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="base.html#cb383-1"></a>y =<span class="st"> </span><span class="kw">sample</span>(x, <span class="dv">30</span>, <span class="dt">rep =</span> <span class="ot">TRUE</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="kw">rep</span>(<span class="fl">0.1</span>, <span class="dv">9</span>)))</span>
 <span id="cb383-2"><a href="base.html#cb383-2"></a>y</span></code></pre></div>
-<pre><code>##  [1]  1  1  1  1  1  1  9  1  1  4  1  1  2  2  6  1  5  1 10  3  2  1  2  5  1
-## [26]  1  1  1  1  8</code></pre>
+<pre><code>##  [1]  5  1  1  1  1  7  1  1 10  1  1  3  1  1  1  1  1  9  5  4  1  8  3  1  2
+## [26]  1  7  8  1  1</code></pre>
 <p>Dunque, nei primi due esempi abbiamo visto come usare l’opzione <strong>rep</strong>, nell’ultimo esempio possiamo notare come le probabilità di estrazione, fortemente sbilanciate a favore del valore 1, si riflettono sulla composizione del campione estratto.</p>
 </div>
 <div id="cbind-e-rbind" class="section level3">
@@ -3015,34 +3015,34 @@ Ad esempio:</p>
 <span id="cb399-7"><a href="base.html#cb399-7"></a></span>
 <span id="cb399-8"><a href="base.html#cb399-8"></a><span class="kw">head</span>(iris_c)</span></code></pre></div>
 <pre><code>##    id color
-## 1 137   red
-## 2 111  blue
-## 3 112   red
-## 4 106  blue
-## 5 148   red
-## 6 121  blue</code></pre>
+## 1  61   red
+## 2  20  blue
+## 3  46   red
+## 4 126  blue
+## 5 129   red
+## 6  78  blue</code></pre>
 <div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="base.html#cb401-1"></a>iris_full =<span class="st"> </span><span class="kw">merge</span>(iris, iris_c)</span>
 <span id="cb401-2"><a href="base.html#cb401-2"></a></span>
 <span id="cb401-3"><a href="base.html#cb401-3"></a><span class="kw">head</span>(iris_full, <span class="dv">20</span>)</span></code></pre></div>
 <pre><code>##    id Sepal.Length Sepal.Width Petal.Length Petal.Width Species color
 ## 1   1          5.1         3.5          1.4         0.2  setosa   red
-## 2   2          4.9         3.0          1.4         0.2  setosa  blue
+## 2   2          4.9         3.0          1.4         0.2  setosa   red
 ## 3   3          4.7         3.2          1.3         0.2  setosa   red
 ## 4   4          4.6         3.1          1.5         0.2  setosa  blue
 ## 5   5          5.0         3.6          1.4         0.2  setosa   red
 ## 6   6          5.4         3.9          1.7         0.4  setosa  blue
-## 7   7          4.6         3.4          1.4         0.3  setosa  blue
+## 7   7          4.6         3.4          1.4         0.3  setosa   red
 ## 8   8          5.0         3.4          1.5         0.2  setosa  blue
 ## 9   9          4.4         2.9          1.4         0.2  setosa  blue
-## 10 10          4.9         3.1          1.5         0.1  setosa   red
-## 11 11          5.4         3.7          1.5         0.2  setosa  blue
+## 10 10          4.9         3.1          1.5         0.1  setosa  blue
+## 11 11          5.4         3.7          1.5         0.2  setosa   red
 ## 12 12          4.8         3.4          1.6         0.2  setosa  blue
 ## 13 13          4.8         3.0          1.4         0.1  setosa   red
-## 14 14          4.3         3.0          1.1         0.1  setosa   red
-## 15 15          5.8         4.0          1.2         0.2  setosa  blue
+## 14 14          4.3         3.0          1.1         0.1  setosa  blue
+## 15 15          5.8         4.0          1.2         0.2  setosa   red
 ## 16 16          5.7         4.4          1.5         0.4  setosa   red
-## 17 17          5.4         3.9          1.3         0.4  setosa   red
-## 18 18          5.1         3.5          1.4         0.3  setosa   red
+## 17 17          5.4         3.9          1.3         0.4  setosa  blue
+## 18 18          5.1         3.5          1.4         0.3  setosa  blue
 ## 19 19          5.7         3.8          1.7         0.3  setosa   red
 ## 20 20          5.1         3.8          1.5         0.3  setosa  blue</code></pre>
 <p>Noterete che:</p>
@@ -3126,7 +3126,7 @@ Vediamo un ultimo esempio che coinvolge la funzione <strong>length</strong> che 
 <p>In tutti questi casi abbiamo usato queste funzioni su vettori, vediamo cosa succede quando siamo alle prese con matrici o data frame.</p>
 <div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="base.html#cb425-1"></a>m =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">25</span>), <span class="dv">5</span>, <span class="dv">5</span>)</span>
 <span id="cb425-2"><a href="base.html#cb425-2"></a><span class="kw">range</span>(m)</span></code></pre></div>
-<pre><code>## [1]  2 88</code></pre>
+<pre><code>## [1]   8 100</code></pre>
 <div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="base.html#cb427-1"></a><span class="kw">data</span>(iris)</span>
 <span id="cb427-2"><a href="base.html#cb427-2"></a><span class="kw">max</span>(iris[, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])</span></code></pre></div>
 <pre><code>## [1] 7.9</code></pre>
@@ -3137,22 +3137,121 @@ Vediamo un ultimo esempio che coinvolge la funzione <strong>length</strong> che 
 <span id="cb429-4"><a href="base.html#cb429-4"></a><span class="kw">range</span>(m)</span></code></pre></div>
 <pre><code>## [1] NA NA</code></pre>
 <div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="base.html#cb431-1"></a><span class="kw">range</span>(m, <span class="dt">na.rm =</span> T)</span></code></pre></div>
-<pre><code>## [1]  2 95</code></pre>
+<pre><code>## [1] 12 98</code></pre>
 </div>
 <div id="summary" class="section level3">
 <h3><span class="header-section-number">4.14.26</span> summary</h3>
+<p>Questa funzione è, se possibile, altrettanto generica di <strong>plot</strong> e, come suggerisce il suo nome, serve a ottenere una visione compatta ma completa delle caratteristiche di un insieme di dati. Vediamo come si comporta su vari oggetti.</p>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="base.html#cb433-1"></a>v =<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">10</span>)</span>
+<span id="cb433-2"><a href="base.html#cb433-2"></a><span class="kw">summary</span>(v)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##     1.0    23.5    62.5    52.0    70.5    97.0</code></pre>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="base.html#cb435-1"></a>m =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">25</span>), <span class="dv">5</span>, <span class="dv">5</span>)</span>
+<span id="cb435-2"><a href="base.html#cb435-2"></a><span class="kw">summary</span>(m)</span></code></pre></div>
+<pre><code>##        V1             V2             V3             V4           V5      
+##  Min.   :51.0   Min.   : 4.0   Min.   :11.0   Min.   :13   Min.   : 6.0  
+##  1st Qu.:55.0   1st Qu.:16.0   1st Qu.:48.0   1st Qu.:14   1st Qu.:20.0  
+##  Median :70.0   Median :34.0   Median :50.0   Median :27   Median :31.0  
+##  Mean   :69.2   Mean   :27.6   Mean   :51.4   Mean   :38   Mean   :41.4  
+##  3rd Qu.:73.0   3rd Qu.:37.0   3rd Qu.:68.0   3rd Qu.:40   3rd Qu.:57.0  
+##  Max.   :97.0   Max.   :47.0   Max.   :80.0   Max.   :96   Max.   :93.0</code></pre>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="base.html#cb437-1"></a><span class="kw">data</span>(iris)</span>
+<span id="cb437-2"><a href="base.html#cb437-2"></a><span class="kw">summary</span>(iris)</span></code></pre></div>
+<pre><code>##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##        Species  
+##  setosa    :50  
+##  versicolor:50  
+##  virginica :50  
+##                 
+##                 
+## </code></pre>
+<p>Nel primo caso, relativo al vettore <em>vec</em>, R ci ha restituito la suguente serie di valori:</p>
+<ul>
+<li><strong>Min.</strong> il valore minimo</li>
+<li><strong>1st Qu.</strong> il primo <em>quartile</em> della distribuzione dei dati</li>
+<li><strong>Median</strong> la mediana o secondo quartile</li>
+<li><strong>Mean</strong> il valore medio</li>
+<li><strong>3rd Qu.</strong> il terzo <em>quartile</em> della distribuzione dei dati</li>
+<li><strong>Max.</strong> il valore massimo</li>
+</ul>
+<p>Nel caso della matrice <em>m</em> o del data frame <em>iris</em>, R ha restituito gli stesso valori ma per ogni colonna. Nel caso della colonna <em>Species</em> di <em>iris</em>, che è un <em>factor</em>, ci ha fornito il numero delle occorrenze per ciascuna valore.</p>
+<p>La funzione <strong>summary</strong>, comunque, è molto utile anche per capire alla svelta se nell’oggetto che ci interessa ci solo valori mancanti.
+Ad esempio:</p>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="base.html#cb439-1"></a>m =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">log</span>(<span class="kw">sample</span>(<span class="op">-</span><span class="dv">100</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">25</span>)), <span class="dv">5</span>, <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## Warning in log(sample(-100:100, 25)): Si è prodotto un NaN</code></pre>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="base.html#cb441-1"></a>m</span></code></pre></div>
+<pre><code>##          [,1]     [,2]     [,3]     [,4]     [,5]
+## [1,] 2.079442 4.499810      NaN      NaN 3.988984
+## [2,]      NaN 4.060443 3.912023 4.465908      NaN
+## [3,]      NaN      NaN 4.248495      NaN 4.543295
+## [4,]      NaN 4.553877      NaN 3.970292      NaN
+## [5,]      NaN      NaN 4.430817      NaN 4.477337</code></pre>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="base.html#cb443-1"></a><span class="kw">summary</span>(m)</span></code></pre></div>
+<pre><code>##        V1              V2              V3              V4       
+##  Min.   :2.079   Min.   :4.060   Min.   :3.912   Min.   :3.970  
+##  1st Qu.:2.079   1st Qu.:4.280   1st Qu.:4.080   1st Qu.:4.094  
+##  Median :2.079   Median :4.500   Median :4.248   Median :4.218  
+##  Mean   :2.079   Mean   :4.371   Mean   :4.197   Mean   :4.218  
+##  3rd Qu.:2.079   3rd Qu.:4.527   3rd Qu.:4.340   3rd Qu.:4.342  
+##  Max.   :2.079   Max.   :4.554   Max.   :4.431   Max.   :4.466  
+##  NA&#39;s   :4       NA&#39;s   :2       NA&#39;s   :2       NA&#39;s   :3      
+##        V5       
+##  Min.   :3.989  
+##  1st Qu.:4.233  
+##  Median :4.477  
+##  Mean   :4.337  
+##  3rd Qu.:4.510  
+##  Max.   :4.543  
+##  NA&#39;s   :2</code></pre>
+<p>Come si può vedere, in questo caso R ci fornisce anche il numero di <strong>NA</strong> (o di <strong>NaN</strong>, in questo caso non c’è differenza) per ciascuna colonna della matrice. Per generare i <strong>NaN</strong> abbiamo usato <strong>sample</strong> per estrarre 25 valori da un insieme che comprende numeri negativi e poi abbiamo usato la funzione <strong>log</strong> (logaritmo), che non è definita per i numeri negativi, per ottenere una matrice con una serie di <strong>NaN</strong> disposti a caso.</p>
 </div>
 <div id="cumsum" class="section level3">
 <h3><span class="header-section-number">4.14.27</span> cumsum</h3>
 </div>
-<div id="median" class="section level3">
-<h3><span class="header-section-number">4.14.28</span> median</h3>
+<div id="median-e-mean" class="section level3">
+<h3><span class="header-section-number">4.14.28</span> median e mean</h3>
+<p>Queste due funzioni molto simili ci permettono di calcolare <em>media</em> e <em>mediana</em>, i principali <em>indici di centralità</em>, su un qualsiasi insieme di dati
+Entrambe la funzioni hanno l’opzione <strong>na.rm</strong> che chiedere a R di ignorare i valori anomali.</p>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="base.html#cb445-1"></a>m =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">log</span>(<span class="kw">sample</span>(<span class="op">-</span><span class="dv">100</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">25</span>)), <span class="dv">5</span>, <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## Warning in log(sample(-100:100, 25)): Si è prodotto un NaN</code></pre>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="base.html#cb447-1"></a>m</span></code></pre></div>
+<pre><code>##          [,1]     [,2]    [,3]     [,4]     [,5]
+## [1,]      NaN      NaN     NaN 4.584967 2.639057
+## [2,] 3.828641 3.135494     NaN      NaN 3.465736
+## [3,] 4.234107      NaN 4.51086 3.258097 3.970292
+## [4,]      NaN 3.688879     NaN 4.043051      NaN
+## [5,] 4.189655      NaN     NaN 4.394449      NaN</code></pre>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="base.html#cb449-1"></a><span class="kw">median</span>(m)</span></code></pre></div>
+<pre><code>## [1] NA</code></pre>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="base.html#cb451-1"></a><span class="kw">mean</span>(m)</span></code></pre></div>
+<pre><code>## [1] NaN</code></pre>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="base.html#cb453-1"></a><span class="kw">median</span>(m, <span class="dt">na.rm =</span> T)</span></code></pre></div>
+<pre><code>## [1] 3.970292</code></pre>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="base.html#cb455-1"></a><span class="kw">mean</span>(m, <span class="dt">na.rm =</span> T)</span></code></pre></div>
+<pre><code>## [1] 3.841791</code></pre>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="base.html#cb457-1"></a><span class="kw">mean</span>(iris)</span></code></pre></div>
+<pre><code>## Warning in mean.default(iris): l&#39;argomento non è numerico o logico: restituisco
+## NA</code></pre>
+<pre><code>## [1] NA</code></pre>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="base.html#cb460-1"></a><span class="kw">mean</span>(iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])</span></code></pre></div>
+<pre><code>## Warning in mean.default(iris[, 1:4]): l&#39;argomento non è numerico o logico:
+## restituisco NA</code></pre>
+<pre><code>## [1] NA</code></pre>
+<p>Negli ultimi due esempi abbiamo avuto problemi nell’applicare la funzione <strong>mean</strong> a <em>iris</em>, anche quando ci siamo limitati alle prime 4 colonne che sappiamo essere <em>numeric</em>. Questo accade spesso quando si usano funzioni “matematiche” ai data frame, e fin dal primo incontro con questi oggetti avevamo precisato che non sono ottimali per il calcolo. Qui aggiungeremo che, se proprio volessi calcolare la media delle prime 4 colonne di <em>iris</em>, sarò costretto a trattarle come una matrice.</p>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="base.html#cb463-1"></a><span class="kw">mean</span>(<span class="kw">as.matrix</span>(iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]))</span></code></pre></div>
+<pre><code>## [1] 3.4645</code></pre>
 </div>
 <div id="quantile" class="section level3">
 <h3><span class="header-section-number">4.14.29</span> quantile</h3>
 </div>
-<div id="mean" class="section level3">
-<h3><span class="header-section-number">4.14.30</span> mean</h3>
+<div id="section" class="section level3">
+<h3><span class="header-section-number">4.14.30</span> </h3>
 </div>
 <div id="sd" class="section level3">
 <h3><span class="header-section-number">4.14.31</span> sd</h3>
@@ -3202,15 +3301,15 @@ Vediamo un ultimo esempio che coinvolge la funzione <strong>length</strong> che 
 <p><strong>plot</strong> è una delle funzioni più generiche di R, tanto che sarebbe più appropriato parlare di un <strong>metodo</strong> invece che di una semplice funzione. Spesso, infatti, pacchetti addizionali di R hanno delle loro specifiche funzioni <strong>plot</strong>. Questo è possibile - e avviene senza crera confusione ed equivoci tra funzioni omonime, perchè R <strong>è capace di riconoscere la classe di ogni oggetto e di applicare su di esso la funzione plot più appropriate</strong>. Vedremo tra poco come <strong>plot</strong>, se riferita a un albero di classificazione, restituisce un dendrogramma invece che uno scatterplot.
 Comunque, andando con ordine, cominciamo dalla funzione <strong>plot</strong> del pacchetto base, cioè appunto quella per rappresentare nuvole di punti in uno spazio bidimensionale.
 Gli argomenti di <strong>plot</strong> sono <em>x</em> (la coordinata sull’asse delle ascisse) e <em>y</em> (la coordinata sull’asse delle ordinate). Se le coordinate sono numerico (intere o reali non ha importanza) non c’è molto da dire, se sono dei ordinati, R li trattera come una sequenza di numeri naturali 1, 2, 3, … <em>n</em> dove <em>n</em> rappresenta il numero di livelli del factor. Se sono dei factor non ordinati… R produrra qualcosa che assomiglia a una tabella di contingenza. Vediamo degli esempi</p>
-<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="base.html#cb433-1"></a><span class="kw">data</span>(iris)</span>
-<span id="cb433-2"><a href="base.html#cb433-2"></a>iris<span class="op">$</span>color =<span class="st"> </span><span class="kw">factor</span>(<span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;blue&quot;</span>), <span class="dv">75</span>), <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;blue&quot;</span>))</span>
-<span id="cb433-3"><a href="base.html#cb433-3"></a></span>
-<span id="cb433-4"><a href="base.html#cb433-4"></a><span class="kw">plot</span>(iris<span class="op">$</span>Sepal.Length, iris<span class="op">$</span>Sepal.Width)</span></code></pre></div>
-<p><img src="01-base_files/figure-html/unnamed-chunk-117-1.png" width="672" /></p>
-<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="base.html#cb434-1"></a><span class="kw">plot</span>(iris<span class="op">$</span>Sepal.Length, iris<span class="op">$</span>Species)</span></code></pre></div>
-<p><img src="01-base_files/figure-html/unnamed-chunk-117-2.png" width="672" /></p>
-<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="base.html#cb435-1"></a><span class="kw">plot</span>(iris<span class="op">$</span>Species, iris<span class="op">$</span>color)</span></code></pre></div>
-<p><img src="01-base_files/figure-html/unnamed-chunk-117-3.png" width="672" /></p>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="base.html#cb465-1"></a><span class="kw">data</span>(iris)</span>
+<span id="cb465-2"><a href="base.html#cb465-2"></a>iris<span class="op">$</span>color =<span class="st"> </span><span class="kw">factor</span>(<span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;blue&quot;</span>), <span class="dv">75</span>), <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;blue&quot;</span>))</span>
+<span id="cb465-3"><a href="base.html#cb465-3"></a></span>
+<span id="cb465-4"><a href="base.html#cb465-4"></a><span class="kw">plot</span>(iris<span class="op">$</span>Sepal.Length, iris<span class="op">$</span>Sepal.Width)</span></code></pre></div>
+<p><img src="01-base_files/figure-html/unnamed-chunk-121-1.png" width="672" /></p>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="base.html#cb466-1"></a><span class="kw">plot</span>(iris<span class="op">$</span>Sepal.Length, iris<span class="op">$</span>Species)</span></code></pre></div>
+<p><img src="01-base_files/figure-html/unnamed-chunk-121-2.png" width="672" /></p>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="base.html#cb467-1"></a><span class="kw">plot</span>(iris<span class="op">$</span>Species, iris<span class="op">$</span>color)</span></code></pre></div>
+<p><img src="01-base_files/figure-html/unnamed-chunk-121-3.png" width="672" /></p>
 <p>Oltre a questo, occorre solo sapere che <strong>plot</strong> ha una lunga serie di argomenti opzionali che servono a specificare:</p>
 <ul>
 <li>il tipo di grafico (punti, linee, punti e linee, etc.)</li>
@@ -3221,44 +3320,44 @@ Gli argomenti di <strong>plot</strong> sono <em>x</em> (la coordinata sull’ass
 <li>tanti altri aspetti (margini, ecc.)</li>
 </ul>
 <p>Tutti questi argomenti opzionali sono, più propriamente, gli argomenti di un’altra funzione, chiamata <strong>par</strong> (abbraviativo di <em>parameter</em>) che si usa per definire questi aspetti <strong>prima</strong> di usare <strong>plot</strong>. Vediamo degli esempi</p>
-<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="base.html#cb436-1"></a><span class="kw">data</span>(iris)</span>
-<span id="cb436-2"><a href="base.html#cb436-2"></a></span>
-<span id="cb436-3"><a href="base.html#cb436-3"></a><span class="kw">plot</span>(iris<span class="op">$</span>Sepal.Length, iris<span class="op">$</span>Sepal.Width, <span class="dt">pch =</span> <span class="dv">19</span>, </span>
-<span id="cb436-4"><a href="base.html#cb436-4"></a>     <span class="dt">main =</span> <span class="st">&quot;Esempio di utilizzo dell&#39;argomento pch&quot;</span>)</span></code></pre></div>
-<p><img src="01-base_files/figure-html/unnamed-chunk-118-1.png" width="672" /></p>
-<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="base.html#cb437-1"></a><span class="kw">plot</span>(iris<span class="op">$</span>Sepal.Length, iris<span class="op">$</span>Sepal.Width, <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>,</span>
-<span id="cb437-2"><a href="base.html#cb437-2"></a>     <span class="dt">main =</span> <span class="st">&quot;Esempio di utilizzo dell&#39;argomento col&quot;</span>)</span></code></pre></div>
-<p><img src="01-base_files/figure-html/unnamed-chunk-118-2.png" width="672" /></p>
-<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="base.html#cb438-1"></a><span class="kw">plot</span>(iris<span class="op">$</span>Sepal.Length, iris<span class="op">$</span>Sepal.Width, <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>,</span>
-<span id="cb438-2"><a href="base.html#cb438-2"></a>     <span class="dt">main =</span> <span class="st">&quot;Esempio di utilizzo dell&#39;argomento type&quot;</span>)</span></code></pre></div>
-<p><img src="01-base_files/figure-html/unnamed-chunk-118-3.png" width="672" /></p>
-<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="base.html#cb439-1"></a><span class="kw">plot</span>(iris<span class="op">$</span>Sepal.Length, iris<span class="op">$</span>Sepal.Width, <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">cex =</span> <span class="dv">3</span>,</span>
-<span id="cb439-2"><a href="base.html#cb439-2"></a>     <span class="dt">main =</span> <span class="st">&quot;Esempio di utilizzo dell&#39;argomento cex&quot;</span>)</span></code></pre></div>
-<p><img src="01-base_files/figure-html/unnamed-chunk-118-4.png" width="672" /></p>
-<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="base.html#cb440-1"></a><span class="kw">plot</span>(iris<span class="op">$</span>Sepal.Length, iris<span class="op">$</span>Sepal.Width, <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, </span>
-<span id="cb440-2"><a href="base.html#cb440-2"></a>     <span class="dt">xlab =</span> <span class="st">&quot;lunghezza dei sepali&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;larghezza dei sepali&quot;</span>,</span>
-<span id="cb440-3"><a href="base.html#cb440-3"></a>     <span class="dt">main =</span> <span class="st">&quot;Esempio di utilizzo degli argomenti xlab e ylab&quot;</span>)</span></code></pre></div>
-<p><img src="01-base_files/figure-html/unnamed-chunk-118-5.png" width="672" /></p>
-<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="base.html#cb441-1"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb441-2"><a href="base.html#cb441-2"></a><span class="kw">plot</span>(iris<span class="op">$</span>Sepal.Length, iris<span class="op">$</span>Sepal.Width, <span class="dt">pch =</span> <span class="dv">19</span>)</span>
-<span id="cb441-3"><a href="base.html#cb441-3"></a><span class="kw">plot</span>(iris<span class="op">$</span>Sepal.Length, iris<span class="op">$</span>Petal.Length, <span class="dt">pch =</span> <span class="dv">19</span>)</span>
-<span id="cb441-4"><a href="base.html#cb441-4"></a><span class="kw">plot</span>(iris<span class="op">$</span>Sepal.Length, iris<span class="op">$</span>Petal.Width, <span class="dt">pch =</span> <span class="dv">19</span>)</span>
-<span id="cb441-5"><a href="base.html#cb441-5"></a><span class="kw">plot</span>(iris<span class="op">$</span>Sepal.Width, iris<span class="op">$</span>Petal.Width, <span class="dt">pch =</span> <span class="dv">19</span>)</span></code></pre></div>
-<p><img src="01-base_files/figure-html/unnamed-chunk-118-6.png" width="672" /></p>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="base.html#cb468-1"></a><span class="kw">data</span>(iris)</span>
+<span id="cb468-2"><a href="base.html#cb468-2"></a></span>
+<span id="cb468-3"><a href="base.html#cb468-3"></a><span class="kw">plot</span>(iris<span class="op">$</span>Sepal.Length, iris<span class="op">$</span>Sepal.Width, <span class="dt">pch =</span> <span class="dv">19</span>, </span>
+<span id="cb468-4"><a href="base.html#cb468-4"></a>     <span class="dt">main =</span> <span class="st">&quot;Esempio di utilizzo dell&#39;argomento pch&quot;</span>)</span></code></pre></div>
+<p><img src="01-base_files/figure-html/unnamed-chunk-122-1.png" width="672" /></p>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="base.html#cb469-1"></a><span class="kw">plot</span>(iris<span class="op">$</span>Sepal.Length, iris<span class="op">$</span>Sepal.Width, <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb469-2"><a href="base.html#cb469-2"></a>     <span class="dt">main =</span> <span class="st">&quot;Esempio di utilizzo dell&#39;argomento col&quot;</span>)</span></code></pre></div>
+<p><img src="01-base_files/figure-html/unnamed-chunk-122-2.png" width="672" /></p>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="base.html#cb470-1"></a><span class="kw">plot</span>(iris<span class="op">$</span>Sepal.Length, iris<span class="op">$</span>Sepal.Width, <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>,</span>
+<span id="cb470-2"><a href="base.html#cb470-2"></a>     <span class="dt">main =</span> <span class="st">&quot;Esempio di utilizzo dell&#39;argomento type&quot;</span>)</span></code></pre></div>
+<p><img src="01-base_files/figure-html/unnamed-chunk-122-3.png" width="672" /></p>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="base.html#cb471-1"></a><span class="kw">plot</span>(iris<span class="op">$</span>Sepal.Length, iris<span class="op">$</span>Sepal.Width, <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">cex =</span> <span class="dv">3</span>,</span>
+<span id="cb471-2"><a href="base.html#cb471-2"></a>     <span class="dt">main =</span> <span class="st">&quot;Esempio di utilizzo dell&#39;argomento cex&quot;</span>)</span></code></pre></div>
+<p><img src="01-base_files/figure-html/unnamed-chunk-122-4.png" width="672" /></p>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="base.html#cb472-1"></a><span class="kw">plot</span>(iris<span class="op">$</span>Sepal.Length, iris<span class="op">$</span>Sepal.Width, <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, </span>
+<span id="cb472-2"><a href="base.html#cb472-2"></a>     <span class="dt">xlab =</span> <span class="st">&quot;lunghezza dei sepali&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;larghezza dei sepali&quot;</span>,</span>
+<span id="cb472-3"><a href="base.html#cb472-3"></a>     <span class="dt">main =</span> <span class="st">&quot;Esempio di utilizzo degli argomenti xlab e ylab&quot;</span>)</span></code></pre></div>
+<p><img src="01-base_files/figure-html/unnamed-chunk-122-5.png" width="672" /></p>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="base.html#cb473-1"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb473-2"><a href="base.html#cb473-2"></a><span class="kw">plot</span>(iris<span class="op">$</span>Sepal.Length, iris<span class="op">$</span>Sepal.Width, <span class="dt">pch =</span> <span class="dv">19</span>)</span>
+<span id="cb473-3"><a href="base.html#cb473-3"></a><span class="kw">plot</span>(iris<span class="op">$</span>Sepal.Length, iris<span class="op">$</span>Petal.Length, <span class="dt">pch =</span> <span class="dv">19</span>)</span>
+<span id="cb473-4"><a href="base.html#cb473-4"></a><span class="kw">plot</span>(iris<span class="op">$</span>Sepal.Length, iris<span class="op">$</span>Petal.Width, <span class="dt">pch =</span> <span class="dv">19</span>)</span>
+<span id="cb473-5"><a href="base.html#cb473-5"></a><span class="kw">plot</span>(iris<span class="op">$</span>Sepal.Width, iris<span class="op">$</span>Petal.Width, <span class="dt">pch =</span> <span class="dv">19</span>)</span></code></pre></div>
+<p><img src="01-base_files/figure-html/unnamed-chunk-122-6.png" width="672" /></p>
 <p>Nell’ultimo esempio abbiamo usato <strong>par</strong> e <strong>mfrow</strong> (un suo argomento) per inizializzare uno “spazio grafico” avente 2 righe e 2 colonne, in modo da ottenere un mosaico di scatterplot perfettamente coerenti dal punto di vista grafico (stesse proporzioni, stessi caratteri, stesso allineamento, ecc.).</p>
 <p>Il bravo neofita è invitato a giocare con le (quasi) infinte opzioni di plot, che sarebbe noioso esaminare una per una. Piuttosto, è utile insistere sull’ “intuito” della funzione <strong>plot</strong>. Vediamo cosa succede se la applichiamo a un data frame</p>
-<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="base.html#cb442-1"></a><span class="kw">data</span>(iris)</span>
-<span id="cb442-2"><a href="base.html#cb442-2"></a><span class="kw">plot</span>(iris)</span></code></pre></div>
-<p><img src="01-base_files/figure-html/unnamed-chunk-119-1.png" width="672" /></p>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="base.html#cb474-1"></a><span class="kw">data</span>(iris)</span>
+<span id="cb474-2"><a href="base.html#cb474-2"></a><span class="kw">plot</span>(iris)</span></code></pre></div>
+<p><img src="01-base_files/figure-html/unnamed-chunk-123-1.png" width="672" /></p>
 <p>Il risultato è soprendente, ma non troppo: R è partito dall’assunto che il data frame
 sia una raccolta di osservazioni (righe) rispetto a 5 variabili… e quindi ci ha restituito uno scatterplot di tutte le possibili coppie di variabili. Un metodo rozzo ma efficace per avere una prima visione d’insieme dei dati (primo passaggio di un qualsiasi protocollo statistico di analisi dei dati).</p>
 <p>A questo punto viene spontaneo chiedersi come si comporterà <strong>plot</strong> con oggetti di altri tipo. Vediamo degli esempi</p>
-<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="base.html#cb443-1"></a>m =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">30</span>), <span class="dv">10</span>, <span class="dv">3</span>)</span>
-<span id="cb443-2"><a href="base.html#cb443-2"></a><span class="kw">plot</span>(m)</span></code></pre></div>
-<p><img src="01-base_files/figure-html/unnamed-chunk-120-1.png" width="672" /></p>
-<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="base.html#cb444-1"></a>v =<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">10</span>)</span>
-<span id="cb444-2"><a href="base.html#cb444-2"></a><span class="kw">plot</span>(v)</span></code></pre></div>
-<p><img src="01-base_files/figure-html/unnamed-chunk-120-2.png" width="672" /></p>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="base.html#cb475-1"></a>m =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">30</span>), <span class="dv">10</span>, <span class="dv">3</span>)</span>
+<span id="cb475-2"><a href="base.html#cb475-2"></a><span class="kw">plot</span>(m)</span></code></pre></div>
+<p><img src="01-base_files/figure-html/unnamed-chunk-124-1.png" width="672" /></p>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="base.html#cb476-1"></a>v =<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">10</span>)</span>
+<span id="cb476-2"><a href="base.html#cb476-2"></a><span class="kw">plot</span>(v)</span></code></pre></div>
+<p><img src="01-base_files/figure-html/unnamed-chunk-124-2.png" width="672" /></p>
 <p>Nel primo caso (la matrice <em>m</em>), R ha usato le prime due colonne come <em>x</em> e <em>y</em>, rispettivamente, e ignorando la terza colonna. Ce ne accorgiamo dai nomi dei due assi dello scatterplot.
 Nel secondo caso (il vettore <em>v</em>), R ha trattato i dati come una serie e ha usato i valori del vettore come <em>y</em> contro una <em>x</em> rappresentata dagli indici di posizione degli elementi che compongono <em>v</em>.</p>
 </div>
@@ -3270,27 +3369,27 @@ Nel secondo caso (il vettore <em>v</em>), R ha trattato i dati come una serie e 
 <li><strong>breaks</strong> (tagli), cioè la serie di intervalli o il criterio per generarli</li>
 </ol>
 <p>Ad esempio:</p>
-<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="base.html#cb445-1"></a><span class="kw">data</span>(iris)</span>
-<span id="cb445-2"><a href="base.html#cb445-2"></a></span>
-<span id="cb445-3"><a href="base.html#cb445-3"></a><span class="kw">hist</span>(iris<span class="op">$</span>Sepal.Length, <span class="dt">breaks =</span> <span class="dv">3</span>)</span></code></pre></div>
-<p><img src="01-base_files/figure-html/unnamed-chunk-121-1.png" width="672" /></p>
-<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="base.html#cb446-1"></a><span class="kw">hist</span>(iris<span class="op">$</span>Sepal.Length, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dt">by =</span> <span class="dv">1</span>))</span></code></pre></div>
-<p><img src="01-base_files/figure-html/unnamed-chunk-121-2.png" width="672" /></p>
-<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="base.html#cb447-1"></a><span class="kw">hist</span>(iris<span class="op">$</span>Sepal.Length, <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>))</span></code></pre></div>
-<p><img src="01-base_files/figure-html/unnamed-chunk-121-3.png" width="672" /></p>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="base.html#cb477-1"></a><span class="kw">data</span>(iris)</span>
+<span id="cb477-2"><a href="base.html#cb477-2"></a></span>
+<span id="cb477-3"><a href="base.html#cb477-3"></a><span class="kw">hist</span>(iris<span class="op">$</span>Sepal.Length, <span class="dt">breaks =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="01-base_files/figure-html/unnamed-chunk-125-1.png" width="672" /></p>
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="base.html#cb478-1"></a><span class="kw">hist</span>(iris<span class="op">$</span>Sepal.Length, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dt">by =</span> <span class="dv">1</span>))</span></code></pre></div>
+<p><img src="01-base_files/figure-html/unnamed-chunk-125-2.png" width="672" /></p>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="base.html#cb479-1"></a><span class="kw">hist</span>(iris<span class="op">$</span>Sepal.Length, <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>))</span></code></pre></div>
+<p><img src="01-base_files/figure-html/unnamed-chunk-125-3.png" width="672" /></p>
 <p>Nel primo caso abbiamo usato <strong>breaks</strong> per dire a R di fare 3 “tagli” e quindi generare 4 gruppi di dati. Nel secondo caso abbiamo specificato un vettore di intervalli omogenei. Nel terzo esempio abbiamo definito degli intervalli di ampiezza eterogenea.</p>
 <p>Anche <strong>hist</strong> ha diverse opzioni per specificare titoli, colori, ecc.</p>
 </div>
 <div id="barplot" class="section level3">
 <h3><span class="header-section-number">4.15.3</span> barplot</h3>
 <p>Il grafico a barre è un cugino degli istogrammi ma è usato principalmente per rappresentare il numero di occorrenze rispetto a una serie di casi. Il suo unico argomento obbligatorio, <strong>height</strong>, è un vettore che rappresente appunto il numero di osservazioni, qualcosa come l’ouput della funzione <strong>table</strong>. Volendo, si possono indicare i nomi delle classi. Ad esempio:</p>
-<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="base.html#cb448-1"></a><span class="kw">data</span>(iris)</span>
-<span id="cb448-2"><a href="base.html#cb448-2"></a>iris<span class="op">$</span>color =<span class="st"> </span><span class="kw">factor</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;blue&quot;</span>), <span class="dv">150</span>, <span class="dt">rep =</span> T),</span>
-<span id="cb448-3"><a href="base.html#cb448-3"></a>                    <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;blue&quot;</span>))</span>
-<span id="cb448-4"><a href="base.html#cb448-4"></a>  </span>
-<span id="cb448-5"><a href="base.html#cb448-5"></a>tab_iris =<span class="st"> </span><span class="kw">table</span>(iris<span class="op">$</span>color)</span>
-<span id="cb448-6"><a href="base.html#cb448-6"></a><span class="kw">barplot</span>(<span class="dt">height =</span> tab_iris, <span class="dt">names.arg =</span> <span class="kw">names</span>(tab_iris))</span></code></pre></div>
-<p><img src="01-base_files/figure-html/unnamed-chunk-122-1.png" width="672" /></p>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="base.html#cb480-1"></a><span class="kw">data</span>(iris)</span>
+<span id="cb480-2"><a href="base.html#cb480-2"></a>iris<span class="op">$</span>color =<span class="st"> </span><span class="kw">factor</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;blue&quot;</span>), <span class="dv">150</span>, <span class="dt">rep =</span> T),</span>
+<span id="cb480-3"><a href="base.html#cb480-3"></a>                    <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;blue&quot;</span>))</span>
+<span id="cb480-4"><a href="base.html#cb480-4"></a>  </span>
+<span id="cb480-5"><a href="base.html#cb480-5"></a>tab_iris =<span class="st"> </span><span class="kw">table</span>(iris<span class="op">$</span>color)</span>
+<span id="cb480-6"><a href="base.html#cb480-6"></a><span class="kw">barplot</span>(<span class="dt">height =</span> tab_iris, <span class="dt">names.arg =</span> <span class="kw">names</span>(tab_iris))</span></code></pre></div>
+<p><img src="01-base_files/figure-html/unnamed-chunk-126-1.png" width="672" /></p>
 <p>Nell’esempio precedente ci siamo avvalsi della funzione <strong>names</strong> che serve a estrarre i nomi delle classi di una tabella.</p>
 </div>
 <div id="boxplot" class="section level3">
@@ -3298,14 +3397,14 @@ Nel secondo caso (il vettore <em>v</em>), R ha trattato i dati come una serie e 
 <p>Il grafici del tipo Box and Wisker sono molto utili per confrontare in maniera non parametrica (cioè mediante mediana e quantili) diverse distribuzioni di dati.
 <strong>boxplot</strong> è una funzione molto generica, un pò come visto per <strong>plot</strong>.
 Vediamo alcuni esempi della sua applicazione.</p>
-<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="base.html#cb449-1"></a><span class="kw">data</span>(iris)</span>
-<span id="cb449-2"><a href="base.html#cb449-2"></a></span>
-<span id="cb449-3"><a href="base.html#cb449-3"></a><span class="kw">boxplot</span>(iris<span class="op">$</span>Sepal.Length)</span></code></pre></div>
-<p><img src="01-base_files/figure-html/unnamed-chunk-123-1.png" width="672" /></p>
-<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="base.html#cb450-1"></a><span class="kw">boxplot</span>(iris, <span class="dt">cex.axis =</span> <span class="fl">0.7</span>)</span></code></pre></div>
-<p><img src="01-base_files/figure-html/unnamed-chunk-123-2.png" width="672" /></p>
-<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="base.html#cb451-1"></a><span class="kw">boxplot</span>(<span class="kw">matrix</span>(<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">40</span>), <span class="dv">10</span>, <span class="dv">4</span>))</span></code></pre></div>
-<p><img src="01-base_files/figure-html/unnamed-chunk-123-3.png" width="672" /></p>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="base.html#cb481-1"></a><span class="kw">data</span>(iris)</span>
+<span id="cb481-2"><a href="base.html#cb481-2"></a></span>
+<span id="cb481-3"><a href="base.html#cb481-3"></a><span class="kw">boxplot</span>(iris<span class="op">$</span>Sepal.Length)</span></code></pre></div>
+<p><img src="01-base_files/figure-html/unnamed-chunk-127-1.png" width="672" /></p>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="base.html#cb482-1"></a><span class="kw">boxplot</span>(iris, <span class="dt">cex.axis =</span> <span class="fl">0.7</span>)</span></code></pre></div>
+<p><img src="01-base_files/figure-html/unnamed-chunk-127-2.png" width="672" /></p>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="base.html#cb483-1"></a><span class="kw">boxplot</span>(<span class="kw">matrix</span>(<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">40</span>), <span class="dv">10</span>, <span class="dv">4</span>))</span></code></pre></div>
+<p><img src="01-base_files/figure-html/unnamed-chunk-127-3.png" width="672" /></p>
 <p>Nel primo caso abbiamo usato una singola colonna di <em>iris</em> e abbiamo ottenuto un singolo grafico, in cui gli estremi delle barre rappresentano il minimo e il massimo delle osservazioni, la linea nera spessa rappresenta il valore della mediana e gli estremi del rettangolo grigio rappresentano il secondo e il terzo <strong>quartile</strong>, rispettivamente.
 Questo genera di grafici è molto utile per catturare al volo la <em>curtosi</em> e la <em>simmetria</em> della distribuzione di una serie di valori.</p>
 <p>Nel secondo esempio abbiamo applicato <strong>boxplot</strong> all’intero <em>iris</em>, ottenendo una figura per ciascuna variabile (colonna) di <em>iris</em>. Con la stessa logica si spiega il terzo esempio, in cui R ci restituisce le distribuzioni dei valori di ogni colonna della matrice.</p>
@@ -3314,13 +3413,20 @@ cioè una relazione matematica di qualche tipo. Nel prosieguo di questo manuale 
 <p>Per capirne il significato, partiamo dal modello dell’equazione lineare di una retta:
 y = mx + q. La tilde sostituisce il simbolo = in questa formula, e ha lo stesso senso: mettere in relazione la variabile dipendente con quella(e) indipendente(i).</p>
 <p>Adesso vediamo un suo utilizzo</p>
-<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="base.html#cb452-1"></a><span class="kw">data</span>(iris)</span>
-<span id="cb452-2"><a href="base.html#cb452-2"></a></span>
-<span id="cb452-3"><a href="base.html#cb452-3"></a><span class="kw">boxplot</span>(iris<span class="op">$</span>Sepal.Length <span class="op">~</span><span class="st"> </span>iris<span class="op">$</span>Species)</span></code></pre></div>
-<p><img src="01-base_files/figure-html/unnamed-chunk-124-1.png" width="672" /></p>
+<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="base.html#cb484-1"></a><span class="kw">data</span>(iris)</span>
+<span id="cb484-2"><a href="base.html#cb484-2"></a></span>
+<span id="cb484-3"><a href="base.html#cb484-3"></a><span class="kw">boxplot</span>(iris<span class="op">$</span>Sepal.Length <span class="op">~</span><span class="st"> </span>iris<span class="op">$</span>Species)</span></code></pre></div>
+<p><img src="01-base_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
+<p>L’esempio parla da solo: R ha rappresentato le distribuzioni della variabile Sepal Length <strong>rispetto</strong> alle specie, producendo un grafico molto chiaro che ci suggerisce l’esistenza di una morfologia diversa tra le diverse specie, almeno relativamente a questa singola biometria.</p>
 </div>
 <div id="plot2" class="section level3">
 <h3><span class="header-section-number">4.15.5</span> plot(2)</h3>
+<p>Anche se non abbiamo ancora introdotto le funzioni necessarie per fare analisi dei dati complesse come la <strong>cluster analysis</strong>,</p>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="base.html#cb485-1"></a><span class="kw">plot</span>(<span class="kw">hclust</span>(<span class="kw">dist</span>(iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])))</span></code></pre></div>
+<p><img src="01-base_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
+<p>Abbiamo usato due funzioni nuove, <strong>dist</strong> (che serve a calcolare una matrice di distanze) e <strong>hclust</strong> (che serve a fare le <em>cluster analysis</em>) per ottenere una classificazione degli individui nel data frame <em>iris</em> in base alle loro biometrie.
+Poi abbiamo applicato la funzione <strong>plot</strong> sul risultato e abbiamo ottenuto un dendrogramma.
+Torneremo in un altro capitolo su questo tipo di analisi statistica…</p>
 </div>
 <div id="jpeg-bmp-png-tiff-e-pdf" class="section level3">
 <h3><span class="header-section-number">4.15.6</span> jpeg, bmp, png, tiff e pdf</h3>
@@ -3341,15 +3447,15 @@ y = mx + q. La tilde sostituisce il simbolo = in questa formula, e ha lo stesso 
 <p>Per applicare la funzione dobbiamo inserirla in cui codice in modo che <strong>preceda</strong> le funzioni che generano il grafico. Dopo la funzione che crea la figura, infine, è necessario specificare il comando <strong>dev(off)</strong>.
 Questo perchè le funzioni come <strong>jpeg</strong> inizializzano un <em>device</em>, cioè un sottospazio in cui viene creata la figura, e per salvarla e chiudere il <em>device</em> è necessario appunto specificare <strong>dev(off)</strong>.</p>
 <p>Vediamo un esempio:</p>
-<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="base.html#cb453-1"></a><span class="kw">data</span>(iris)</span>
-<span id="cb453-2"><a href="base.html#cb453-2"></a></span>
-<span id="cb453-3"><a href="base.html#cb453-3"></a><span class="kw">jpeg</span>(<span class="dt">filename =</span> <span class="st">&quot;hist.jpeg&quot;</span>,</span>
-<span id="cb453-4"><a href="base.html#cb453-4"></a>     <span class="dt">width =</span> <span class="dv">1000</span>, <span class="dt">height =</span> <span class="dv">600</span>, <span class="dt">units =</span> <span class="st">&quot;px&quot;</span>)</span>
-<span id="cb453-5"><a href="base.html#cb453-5"></a>  <span class="kw">hist</span>(iris<span class="op">$</span>Sepal.Length, <span class="dt">breaks =</span> <span class="dv">3</span>)</span>
-<span id="cb453-6"><a href="base.html#cb453-6"></a><span class="kw">dev.off</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="base.html#cb486-1"></a><span class="kw">data</span>(iris)</span>
+<span id="cb486-2"><a href="base.html#cb486-2"></a></span>
+<span id="cb486-3"><a href="base.html#cb486-3"></a><span class="kw">jpeg</span>(<span class="dt">filename =</span> <span class="st">&quot;hist.jpeg&quot;</span>,</span>
+<span id="cb486-4"><a href="base.html#cb486-4"></a>     <span class="dt">width =</span> <span class="dv">1000</span>, <span class="dt">height =</span> <span class="dv">600</span>, <span class="dt">units =</span> <span class="st">&quot;px&quot;</span>)</span>
+<span id="cb486-5"><a href="base.html#cb486-5"></a>  <span class="kw">hist</span>(iris<span class="op">$</span>Sepal.Length, <span class="dt">breaks =</span> <span class="dv">3</span>)</span>
+<span id="cb486-6"><a href="base.html#cb486-6"></a><span class="kw">dev.off</span>()</span></code></pre></div>
 <pre><code>## quartz_off_screen 
 ##                 2</code></pre>
-<p>Se controlliamo, la procedura ha salvato nel nostro hard disk una figura chiamata hist.jpeg contenente l’istogramma della variabile di <em>iris</em> Sepal.Length.</p>
+<p>Se controlliamo, la procedura ha salvato nel nostro hard disk una figura chiamata <strong>hist.jpeg</strong> contenente l’istogramma della variabile di <em>iris</em> Sepal.Length.</p>
 
 </div>
 </div>
