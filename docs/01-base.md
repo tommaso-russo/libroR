@@ -32,32 +32,40 @@ knitr::kable(
 )
 ```
 
+\begin{table}
 
-
-Table: (\#tab:unnamed-chunk-1)TIOBE Index for August 2020
-
-|Name                 | Ratings| Change|
-|:--------------------|-------:|------:|
-|C                    |   16.98|   1.83|
-|Java                 |   14.43|  -1.60|
-|Python               |    9.69|  -0.33|
-|C++                  |    6.84|   0.78|
-|C#                   |    4.68|   0.83|
-|Visual Basic         |    4.66|   0.97|
-|Java Script          |    2.87|   0.62|
-|R                    |    2.79|   1.97|
-|PHP                  |    2.24|   0.17|
-|SQL                  |    1.46|  -0.17|
-|Go                   |    1.43|   0.45|
-|Swift                |    1.42|   0.53|
-|Pearl                |    1.11|   0.25|
-|Assembly language    |    1.04|  -0.07|
-|Ruby                 |    1.03|  -0.28|
-|MATLAB               |    0.86|  -0.41|
-|Classic Visual Basic |    0.82|  -0.20|
-|Groovy               |    0.77|  -0.46|
-|Objective-C          |    0.76|  -0.93|
-|Rust                 |    0.74|   0.29|
+\caption{(\#tab:unnamed-chunk-1)TIOBE Index for August 2020}
+\centering
+\begin{tabular}[t]{lrr}
+\toprule{}
+Name & Ratings & Change\\
+\midrule{}
+C & 16.98 & 1.83\\
+Java & 14.43 & -1.60\\
+Python & 9.69 & -0.33\\
+C++ & 6.84 & 0.78\\
+C\# & 4.68 & 0.83\\
+\addlinespace
+Visual Basic & 4.66 & 0.97\\
+Java Script & 2.87 & 0.62\\
+R & 2.79 & 1.97\\
+PHP & 2.24 & 0.17\\
+SQL & 1.46 & -0.17\\
+\addlinespace
+Go & 1.43 & 0.45\\
+Swift & 1.42 & 0.53\\
+Pearl & 1.11 & 0.25\\
+Assembly language & 1.04 & -0.07\\
+Ruby & 1.03 & -0.28\\
+\addlinespace
+MATLAB & 0.86 & -0.41\\
+Classic Visual Basic & 0.82 & -0.20\\
+Groovy & 0.77 & -0.46\\
+Objective-C & 0.76 & -0.93\\
+Rust & 0.74 & 0.29\\
+\bottomrule{}
+\end{tabular}
+\end{table}
 
 ```r
 par(las = 2, mar = c(5,10,1,1), cex = 0.7)
@@ -67,7 +75,7 @@ barplot(TIOBE$Ratings[order(TIOBE$Ratings, decreasing = F)],
         col = c(rep("grey",12),"blue",rep("grey",7)), horiz = T)
 ```
 
-<img src="01-base_files/figure-html/unnamed-chunk-1-1.png" width="672" />
+![](01-base_files/figure-latex/unnamed-chunk-1-1.pdf)<!-- --> 
 
 Questo dato è ancora più significativo se si considera che R non è esattamente un ambiente per produrre software compilato e quindi eseguibile (come avviene invece con i membri della famiglia **C**). 
 Perchè questo aspetto è così importante? Semplicemente perchè, essendo R un ambiente "libero", ogni utente può attingere a una sterminata banca dati di informazioni, algoritmi, pacchetti aggiuntivi e funzioni già sviluppate da altri utenti... e spesso può contare sull'aiuto diretto di una vasta community. In ambito scientifico, R ha avuto (e continua ad avere) una diffusione inarrestabile perchè incarna perfettamente alcuni ideali della ricerca: la possibilità di sviluppare metodologie completamente replicabili, chiare e ulteriormente implementabili. 
@@ -1473,20 +1481,26 @@ knitr::kable(
 )
 ```
 
+\begin{table}
 
-
-Table: (\#tab:nice-tab5)Gli operatori booleani in R
-
-|Operatore |Significato       |
-|:---------|:-----------------|
-|==        |uguale            |
-|>         |maggiore          |
-|<         |minore            |
-|>=        |maggiore o uguale |
-|<=        |minore o uguale   |
-|!         |negazione         |
-|&         |and               |
-|&#124;    |or                |
+\caption{(\#tab:nice-tab5)Gli operatori booleani in R}
+\centering
+\begin{tabular}[t]{ll}
+\toprule{}
+Operatore & Significato\\
+\midrule{}
+== & uguale\\
+> & maggiore\\
+< & minore\\
+>= & maggiore o uguale\\
+<= & minore o uguale\\
+\addlinespace
+! & negazione\\
+\& & and\\
+| & or\\
+\bottomrule{}
+\end{tabular}
+\end{table}
 
 Vediamo ora alcune loro semplici applicazioni, in modo da spiegare in maniera intuitiva il loro utilizzo
 
@@ -1553,16 +1567,21 @@ knitr::kable(data.frame(Espressione1 = c("TRUE","FALSE", "TRUE","FALSE"),
 )
 ```
 
+\begin{table}
 
-
-Table: (\#tab:nice-tab6)Tabella di verità dell'operatore AND
-
-|Espressione1 |Espressione2 |Valore |
-|:------------|:------------|:------|
-|TRUE         |TRUE         |TRUE   |
-|FALSE        |TRUE         |FALSE  |
-|TRUE         |FALSE        |FALSE  |
-|FALSE        |FALSE        |FALSE  |
+\caption{(\#tab:nice-tab6)Tabella di verità dell'operatore AND}
+\centering
+\begin{tabular}[t]{lll}
+\toprule{}
+Espressione1 & Espressione2 & Valore\\
+\midrule{}
+TRUE & TRUE & TRUE\\
+FALSE & TRUE & FALSE\\
+TRUE & FALSE & FALSE\\
+FALSE & FALSE & FALSE\\
+\bottomrule{}
+\end{tabular}
+\end{table}
 
 
 Questa è la tabella di verità per OR (|):
@@ -1577,16 +1596,21 @@ knitr::kable(data.frame(Espressione1 = c("TRUE","FALSE", "TRUE","FALSE"),
 )
 ```
 
+\begin{table}
 
-
-Table: (\#tab:nice-tab7)Tabella di verità dell'operatore OR
-
-|Espressione1 |Espressione2 |Valore |
-|:------------|:------------|:------|
-|TRUE         |TRUE         |TRUE   |
-|FALSE        |TRUE         |TRUE   |
-|TRUE         |FALSE        |TRUE   |
-|FALSE        |FALSE        |FALSE  |
+\caption{(\#tab:nice-tab7)Tabella di verità dell'operatore OR}
+\centering
+\begin{tabular}[t]{lll}
+\toprule{}
+Espressione1 & Espressione2 & Valore\\
+\midrule{}
+TRUE & TRUE & TRUE\\
+FALSE & TRUE & TRUE\\
+TRUE & FALSE & TRUE\\
+FALSE & FALSE & FALSE\\
+\bottomrule{}
+\end{tabular}
+\end{table}
 
 Per capire l'utilità dell'Algebra di Boole in R possiamo usare alcuni semplici esempi:
 
@@ -3770,7 +3794,7 @@ sort(x)
 ```
 
 ```
-##  [1]  1  5 23 42 43 46 67 68 75 97
+##  [1]  6 20 30 43 59 67 75 76 80 89
 ```
 
 ```r
@@ -3778,7 +3802,7 @@ sort(x, decreasing = T)
 ```
 
 ```
-##  [1] 97 75 68 67 46 43 42 23  5  1
+##  [1] 89 80 76 75 67 59 43 30 20  6
 ```
 
 **order**, infine, ci permette di estrarre gli indici di posizione ordinati degli elementi di un oggetto.
@@ -3791,7 +3815,7 @@ x
 ```
 
 ```
-##  [1] 87 33  7 13 40 35 12 96 80 16
+##  [1]   1  45  37   2  70  46 100  51  10  14
 ```
 
 ```r
@@ -3799,7 +3823,7 @@ sort(x)
 ```
 
 ```
-##  [1]  7 12 13 16 33 35 40 80 87 96
+##  [1]   1   2  10  14  37  45  46  51  70 100
 ```
 
 ```r
@@ -3807,7 +3831,7 @@ order(x)
 ```
 
 ```
-##  [1]  3  7  4 10  2  6  5  9  1  8
+##  [1]  1  4  9 10  3  2  6  8  5  7
 ```
 
 ```r
@@ -3815,7 +3839,7 @@ order(x, decreasing = T)
 ```
 
 ```
-##  [1]  8  1  9  5  6  2 10  4  7  3
+##  [1]  7  5  8  6  2  3 10  9  4  1
 ```
 
 Passiamo ora a un gruppo di funzione utili per combinare tra loro diversi oggetti.
@@ -3839,7 +3863,7 @@ y
 ```
 
 ```
-## [1] 8 7 5
+## [1]  5 10  2
 ```
 
 ```r
@@ -3848,7 +3872,7 @@ y
 ```
 
 ```
-##  [1]  8  7 10  2  6  1  8  4  2  1  1  6  5  8  7  3  6 10  7  1
+##  [1] 10  1  9  4  2  5  7  9  8  1  2  7  8  9  5  4  4  2  1  1
 ```
 
 ```r
@@ -3857,8 +3881,8 @@ y
 ```
 
 ```
-##  [1]  7  1  1  1  1  1  1  1  1  3  1 10  4  3  1 10  5  1  4  6  1  4  1 10  4
-## [26]  1  8  4  1  1
+##  [1]  1  4  1  1  1  5  9  1  5  5  1  9  1  1  6  1  1  1  3  1  2  3  3  6  5
+## [26]  1  5 10  1  1
 ```
 
 Dunque, nei primi due esempi abbiamo visto come usare l'opzione **rep**, nell'ultimo esempio possiamo notare come le probabilità di estrazione, fortemente sbilanciate a favore del valore 1, si riflettono sulla composizione del campione estratto.
@@ -3978,12 +4002,12 @@ head(iris_c)
 
 ```
 ##    id color
-## 1 127   red
-## 2  71  blue
-## 3  88   red
-## 4  20  blue
-## 5  63   red
-## 6  45  blue
+## 1  30   red
+## 2  96  blue
+## 3  12   red
+## 4  80  blue
+## 5  17   red
+## 6 115  blue
 ```
 
 ```r
@@ -3994,26 +4018,26 @@ head(iris_full, 20)
 
 ```
 ##    id Sepal.Length Sepal.Width Petal.Length Petal.Width Species color
-## 1   1          5.1         3.5          1.4         0.2  setosa  blue
-## 2   2          4.9         3.0          1.4         0.2  setosa  blue
+## 1   1          5.1         3.5          1.4         0.2  setosa   red
+## 2   2          4.9         3.0          1.4         0.2  setosa   red
 ## 3   3          4.7         3.2          1.3         0.2  setosa   red
-## 4   4          4.6         3.1          1.5         0.2  setosa   red
+## 4   4          4.6         3.1          1.5         0.2  setosa  blue
 ## 5   5          5.0         3.6          1.4         0.2  setosa   red
-## 6   6          5.4         3.9          1.7         0.4  setosa   red
-## 7   7          4.6         3.4          1.4         0.3  setosa  blue
-## 8   8          5.0         3.4          1.5         0.2  setosa  blue
+## 6   6          5.4         3.9          1.7         0.4  setosa  blue
+## 7   7          4.6         3.4          1.4         0.3  setosa   red
+## 8   8          5.0         3.4          1.5         0.2  setosa   red
 ## 9   9          4.4         2.9          1.4         0.2  setosa  blue
-## 10 10          4.9         3.1          1.5         0.1  setosa   red
+## 10 10          4.9         3.1          1.5         0.1  setosa  blue
 ## 11 11          5.4         3.7          1.5         0.2  setosa  blue
 ## 12 12          4.8         3.4          1.6         0.2  setosa   red
-## 13 13          4.8         3.0          1.4         0.1  setosa   red
+## 13 13          4.8         3.0          1.4         0.1  setosa  blue
 ## 14 14          4.3         3.0          1.1         0.1  setosa  blue
 ## 15 15          5.8         4.0          1.2         0.2  setosa  blue
-## 16 16          5.7         4.4          1.5         0.4  setosa  blue
-## 17 17          5.4         3.9          1.3         0.4  setosa  blue
+## 16 16          5.7         4.4          1.5         0.4  setosa   red
+## 17 17          5.4         3.9          1.3         0.4  setosa   red
 ## 18 18          5.1         3.5          1.4         0.3  setosa   red
 ## 19 19          5.7         3.8          1.7         0.3  setosa  blue
-## 20 20          5.1         3.8          1.5         0.3  setosa  blue
+## 20 20          5.1         3.8          1.5         0.3  setosa   red
 ```
 
 Noterete che:
@@ -4181,7 +4205,7 @@ range(m)
 ```
 
 ```
-## [1]  4 99
+## [1]  5 89
 ```
 
 ```r
@@ -4212,7 +4236,7 @@ range(m, na.rm = T)
 ```
 
 ```
-## [1]  4 98
+## [1]  3 94
 ```
 
 
@@ -4228,7 +4252,7 @@ summary(v)
 
 ```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   22.00   48.50   63.50   65.20   83.75   96.00
+##   17.00   30.25   76.00   60.90   82.75   95.00
 ```
 
 ```r
@@ -4237,13 +4261,13 @@ summary(m)
 ```
 
 ```
-##        V1             V2             V3           V4             V5      
-##  Min.   :14.0   Min.   :45.0   Min.   :24   Min.   :27.0   Min.   :19.0  
-##  1st Qu.:28.0   1st Qu.:58.0   1st Qu.:34   1st Qu.:30.0   1st Qu.:39.0  
-##  Median :33.0   Median :69.0   Median :71   Median :41.0   Median :61.0  
-##  Mean   :36.4   Mean   :69.8   Mean   :60   Mean   :52.8   Mean   :58.2  
-##  3rd Qu.:53.0   3rd Qu.:81.0   3rd Qu.:79   3rd Qu.:82.0   3rd Qu.:75.0  
-##  Max.   :54.0   Max.   :96.0   Max.   :92   Max.   :84.0   Max.   :97.0
+##        V1             V2              V3           V4             V5      
+##  Min.   : 5.0   Min.   :  7.0   Min.   : 1   Min.   : 2.0   Min.   :13.0  
+##  1st Qu.:23.0   1st Qu.: 36.0   1st Qu.:40   1st Qu.:38.0   1st Qu.:22.0  
+##  Median :41.0   Median : 50.0   Median :42   Median :45.0   Median :44.0  
+##  Mean   :43.4   Mean   : 54.4   Mean   :53   Mean   :43.2   Mean   :40.6  
+##  3rd Qu.:62.0   3rd Qu.: 79.0   3rd Qu.:90   3rd Qu.:63.0   3rd Qu.:46.0  
+##  Max.   :86.0   Max.   :100.0   Max.   :92   Max.   :68.0   Max.   :78.0
 ```
 
 ```r
@@ -4296,12 +4320,12 @@ m
 ```
 
 ```
-##          [,1]     [,2]     [,3]     [,4]     [,5]
-## [1,] 2.995732      NaN 3.044522      NaN      NaN
-## [2,]      NaN 3.135494 1.791759 4.174387 4.532599
-## [3,]      NaN 3.583519      NaN 3.637586      NaN
-## [4,] 3.526361      NaN 1.386294 4.043051      NaN
-## [5,]      NaN 2.639057 2.484907      NaN      NaN
+##          [,1]     [,2]     [,3]      [,4]     [,5]
+## [1,] 4.532599 3.871201 4.442651 0.6931472 3.663562
+## [2,]      NaN      NaN      NaN 4.5747110      NaN
+## [3,] 4.418841 3.496508 3.970292       NaN      NaN
+## [4,]      NaN 3.583519 4.077537       NaN      NaN
+## [5,] 4.564348 4.406719      NaN       NaN 4.369448
 ```
 
 ```r
@@ -4309,22 +4333,22 @@ summary(m)
 ```
 
 ```
-##        V1              V2              V3              V4       
-##  Min.   :2.996   Min.   :2.639   Min.   :1.386   Min.   :3.638  
-##  1st Qu.:3.128   1st Qu.:2.887   1st Qu.:1.690   1st Qu.:3.840  
-##  Median :3.261   Median :3.135   Median :2.138   Median :4.043  
-##  Mean   :3.261   Mean   :3.119   Mean   :2.177   Mean   :3.952  
-##  3rd Qu.:3.394   3rd Qu.:3.360   3rd Qu.:2.625   3rd Qu.:4.109  
-##  Max.   :3.526   Max.   :3.584   Max.   :3.045   Max.   :4.174  
-##  NA's   :3       NA's   :2       NA's   :1       NA's   :2      
+##        V1              V2              V3              V4        
+##  Min.   :4.419   Min.   :3.497   Min.   :3.970   Min.   :0.6931  
+##  1st Qu.:4.476   1st Qu.:3.562   1st Qu.:4.024   1st Qu.:1.6635  
+##  Median :4.533   Median :3.727   Median :4.078   Median :2.6339  
+##  Mean   :4.505   Mean   :3.839   Mean   :4.163   Mean   :2.6339  
+##  3rd Qu.:4.548   3rd Qu.:4.005   3rd Qu.:4.260   3rd Qu.:3.6043  
+##  Max.   :4.564   Max.   :4.407   Max.   :4.443   Max.   :4.5747  
+##  NA's   :2       NA's   :1       NA's   :2       NA's   :3       
 ##        V5       
-##  Min.   :4.533  
-##  1st Qu.:4.533  
-##  Median :4.533  
-##  Mean   :4.533  
-##  3rd Qu.:4.533  
-##  Max.   :4.533  
-##  NA's   :4
+##  Min.   :3.664  
+##  1st Qu.:3.840  
+##  Median :4.017  
+##  Mean   :4.017  
+##  3rd Qu.:4.193  
+##  Max.   :4.369  
+##  NA's   :3
 ```
 
 Come si può vedere, in questo caso R ci fornisce anche il numero di **NA** (o di **NaN**, in questo caso non c'è differenza) per ciascuna colonna della matrice. Per generare i **NaN** abbiamo usato **sample** per estrarre 25 valori da un insieme che comprende numeri negativi e poi abbiamo usato la funzione **log** (logaritmo), che non è definita per i numeri negativi, per ottenere una matrice con una serie di **NaN** disposti a caso.
@@ -4341,7 +4365,7 @@ v
 ```
 
 ```
-##  [1] 27 19 81 11 70 59 68 17 30 89
+##  [1] 75 32 46 65 78 15 95  4 98 99
 ```
 
 ```r
@@ -4349,7 +4373,7 @@ cumsum(v)
 ```
 
 ```
-##  [1]  27  46 127 138 208 267 335 352 382 471
+##  [1]  75 107 153 218 296 311 406 410 508 607
 ```
 
 Da notare che questa funzione non ha un opzione **na.rm** per cui un singolo **NA** o **NaN** nei dati di partenza può causare una "reazione a catena".
@@ -4375,11 +4399,11 @@ m
 
 ```
 ##          [,1]     [,2]     [,3]     [,4]     [,5]
-## [1,] 4.564348 2.079442      NaN      NaN 4.094345
-## [2,]      NaN 3.931826 1.609438 3.912023 3.583519
-## [3,] 2.833213 3.737670      NaN      NaN 3.951244
-## [4,] 4.442651 2.302585 3.688879 4.127134 3.663562
-## [5,]      NaN      NaN      NaN 4.262680      NaN
+## [1,] 4.343805      NaN      NaN      NaN 2.639057
+## [2,]      NaN 4.290459 3.610918      NaN      NaN
+## [3,] 4.488636 3.871201 3.295837      NaN      NaN
+## [4,] 2.564949 3.761200      NaN      NaN 3.433987
+## [5,] 4.595120      NaN 3.332205 3.496508      NaN
 ```
 
 ```r
@@ -4403,7 +4427,7 @@ median(m, na.rm = T)
 ```
 
 ```
-## [1] 3.824846
+## [1] 3.610918
 ```
 
 ```r
@@ -4411,7 +4435,7 @@ mean(m, na.rm = T)
 ```
 
 ```
-## [1] 3.549035
+## [1] 3.671068
 ```
 
 ```r
@@ -4465,7 +4489,7 @@ weighted.mean(x, w)
 ```
 
 ```
-## [1] 49.51364
+## [1] 42.84703
 ```
 
 ```r
@@ -4473,7 +4497,7 @@ weighted.mean(x, w/sum(w))
 ```
 
 ```
-## [1] 49.51364
+## [1] 42.84703
 ```
 
 
@@ -4493,7 +4517,7 @@ quantile(x = v, probs = seq(0, 1, by=0.33))
 
 ```
 ##    0%   33%   66%   99% 
-##  6.00 40.89 71.24 96.62
+##  4.00 32.89 65.78 95.43
 ```
 
 In questo esempio, abbiamo diviso i dati in 3 blocchi omogenei. Ovviamente è possibile fare anche "tagli" più eterogenei.
@@ -4508,7 +4532,7 @@ quantile(x = v, probs = c(0, 0.5, 0.7, 0.9))
 
 ```
 ##   0%  50%  70%  90% 
-##  5.0 43.5 64.6 77.4
+##  3.0 50.5 60.5 88.0
 ```
 
 
@@ -4526,7 +4550,7 @@ sd(x)
 ```
 
 ```
-## [1] 27.41278
+## [1] 27.63484
 ```
 
 
@@ -4550,7 +4574,7 @@ summary(vnorm)
 
 ```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## -2.5854 -0.5367  0.1151  0.1264  0.7474  2.7001
+## -2.0059 -0.4209  0.1675  0.1472  0.8099  2.4966
 ```
 
 Gli argomenti necessari per **runif**  sono:
@@ -4568,7 +4592,7 @@ summary(vunif)
 
 ```
 ##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
-## -0.99990 -0.61469 -0.05546 -0.05627  0.37841  0.95604
+## -0.99837 -0.37829 -0.04306  0.04835  0.59167  0.98906
 ```
 
 
@@ -4586,7 +4610,7 @@ hist(vnorm, col = "grey", main = "dist normale")
 hist(vunif, col = "grey", main = "dist uniforme")
 ```
 
-<img src="01-base_files/figure-html/unnamed-chunk-128-1.png" width="672" />
+![](01-base_files/figure-latex/unnamed-chunk-128-1.pdf)<!-- --> 
 
 ### Leggere e scrivere (csv, file di testo, ecc.)
 
@@ -4642,19 +4666,19 @@ iris$color = factor(rep(c("red","blue"), 75), levels = c("red","blue"))
 plot(iris$Sepal.Length, iris$Sepal.Width)
 ```
 
-<img src="01-base_files/figure-html/unnamed-chunk-129-1.png" width="672" />
+![](01-base_files/figure-latex/unnamed-chunk-129-1.pdf)<!-- --> 
 
 ```r
 plot(iris$Sepal.Length, iris$Species)
 ```
 
-<img src="01-base_files/figure-html/unnamed-chunk-129-2.png" width="672" />
+![](01-base_files/figure-latex/unnamed-chunk-129-2.pdf)<!-- --> 
 
 ```r
 plot(iris$Species, iris$color)
 ```
 
-<img src="01-base_files/figure-html/unnamed-chunk-129-3.png" width="672" />
+![](01-base_files/figure-latex/unnamed-chunk-129-3.pdf)<!-- --> 
 
 Oltre a questo, occorre solo sapere che **plot** ha una lunga serie di argomenti opzionali che servono a specificare:
 
@@ -4676,28 +4700,28 @@ plot(iris$Sepal.Length, iris$Sepal.Width, pch = 19,
      main = "Esempio di utilizzo dell'argomento pch")
 ```
 
-<img src="01-base_files/figure-html/unnamed-chunk-130-1.png" width="672" />
+![](01-base_files/figure-latex/unnamed-chunk-130-1.pdf)<!-- --> 
 
 ```r
 plot(iris$Sepal.Length, iris$Sepal.Width, pch = 19, col = "red",
      main = "Esempio di utilizzo dell'argomento col")
 ```
 
-<img src="01-base_files/figure-html/unnamed-chunk-130-2.png" width="672" />
+![](01-base_files/figure-latex/unnamed-chunk-130-2.pdf)<!-- --> 
 
 ```r
 plot(iris$Sepal.Length, iris$Sepal.Width, pch = 19, col = "red", type = "b",
      main = "Esempio di utilizzo dell'argomento type")
 ```
 
-<img src="01-base_files/figure-html/unnamed-chunk-130-3.png" width="672" />
+![](01-base_files/figure-latex/unnamed-chunk-130-3.pdf)<!-- --> 
 
 ```r
 plot(iris$Sepal.Length, iris$Sepal.Width, pch = 19, col = "red", cex = 3,
      main = "Esempio di utilizzo dell'argomento cex")
 ```
 
-<img src="01-base_files/figure-html/unnamed-chunk-130-4.png" width="672" />
+![](01-base_files/figure-latex/unnamed-chunk-130-4.pdf)<!-- --> 
 
 ```r
 plot(iris$Sepal.Length, iris$Sepal.Width, pch = 19, col = "red", 
@@ -4705,7 +4729,7 @@ plot(iris$Sepal.Length, iris$Sepal.Width, pch = 19, col = "red",
      main = "Esempio di utilizzo degli argomenti xlab e ylab")
 ```
 
-<img src="01-base_files/figure-html/unnamed-chunk-130-5.png" width="672" />
+![](01-base_files/figure-latex/unnamed-chunk-130-5.pdf)<!-- --> 
 
 ```r
 par(mfrow = c(2,2))
@@ -4715,7 +4739,7 @@ plot(iris$Sepal.Length, iris$Petal.Width, pch = 19)
 plot(iris$Sepal.Width, iris$Petal.Width, pch = 19)
 ```
 
-<img src="01-base_files/figure-html/unnamed-chunk-130-6.png" width="672" />
+![](01-base_files/figure-latex/unnamed-chunk-130-6.pdf)<!-- --> 
 
 
 Nell'ultimo esempio abbiamo usato **par** e **mfrow** (un suo argomento) per inizializzare uno "spazio grafico" avente 2 righe e 2 colonne, in modo da ottenere un mosaico di scatterplot perfettamente coerenti dal punto di vista grafico (stesse proporzioni, stessi caratteri, stesso allineamento, ecc.).
@@ -4729,7 +4753,7 @@ data(iris)
 plot(iris)
 ```
 
-<img src="01-base_files/figure-html/unnamed-chunk-131-1.png" width="672" />
+![](01-base_files/figure-latex/unnamed-chunk-131-1.pdf)<!-- --> 
 
 Il risultato è soprendente, ma non troppo: R è partito dall'assunto che il data frame
 sia una raccolta di osservazioni (righe) rispetto a 5 variabili... e quindi ci ha restituito uno scatterplot di tutte le possibili coppie di variabili. Un metodo rozzo ma efficace per avere una prima visione d'insieme dei dati (primo passaggio di un qualsiasi protocollo statistico di analisi dei dati).
@@ -4743,14 +4767,14 @@ m = matrix(sample(1:100, 30), 10, 3)
 plot(m)
 ```
 
-<img src="01-base_files/figure-html/unnamed-chunk-132-1.png" width="672" />
+![](01-base_files/figure-latex/unnamed-chunk-132-1.pdf)<!-- --> 
 
 ```r
 v = sample(1:100, 10)
 plot(v)
 ```
 
-<img src="01-base_files/figure-html/unnamed-chunk-132-2.png" width="672" />
+![](01-base_files/figure-latex/unnamed-chunk-132-2.pdf)<!-- --> 
 
 Nel primo caso (la matrice _m_), R ha usato le prime due colonne come _x_ e _y_, rispettivamente, e ignorando la terza colonna. Ce ne accorgiamo dai nomi dei due assi dello scatterplot.
 Nel secondo caso (il vettore _v_), R ha trattato i dati come una serie e ha usato i valori del vettore come _y_ contro una _x_ rappresentata dagli indici di posizione degli elementi che compongono _v_.
@@ -4772,19 +4796,19 @@ data(iris)
 hist(iris$Sepal.Length, breaks = 3)
 ```
 
-<img src="01-base_files/figure-html/unnamed-chunk-133-1.png" width="672" />
+![](01-base_files/figure-latex/unnamed-chunk-133-1.pdf)<!-- --> 
 
 ```r
 hist(iris$Sepal.Length, breaks = seq(1, 10, by = 1))
 ```
 
-<img src="01-base_files/figure-html/unnamed-chunk-133-2.png" width="672" />
+![](01-base_files/figure-latex/unnamed-chunk-133-2.pdf)<!-- --> 
 
 ```r
 hist(iris$Sepal.Length, breaks = c(1,6,7,8))
 ```
 
-<img src="01-base_files/figure-html/unnamed-chunk-133-3.png" width="672" />
+![](01-base_files/figure-latex/unnamed-chunk-133-3.pdf)<!-- --> 
 
 Nel primo caso abbiamo usato **breaks** per dire a R di fare 3 "tagli" e quindi generare 4 gruppi di dati. Nel secondo caso abbiamo specificato un vettore di intervalli omogenei. Nel terzo esempio abbiamo definito degli intervalli di ampiezza eterogenea.
 
@@ -4805,7 +4829,7 @@ tab_iris = table(iris$color)
 barplot(height = tab_iris, names.arg = names(tab_iris))
 ```
 
-<img src="01-base_files/figure-html/unnamed-chunk-134-1.png" width="672" />
+![](01-base_files/figure-latex/unnamed-chunk-134-1.pdf)<!-- --> 
 
 Nell'esempio precedente ci siamo avvalsi della funzione **names** che serve a estrarre i nomi delle classi di una tabella.
 
@@ -4825,19 +4849,19 @@ data(iris)
 boxplot(iris$Sepal.Length)
 ```
 
-<img src="01-base_files/figure-html/unnamed-chunk-135-1.png" width="672" />
+![](01-base_files/figure-latex/unnamed-chunk-135-1.pdf)<!-- --> 
 
 ```r
 boxplot(iris, cex.axis = 0.7)
 ```
 
-<img src="01-base_files/figure-html/unnamed-chunk-135-2.png" width="672" />
+![](01-base_files/figure-latex/unnamed-chunk-135-2.pdf)<!-- --> 
 
 ```r
 boxplot(matrix(sample(1:100, 40), 10, 4))
 ```
 
-<img src="01-base_files/figure-html/unnamed-chunk-135-3.png" width="672" />
+![](01-base_files/figure-latex/unnamed-chunk-135-3.pdf)<!-- --> 
 
 Nel primo caso abbiamo usato una singola colonna di _iris_ e abbiamo ottenuto un singolo grafico, in cui gli estremi delle barre rappresentano il minimo e il massimo delle osservazioni, la linea nera spessa rappresenta il valore della mediana e gli estremi del rettangolo grigio rappresentano il secondo e il terzo **quartile**, rispettivamente.
 Questo genera di grafici è molto utile per catturare al volo la _curtosi_ e la _simmetria_ della distribuzione di una serie di valori. 
@@ -4859,7 +4883,7 @@ data(iris)
 boxplot(iris$Sepal.Length ~ iris$Species)
 ```
 
-<img src="01-base_files/figure-html/unnamed-chunk-136-1.png" width="672" />
+![](01-base_files/figure-latex/unnamed-chunk-136-1.pdf)<!-- --> 
 
 L'esempio parla da solo: R ha rappresentato le distribuzioni della variabile Sepal Length **rispetto** alle specie, producendo un grafico molto chiaro che ci suggerisce l'esistenza di una morfologia diversa tra le diverse specie, almeno relativamente a questa singola biometria.
 
@@ -4874,7 +4898,7 @@ Anche se non abbiamo ancora introdotto le funzioni necessarie per fare analisi d
 plot(hclust(dist(iris[,1:4])))
 ```
 
-<img src="01-base_files/figure-html/unnamed-chunk-137-1.png" width="672" />
+![](01-base_files/figure-latex/unnamed-chunk-137-1.pdf)<!-- --> 
 
 Abbiamo usato due funzioni nuove, **dist** (che serve a calcolare una matrice di distanze) e **hclust** (che serve a fare le _cluster analysis_) per ottenere una classificazione degli individui nel data frame _iris_ in base alle loro biometrie.
 Poi abbiamo applicato la funzione **plot** sul risultato e abbiamo ottenuto un dendrogramma.
@@ -4919,8 +4943,8 @@ dev.off()
 ```
 
 ```
-## quartz_off_screen 
-##                 2
+## pdf 
+##   2
 ```
 Se controlliamo, la procedura ha salvato nel nostro hard disk una figura chiamata **hist.jpeg** contenente l'istogramma della variabile di _iris_ Sepal.Length.
 

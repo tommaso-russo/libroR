@@ -116,7 +116,7 @@ legend(3.6, 1,
        horiz = F, bty = "n")
 ```
 
-<img src="02-gen_files/figure-html/drift_01_1-1.png" width="672" />
+![](02-gen_files/figure-latex/drift_01_1-1.pdf)<!-- --> 
 
 Questa rappresentazione grafica  mostra chiaramente le frequenze alleliche iniziali della popolazione. La linea rossa tratteggiata attraversa le tre barre colorate e le taglia esattamente al valore di 0.5, la frequenza che avevamo stabilito. Cosa succede dopo una generazione in cui la deriva genetica è la sola forza che agisce sulle frequenza geniche? In altre parole, campionando a caso come cambiano le frequenze alleliche nella generazione successiva? La funzione `sample()` fa al caso nostro perché ci permette di simulare il campionamento casuale e la deriva dei geni all'interno della popolazione.
 
@@ -163,7 +163,7 @@ legend(3.6, 1,
        horiz = F, bty = "n")
 ```
 
-<img src="02-gen_files/figure-html/drift_02_1-1.png" width="672" />
+![](02-gen_files/figure-latex/drift_02_1-1.pdf)<!-- --> 
 
 Dopo una sola generazione le frequenze sono cambiate! Tutti gli alleli nella nostra popolazione hanno subito una variazione. Questa variazione potrebbe non sembrare molto grande o comunque non particolarmente significativa, ma c'è. Possiamo chiaederci un'altra domanda. Cosa succede dopo 200 generazioni di variazione stocastica delle frequenze alleliche? Cerchiamo di visualizzare passo passo come le frequenze cambiano in relazione al passare del tempo.
 
@@ -221,7 +221,7 @@ legend(180, .75,
        horiz = F, bty = "n")
 ```
 
-<img src="02-gen_files/figure-html/drift_03-1.png" width="672" />
+![](02-gen_files/figure-latex/drift_03-1.pdf)<!-- --> 
 
 Il blocco di codice appena eseguito simula lo scorrere del tempo per la nostra popolazione (200 generazioni). Il grafico mostra la naturale (e stocastica) oscillazione delle frequenze geniche al passare delle generazioni. È interessante notare come dopo circa 150 generazioni l'allele $C_{2}$ va a fissazione ($p_{C_{2}}$ = 1), mentre l'allele $C_{1}$ si estingue dalla popolazione ($p_{C_{1}}$ = 0). Gli alleli degli altri due geni continuano ad oscillare e per capire quanto tempo ci vuole affinchè arrivino a fissazione/estinzione bisgnorebbe continuare la simulazione. 
 
@@ -286,17 +286,17 @@ sim.gen2fix(pop.ls, 1000)
 ## sd    99.41759 102.342  97.99392
 ```
 
-<img src="02-gen_files/figure-html/drift_04-1.png" width="672" />
+![](02-gen_files/figure-latex/drift_04-1.pdf)<!-- --> 
 
 I dati che abbiamo simulato ci dicono che in media ci vogliono circa 135 generazioni prima che uno dei due alleli vada a fissazione. Ovviamente questo è uno scenario estremamente semplificato, ma permette comunque di avere un'ipotesi nulla da usare per la verifica di dati sperimentali. 
 
 Immaginiamo di trasferirci in laboratorio. Vogliamo verificare sperimentalmente se le fluttuazioni delle frequenze alleliche osservate in diverse colture di moscerini sono dovute al caso o sono invece dovute alla forza selettiva applicata da diversi ambienti nei quali le nostro colonie sono cresciute. Anche qui, per facilitare la comprensione del meccanismo, ci soffermeremo su popolazioni di 500 individui con 3 geni diploidi. Per prima casa simuliamo la popolazione sorgente che nasce e scresce in un ambiente privo di selezione. 
 
-<img src="02-gen_files/figure-html/drift_05-1.png" width="672" />
+![](02-gen_files/figure-latex/drift_05-1.pdf)<!-- --> 
 
 Cosa succede se non lasciamo che sia solo il caso a guidare la variazione delle frequenze alleliche? In altre parole, cosa succede quando applichiamo una pressione selettiva che favorisce alcuni geni/alleli rispetto ad altri? Per semplicità svolgeremo questa procedura su uno solo dei 3 geni e visualizzeremo come le frequenze cambiano al variare del coefficiente di selezione.
 
-<img src="02-gen_files/figure-html/drift_05_b-1.png" width="672" />
+![](02-gen_files/figure-latex/drift_05_b-1.pdf)<!-- --> 
 
 È evidente che tanto più intensa è la pressione selettiva tanto più rapidamente gli alleli andranno a fissazione. A questo punto possiamo porre un'altra domanda interessante: ammettendo che sia solo la deriva genetica a produrre un cambiamento nelle frequenze alleliche della popolazione, che effetto hanno parmentri come la dimensione della popolazione e la frequenza allelica iniziale sulla stima del tempo medio di fissazione dei diversi geni? Intuitivamente, possiamo immaginare che entrambi i fattori possano avere un ruolo nell'influenzare il tempo medio di fissazione di un gene. La relazione matematica formale che tiene insieme tutte queste variabili e che descrive la loro interazione è evidenziata nella seguente equazione dove $t_{fix}$ è il tempo (generalmente espresso in numero di generazioni) necessario alla fissazinoe di un allele, $N_{e}$ è la [dimensione effettiva della popolazione](https://en.wikipedia.org/wiki/Effective_population_size) e $p$ è la frequenza allelica.
 
@@ -352,7 +352,7 @@ legend("topleft", legend = c("0.01", "0.1", "0.25", "0.5"),
        lty = 1)
 ```
 
-<img src="02-gen_files/figure-html/drift_06-1.png" width="672" />
+![](02-gen_files/figure-latex/drift_06-1.pdf)<!-- --> 
 
 Facciamo un ulteriore passaggio e cerchiamo di capire on un approccio diverso quanto influente è il numero di individui per il mantenimento delle frequenze alleliche. Ritorniamo un secondo allo scenario alla Robinson Crusoe di cui abbiamo parlato all'inizio del capitolo: è molto probabile che il numero dei nuovi individui che fonderanno una nuova popolazione (le zatterine che arrivano sull'isola sperduta) sarà diverso (probabilmente più piccolo) di quello di origine. Che effetto ha questa variazione sulla frequenza allelica nella popolazione che si formerà nell'isola?  
 
@@ -431,7 +431,7 @@ lines(x = seq(0, 16, 1), y = rep(0.5, 17),
 sd.bar(df_mean_freq_N_mtrx.blt, df_mean_freq_N_mtrx, df_sd_freq_N_mtrx)
 ```
 
-<img src="02-gen_files/figure-html/drift_07-1.png" width="672" />
+![](02-gen_files/figure-latex/drift_07-1.pdf)<!-- --> 
 
 È facile vedere come i valori medi delle frequenze alleliche nei nostri campioni simulati sono abbastanza costanti (notare la riga rossa che taglia il grafico ad una frequenza di 0.5). Quello che varia significativamente da un valore di N all'altro è la deviazione standard associata alle nostre frequenze. Volendo semplificare il concetto ancora di più, più piccolo è il valore del campione $N_{s}$ più alta è la probabilità di vedere cambiata la frequenza allelica nelle generazioni successive. Da un punto di vista evolutivo questo è molto importante. Quando una popolazione subisce una drastica riduzione della popolazione (un collo di bottiglia) la sua composizione allelica sarà, molto probabilmente, diversa da quella precedente. 
 
@@ -491,7 +491,7 @@ barplot(df$change_prob,
         las = 2)
 ```
 
-<img src="02-gen_files/figure-html/drift_09-1.png" width="672" />
+![](02-gen_files/figure-latex/drift_09-1.pdf)<!-- --> 
 
 La distribuzione ci racconta una storia interessante, ovvero che esiste una probabilità (anche se estremamente piccola!) che in una sola generazione un allele venga perso (e l'altro vada a fissazione). Ovviamente questa probabilità è talmente piccola da poter essere scartata, in particolare se si sta lavorando su scale temporali relativamente brevi.
 
@@ -613,7 +613,7 @@ barplot(t(str.K3.mtx),
         cex.names = .3)
 ```
 
-<img src="02-gen_files/figure-html/str4-1.png" width="672" />
+![](02-gen_files/figure-latex/str4-1.pdf)<!-- --> 
 
 Sull'asse delle X abbiamo gli individui, mentre sull'asse delle y abbiamo il valore di probabilità che, basandosi sul genotipo, ogni individuo appartengo ad uno 3 tre clusters genetici che il programma ha evidenziato (caratterizzati dai tre colori differenti). Questo risultato ci dice che anche se i nostri campioni provengono da 16 siti di campionamento differenti, siamo in grado di riconoscere solo 3 unità genetiche distinte una dall'altra, evidenziando il fatto che tra molti dei siti di campionamento avviene, probabilmente, un elevato flusso genico.
 
@@ -680,7 +680,7 @@ axis(side = 2,
      cex.axis = .4)
 ```
 
-<img src="02-gen_files/figure-html/phy1_b-1.png" width="672" />
+![](02-gen_files/figure-latex/phy1_b-1.pdf)<!-- --> 
 
 Il modello che meglio approssima le nostre sequenze (usando il parametro AIC) è il TVM+G+I (Transversion model + una certa proporzione di variazione tra siti (con distribuzione $\Gamma$) + una proporzione di siti invariati).
 
@@ -708,6 +708,6 @@ england <- ape::read.tree("./data/06_genetics/Morales-Hojas_et_al_2020/England_R
 plot(england)
 ```
 
-<img src="02-gen_files/figure-html/phy4-1.png" width="672" />
+![](02-gen_files/figure-latex/phy4-1.pdf)<!-- --> 
 
 L'albero è, evidentemente molto complesso. @Paradis2012 offre una completa descrizione di come manipolare alberi anche molto complessi come quello appena generato, per poter evidenziare caratteristiche specifiche o particolari aspetti d'interesse.

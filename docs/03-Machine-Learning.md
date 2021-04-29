@@ -391,7 +391,7 @@ fit <- rpart(Species ~., data = training_set, method = 'class')
 rpart.plot(fit)
 ```
 
-<img src="03-Machine-Learning_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+![](03-Machine-Learning_files/figure-latex/unnamed-chunk-9-1.pdf)<!-- --> 
 
 Complimenti! Avete appena "costruito" il vostro modello di machine learning! Facile no? Ma non è il momento di aprirsi una birra e rilassarsi. Come abbiamo già detto in precedenza, ci sono molte cose da esplorare e da tenere in conto per capire se il nsotro modello ha una buona performance predittiva o meno.
 
@@ -574,7 +574,7 @@ Ricordate il discorso delle black-boxes? Vi sarete resi conto che, a meno che no
 varImpPlot(rf.fit)
 ```
 
-<img src="03-Machine-Learning_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+![](03-Machine-Learning_files/figure-latex/unnamed-chunk-15-1.pdf)<!-- --> 
 
 L'importanza di ciascuna variabile è valutata sulla base di due criteri:
 
